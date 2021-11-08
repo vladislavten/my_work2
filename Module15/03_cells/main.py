@@ -8,4 +8,4 @@ for i in range(cell):
     rang = int(input())
     if rang < i:
         result.append(rang)
-print(result)
+print('Неподходящие значения:', result)
