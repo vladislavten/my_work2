@@ -14,6 +14,9 @@ while enter_film != 'end':
     if flg == True:
         print('Фильм добавлен в список любимых фильмов')
         favorite.append(enter_film)
+    elif enter_film == 'end':
+        print('Конец программы')
+        break
     else:
         print('Ошибка. Такого фильма нет')
 
