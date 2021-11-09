@@ -9,13 +9,10 @@ for i in range(number):
     model = int(input())
     models.append(model)
 
-
 print('Старый список видеокарт: ', models)
 
 for x in models:
-    if x == max(models):
-        _ = False
-    else:
+    if x != max(models):
         result.append(x)
 
 print('Новый список видеокарт:', result)
