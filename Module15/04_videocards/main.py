@@ -1,15 +1,14 @@
 # TODO здесь писать код
 
 number = int(input('Введите кол-во видеокарт: '))
-count = 1
 models = []
 result = []
 _ = True
 for i in range(number):
-    print(count, 'Видеокарта:', end = ' ')
+    print(i + 1, 'Видеокарта:', end = ' ')
     model = int(input())
     models.append(model)
-    count += 1
+
 
 print('Старый список видеокарт: ', models)
 
