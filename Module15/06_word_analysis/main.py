@@ -6,7 +6,6 @@ result = 0
 
 for i in range(len(word) ):
     count = 0
-    index = 0
     for x in word:
         if x == word[i]:
             count +=1
