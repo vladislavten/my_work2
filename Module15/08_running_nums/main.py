@@ -5,7 +5,6 @@ result = []
 print('Изначальный список:', string)
 
 for i in range(len(string)):
-    # print(i, end = ' ')
     result.append(string[i - move])
 
 print('Сдвинутый список: ', result)
