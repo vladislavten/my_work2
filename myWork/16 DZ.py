@@ -12,8 +12,8 @@
 #             first_line[x], first_line[i] = first_line[i], first_line[x]
 #
 # print('\nОтсортированный список:',first_line)
-
-
+#
+#
 # Задача 3. Детали
 # shop = [['каретка', 1200], ['шатун', 1000], ['седло', 300], ['педаль', 100], ['седло', 1500],
 #         ['рама', 12000], ['обод', 2000], ['шатун', 200], ['седло', 2700]]
@@ -26,8 +26,8 @@
 #                 summ += shop[i][1]
 # print('\nКол-во деталей:', count_detail)
 # print('Общая стоимость:', summ)
-
-
+#
+#
 # Задача 4. Вечеринка
 # guests = ['Петя', 'Ваня', 'Саша', 'Лиза', 'Катя']
 # while True:
@@ -46,3 +46,32 @@
 #     elif choice == 'ушёл' or choice == 'ушел':
 #         print('Пока,', name)
 #         guests.remove(name)
+
+
+# Задача 5. Песни
+# violator_songs = [
+# ['World in My Eyes', 4.86],
+# ['Sweetest Perfection', 4.43],
+# ['Personal Jesus', 4.56],
+# ['Halo', 4.9],
+# ['Waiting for the Night', 6.07],
+# ['Enjoy the Silence', 4.20],
+# ['Policy of Truth', 4.76],
+# ['Blue Dress', 4.29],
+# ['Clean', 5.83]]
+
+# hm_songs = int(input('Сколько песен выбрать? '))
+# time = 0
+# for i in range(hm_songs):
+#     print('Название', i + 1, 'песни:', end = ' ')
+#     song_name = input()
+#     for i_song in range(len(violator_songs)):
+#         if song_name == violator_songs[i_song][0]:
+#             time += violator_songs[i_song][1]
+#
+# print('\nОбщее время звучания песен:', round(time, 2))
+
+
+
+# Задача 6. Уникальные элементы
+
