@@ -154,54 +154,5 @@
 # print('Остался человек под номером', peolpes_list)
 
 
-# Задача 9. Друзья
-#
-# friends = int(input('Кол-во друзей: '))
-# friends_list = []
-# dolg = int(input('Долговых расписок: '))
-#
-# for _ in range(friends):
-#     friends_list.append(0)
-#
-# for i in range(dolg):
-#     print(i + 1, 'расписка')
-#     whom = int(input('Кому: '))
-#     From = int(input('От кого: '))
-#     hm = int(input('Сколько: '))
-#
-#     friends_list[whom - 1] -= hm
-#     friends_list[From - 1] += hm
-#
-# print('\nБаланс друзей')
-# for num in range(friends ):
-#     print(num + 1, ':', friends_list[num])
 
 
-# Задача 10. Симметричная последовательность
-
-# def is_polindrom(num_list):
-#     reverse_list = []
-#     for i_num in range(len(num_list) - 1, -1, -1):
-#         reverse_list.append(num_list[i_num])
-#     if num_list == reverse_list:
-#         return True
-#     else:
-#         return False
-#
-# nums = [2, 3, 4, 5, 4, 3, 0, 0, 0]
-# new_nums = []
-# answer = []
-#
-# for i_nums in range(0, len(nums)):
-#     for j_elem in range(i_nums, len(nums)):
-#         new_nums.append(nums[j_elem])
-#     if is_polindrom(new_nums):
-#         for i_answer in range(0, i_nums):
-#             answer.append(nums[i_answer])
-#         answer.reverse()
-#         break
-#     new_nums = []
-#
-# print('Исходный список:', nums)
-# print('Нужно чисел для палиндрома:', len(answer))
-# print('Список этих чисел:', answer)
