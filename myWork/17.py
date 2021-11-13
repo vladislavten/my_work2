@@ -17,15 +17,26 @@
 # result = sum([percent(X, i) for i in prices])
 # result2 = sum([percent(Y, i) for i in prices])
 # print(round(sum(prices), 2), round(result, 2) , round(result2, 2))
-import time
-start_time = time.time()
+
+
+# МОДУЛЬ 17.3
+# Задача 1. Список чётных числ
+
+
+
+
+
+
+# ТАЙМЕР
+# import time
+# start_time = time.time()
 # a = []
 # for i in range(10000000):
 #     i *= 2
 #     a.append(i)
-
-a = [x * 2 for x in range(10000000)]
-print(a)
-print("--- %s seconds ---" % (time.time() - start_time))
+#
+# a = [x * 2 for x in range(10000000)]
+# print(a)
+# print("--- %s seconds ---" % (time.time() - start_time))
 
 
