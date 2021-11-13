@@ -1,4 +1,5 @@
-# Задача 3. Повышение цен МОДУЛЬ 17.2
+# МОДУЛЬ 17.2
+# Задача 3. Повышение цен
 
 # def percent(x, price):
 #     result = price + (price / 100 * x)
@@ -39,18 +40,29 @@
 ##############################################################
 
 # Задача 3. Отряды
+# import random
+#
+# frst_sq = [random.randint(50, 80) for _ in range(10)]
+# scnd_sq = [random.randint(30, 60) for _ in range(10)]
+# trd_sq = ['Выжил' if frst_sq[i] + scnd_sq[i] < 100 else 'Погиб'
+#           for i in range(10)]
+#
+# print('Урон первого отряда:', frst_sq)
+# print('\nУрон второго отряда:', scnd_sq)
+# print('Состояние третьего отряда:', trd_sq)
 
-import random
+#############################################################
 
-frst_sq = [random.randint(50, 80) for _ in range(10)]
-scnd_sq = [random.randint(30, 60) for _ in range(10)]
-trd_sq = ['Выжил' if frst_sq[i] + scnd_sq[i] < 100 else 'Погиб'
-          for i in range(10)]
+# МОДУЛЬ 17.4
 
-print('Урон первого отряда:', frst_sq)
-print('\nУрон второго отряда:', scnd_sq)
-print('Состояние третьего отряда:', trd_sq)
+nums = [x for x in range(1, 101) if x % 10 == 0]
+print(nums)
+new_nums = nums
+new_nums[3] = 0
+print(new_nums)
 
+for i_elem in range(2, 8):
+    print(new_nums[i_elem], end = ' ')
 
 
 
