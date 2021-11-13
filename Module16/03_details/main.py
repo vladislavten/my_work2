@@ -12,4 +12,4 @@ for i in range(len(shop)):
                 count_detail += 1
                 summ += shop[i][1]
 print('\nКол-во деталей:', count_detail)
-print('Общая стоимость:', summ)
+print('Общая стоимость:', summ
