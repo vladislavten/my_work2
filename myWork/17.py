@@ -54,18 +54,51 @@
 #############################################################
 
 # МОДУЛЬ 17.4
+# Задача 1. Анализ цен
 
-nums = [x for x in range(1, 101) if x % 10 == 0]
-print(nums)
-new_nums = nums
-new_nums[3] = 0
-print(new_nums)
+# original_prices = [-12, 3, 5, -2, 1]
+# new_prices = original_prices[:]
+# new_prices = [(original_prices[i] if new_prices[i] > 0 else 0) for i in range(len(original_prices))]
 
-for i_elem in range(2, 8):
-    print(new_nums[i_elem], end = ' ')
+# print("Мы потеряли: ",  sum(new_prices) - sum(original_prices))
+
+##############################################################
+
+# Задача 2. Срезы
+
+# nums = [48, -10, 9, 38, 17, 50, -5, 43, 46, 12]
+#
+# nums[:3] = [1,1]
+# print(nums)
+# print(nums[:5])
+# print(nums[:8])
+# print(nums[::2])
+# print(nums[1::2])
+# print(nums[::-1])
+# print(nums[::-2])
+
+##############################################################
+
+# Задача 3. Удаление части
+
+# import random
+# N = [random.randint(-10, 50) for _ in range(10)]
+# print(N)
+#
+# A = 5
+# B = 8
+#
+# N[A:B] = ''
+#
+# print(N)
+
+#############################################################
 
 
-
+# Дан список из N чисел, а также числа А и В (можно сгенерировать случайно, при этом А < B).
+# Напишите программу, которая удаляет элементы списка с индексами от А до В.
+# Не используйте дополнительные переменные и методы списков.
+#############################################################
 # ТАЙМЕР
 # import time
 # start_time = time.time()
