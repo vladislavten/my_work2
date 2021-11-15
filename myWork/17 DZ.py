@@ -82,4 +82,32 @@
 #
 # print('Результат:', result)
 
+# Задача 8. Развлечение
+#
+# sticks = int(input('Кол-во палок: '))
+# throws = int(input('Кол-во бросков: '))
+#
+# lst = ['|' for i in range(sticks)]
+#
+# for i in range(1,throws + 1):
+#     print('Бросок', i, '. ', end = '')
+#     print('Сбиты палки с номера', end = '')
+#     a = int(input(' '))
+#     print('по номер', end = '')
+#     b = int(input(' '))
+#     for z in range (a - 1, b):
+#         lst[z] = '.'
+#
+# for i in lst:
+#     print(i, end = '')
 
+# Задача 9. Список списков
+
+# nice_list = [[[1, 2, 3], [4, 5, 6], [7, 8, 9]], [[10, 11, 12], [13, 14, 15], [16, 17, 18]]]
+# result = [nice_list[i][x][y] for i in range(len(nice_list)) for x in range(3) for y in range(3)]
+#
+# print('Ответ:', result)
+
+
+
+# Задача 10. Шифр Цезаря (сделайте по желанию)

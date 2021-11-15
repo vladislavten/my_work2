@@ -155,8 +155,8 @@
 #     print('начало счета с номера', peolpes_list[count])
 #     print('Выбывает человек под номером: ', peolpes_list[a])
 #     peolpes_list.remove(peolpes_list[a])
-# print()
-# print('Остался человек под номером', peolpes_list)
+
+# print('\nОстался человек под номером', peolpes_list)
 
 
 # Задача 9. Друзья
