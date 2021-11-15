@@ -89,7 +89,7 @@
 #
 # lst = ['|' for i in range(sticks)]
 #
-# for i in range(1,throws + 1):
+# for i in range(1, throws + 1):
 #     print('Бросок', i, '. ', end = '')
 #     print('Сбиты палки с номера', end = '')
 #     a = int(input(' '))

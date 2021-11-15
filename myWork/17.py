@@ -33,7 +33,7 @@
 
 # original_prices = [1.25, -9.45, 10.22, 3.78, -5.92, 1.16, -12]
 # result = [(new_price if new_price > 0 else 0) for new_price in original_prices]
-
+#
 # print(result)
 
 ##############################################################
@@ -54,14 +54,14 @@
 
 # МОДУЛЬ 17.4
 
-nums = [x for x in range(1, 101) if x % 10 == 0]
-print(nums)
-new_nums = nums
-new_nums[3] = 0
-print(new_nums)
-
-for i_elem in range(2, 8):
-    print(new_nums[i_elem], end = ' ')
+# nums = [x for x in range(1, 101) if x % 10 == 0]
+# print(nums)
+# new_nums = nums
+# new_nums[3] = 0
+# print(new_nums)
+#
+# for i_elem in range(2, 8):
+#     print(new_nums[i_elem], end = ' ')
 
 
 
