@@ -36,12 +36,41 @@
 
 
 # Задача 4. Заглавные буквы
-#
-# Пользователь вводит строку. Напишите программу, которая изменяет регистр символов в этой строке так,
-# чтобы первая буква каждого слова была заглавной, а остальные буквы — строчными.
+
+# words = input('Введите строку: ').title()
+# print('Результат: ', words)
+
+
+# Задача 5. Пароль
+
+while True:
+    digit_count = 0
+    word_count = 0
+    word_up_count =0
+    password = input('Придумайте пароль: ')
+    for i_digit in password:
+        if i_digit.isdigit():
+            digit_count += 1
+
+    for i_word in password:
+        if i_word.isalpha():
+            word_count += 1
+
+    for i_word_upper in password:
+        if i_word_upper.isupper():
+            word_up_count += 1
+
+    if len(password) >= 8 and digit_count >= 3 and word_count >= 5 and word_up_count >= 1:
+        print('Это надёжный пароль!')
+        break
+    else:
+        print('Не надёжный пароль, попробуйте ещё раз')
+
 #
 # Пример:
 #
-# Введите строку: Кажется, я забыл выключить утюг
+# Придумайте пароль: qwerty
 #
-# Результат: Кажется, Я Забыл Выключить Утюг
+# Пароль ненадёжный. Попробуйте ещё раз.
+#
+# Это надёжный пароль!
