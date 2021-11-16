@@ -80,6 +80,20 @@
 #     print('Путь корректен!')
 # else:
 #     print('Путь не корректен')
+#################################################################
+
+# Задача 3. Удаление части
+
+a = 'ЭтО ПИтон, ОН очеНь УдоБЫй КАК ВСЕГДА'
+
+lower = [i for i in a if i.islower()]
+upper = [i for i in a if i.isupper()]
+
+if len(lower) > len(upper):
+    print(a.lower())
+else:
+    print(a.upper())
+
 
 
 
