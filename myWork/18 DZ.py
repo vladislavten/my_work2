@@ -67,7 +67,7 @@
 #         print('Не надёжный пароль, попробуйте ещё раз')
 
 
-# Задача 6. Сжатие
+# НУЖНО ДОДЕЛАТЬ КОНЦОВКА НЕ ПРАВИЛЬНАЯ) Задача 6. Сжатие
 # s = 'ccvvvrRR'
 #
 # # s = input('Введите строку: ')
@@ -92,22 +92,48 @@
 
 # Задача 7. IP-адрес 2
 
-ip = input('Введите IP: ').split('.')
-flg = True
+# ip = input('Введите IP: ').split('.')
+# flg = True
+#
+# for i in ip:
+#     if not i.isdigit() and flg == True:
+#         print(i, 'не целое число')
+#         flg = False
+#         break
+#     elif int(i) > 255:
+#         print(i, 'превышает 255')
+#         flg = False
+#         break
+#     elif len(ip) != 4:
+#         print('Адрес - это четыре числа, разделённые точками')
+#         flg = False
+#         break
+# if flg == True:
+#     print('Корректный IP адрес')
 
-for i in ip:
-    if not i.isdigit() and flg == True:
-        print(i, 'не целое число')
-        flg = False
-        break
-    elif int(i) > 255:
-        print(i, 'превышает 255')
-        flg = False
-        break
-    elif len(ip) != 4:
-        print('Адрес - это четыре числа, разделённые точками')
-        flg = False
-        break
-if flg == True:
-    print('Корректный IP адрес')
 
+
+# Задача 8. Бегущая строка
+
+# first_str = list(input('Первая строка: '))
+# second_str = list(input('Вторая строчка строка: '))
+# result = []
+#
+# count = -1
+# flg = True
+# for i in first_str:
+#     if flg == False:
+#         break
+#     for x in second_str:
+#         count += 1
+#         if i == x:
+#             flg = False
+#             break
+#
+# for y in range(len(first_str)):
+#     result.append(first_str[y - count])
+#
+# if result == second_str:
+#     print('\nПервая строка получается из второй со сдвигом', count)
+# else:
+#     print('\nПервую строку нельзя получить из второй с помощью циклического сдвига.')
