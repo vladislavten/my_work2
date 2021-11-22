@@ -1,38 +1,34 @@
 # Задача 1. Меню ресторана
 #
-print('Доступное меню: ', end = '')
-menu = input().split(';')
-menuToday = ', '.join(menu)
-print('На данный момент в меню есть: ', menuToday)
+# print('Доступное меню: ', end = '')
+# menu = input().split(';')
+# menuToday = ', '.join(menu)
+# print('На данный момент в меню есть: ', menuToday)
 
 
 
 # Задача 2. Самое длинное слово
 
-word = input('Введите слова через пробел: ').split()
-
-result = max((word), key = len)
-print('Самое длинное слово: ', result)
-print('Количество символов в слове: ', len(result))
+# word = input('Введите слова через пробел: ').split()
+#
+# result = max((word), key = len)
+# print('Самое длинное слово: ', result)
+# print('Количество символов в слове: ', len(result))
 
 
 
 # Задача 3. Файлы
 
-# file_name = input('Название файла: ')
-# sym = '@№$%^&*()'
-#
-# for i_sym in sym:
-#     if file_name.startswith(i_sym):
-#         print('\nОшибка: название начинается на один из специальных символов')
-#         break
-#     if file_name.endswith('.txt') or file_name.endswith('.docx'):
-#         print('\nФайл назван верно.')
-#         break
-#     else:
-#         print('\nОшибка: неверное расширение файла. Ожидалось .txt или .docx')
-#         break
+file_name = input('Название файла: ')
+sym = '@', '№', '$', '%', '^', '&', '*', '(', ')'
 
+
+if file_name.startswith(sym):
+    print('\nОшибка: название начинается на один из специальных символов')
+elif file_name.endswith('.txt') or file_name.endswith('.docx'):
+    print('\nФайл назван верно.')
+else:
+    print('\nОшибка: неверное расширение файла. Ожидалось .txt или .docx')
 
 
 # Задача 4. Заглавные буквы
