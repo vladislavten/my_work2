@@ -92,14 +92,16 @@
 
 # Задача 3. Гистограмма частоты
 
-text = input('Введите текст: ')
-dct = dict()
-
-for i in text:
-    if i in dct:
-        dct[i] += 1
-    else:
-        dct[i] = 1
-
-for i in sorted(dct):
-    print(i, ':', dct[i])
+# text = input('Введите текст: ')
+# dct = dict()
+#
+# for i in text:
+#     if i in dct:
+#         dct[i] += 1
+#     else:
+#         dct[i] = 1
+#
+# for i in sorted(dct):
+#     print(i, ':', dct[i])
+#
+# print('Максимальная частота:', max(dct.values()))
