@@ -9,11 +9,11 @@ print('На данный момент в меню есть: ', menuToday)
 
 # Задача 2. Самое длинное слово
 
-# word = input('Введите слова через пробел: ').split()
-#
-# result = max((word), key = len)
-# print('Самое длинное слово: ', result)
-# print('Количество символов в слове: ', len(result))
+word = input('Введите слова через пробел: ').split()
+
+result = max((word), key = len)
+print('Самое длинное слово: ', result)
+print('Количество символов в слове: ', len(result))
 
 
 
