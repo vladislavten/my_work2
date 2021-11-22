@@ -1,4 +1,6 @@
 
+# 19.1 Словарь: основы
+
 # Задача 1. Словарь квадратов чисел
 #
 # num = int(input('Число: '))
@@ -50,6 +52,39 @@
 
 
 
+# 19.2 Методы словарей
+
+# Задача 1. Склады
+#
+# small_storage = {'гвозди': 5000, 'шурупы': 3040, 'саморезы': 2000}
+# big_storage = {'доски': 1000, 'балки': 150, 'рейки': 600}
+# big_storage.update(small_storage)
+#
+# name = input('Введите название товара: ')
+# test = big_storage.get(name)
+# if name in big_storage:
+#     print(name, ':', big_storage[name])
+# elif test == None:
+#     print('Такого товара нет')
 
 
+# Задача 2. Кризис фруктов
+
+incomes = {'apple': 5600.20, 'orange': 3500.45, 'banana': 5000.00, 'bergamot': 3700.56, 'durian': 5987.23, 'grapefruit': 300.40, 'peach': 10000.50, 'pear': 1020.00, 'persimmon': 310.00}
+
+print('Общий доход за год составил', sum(incomes.values()))
+print(incomes)
+
+name = ''
+val = max(incomes.values())
+
+for i in incomes:
+    if incomes[i] < val:
+        val = incomes[i]
+        name = i
+
+print('Самый маленький доход у {}. Он составляет {} рублей'.format(name,val))
+
+# minimum = min(incomes.values())
+# print(minimum)
 
