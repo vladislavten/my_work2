@@ -1,9 +1,9 @@
 # Задача 1. Меню ресторана
 #
-# print('Доступное меню: ', end = '')
-# menu = input().split(';')
-# menuToday = ', '.join(menu)
-# print('На данный момент в меню есть: ', menuToday)
+print('Доступное меню: ', end = '')
+menu = input().split(';')
+menuToday = ', '.join(menu)
+print('На данный момент в меню есть: ', menuToday)
 
 
 
@@ -67,26 +67,22 @@
 #         print('Не надёжный пароль, попробуйте ещё раз')
 
 
-# НУЖНО ДОДЕЛАТЬ КОНЦОВКА НЕ ПРАВИЛЬНАЯ) Задача 6. Сжатие
-# s = 'ccvvvrRR'
-#
-# # s = input('Введите строку: ')
+# Задача 6. Сжатие
+
+# s = input('Введите строку: ')
+# count = 0
 # result = ''
-# count = 1
 #
-# for i in range(len(s) - 1):
-#     if s[i] == s[i + 1]:
-#         count += 1
-#     elif s[i] != s[i + 1] or i == len(s) - 2:
-#         result += s[i] + str(count)
-#         count = 1
-#     print(s[i])
-# if s[-2] != s[-1]:
-#     result += s[-1] + str(count)
-# # elif s[-2] == s[-1]:
-# #     result += s[-1] + '2'
+# for i in range(len(s)):
+#     count += 1
+#     if i == len(s) - 1:
+#         result = result + s[i] + str(count)
+#         break
+#     if s[i] != s[i+1]:
+#         result = result + s[i] + str(count)
+#         count = 0
 #
-# print('Закодированная строка:', result)
+# print('Сжатый вариант: ', result)
 
 
 
@@ -96,7 +92,7 @@
 # flg = True
 #
 # for i in ip:
-#     if not i.isdigit() and flg == True:
+#     if not i.isdigit() and flg:
 #         print(i, 'не целое число')
 #         flg = False
 #         break
@@ -108,6 +104,7 @@
 #         print('Адрес - это четыре числа, разделённые точками')
 #         flg = False
 #         break
+#
 # if flg == True:
 #     print('Корректный IP адрес')
 
@@ -140,7 +137,19 @@
 
 
 # Задача 9. Сообщение
-
-a = input('Ввод').split()
-
-print(*[i[::-1] for i in a])
+#
+# message = input('Сообщение ')
+# word = ''
+# out = ''
+# for i in message:
+#     if i.isalpha():
+#         word += i
+#     elif not i.isalpha():
+#         word = word[::-1]
+#         out += word
+#         out += i
+#         word = ''
+# if len(word) >= 1:
+#     print(word[::-1])
+# else:
+#     print(out)
