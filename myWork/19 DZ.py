@@ -26,26 +26,22 @@
 
 
 # Задача 2. География
-
+# 1 страна: Россия Москва Петербург Новгород
+#
+# 2 страна: Германия Берлин Лейпциг Мюнхен
 nums_country = int(input('Количество стран: '))
 dct = dict()
 
 for i in range(1, nums_country + 1):
     country = input('{} страна: '.format(i)).split()
+    dct[country[0]] = {country[1], country[2], country[3]}
+
+for number in range(1, 4):
+    city = input('\n{} город: '.format(number))
+    for i in dct:
+        if city in dct[i]:
+            print('Город {} расположен в стране {}.'.format(city, i))
+        else:
+            print('По городу {} данных нет.'.format(city))
 
 
-
-
-# a= {'Россия': {'Москва', 'Петербург', 'Новгород'},
-#     'Германия': {'Берлин', 'Лейпциг', 'Мюнхен'}
-# }
-#
-# c = 'Мюнхен'
-#
-#
-# for i in a:
-#     for x in a[i]:
-#         if x == c:
-#             print('Город {} расположен в стране {}.'.format(c, i))
-
-# dct[b[0]] = [b[1], b[2], b[3]]
