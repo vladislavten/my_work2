@@ -118,7 +118,7 @@
 #     "surname": "Doe",
 #     "hobbies": ["running", "sky diving", "singing"],
 #     "age": 35,
-#     "children": [ {"name": ["Alice", 'sdfds'], "age": 6 },{"name": "Bob","age": 8} ]
+#     "children": [ {"name": "Alice", "age": 6 },{"name": "Bob","age": 8} ]
 #
 #                 }
 #
