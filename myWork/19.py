@@ -105,3 +105,71 @@
 #     print(i, ':', dct[i])
 #
 # print('Максимальная частота:', max(dct.values()))
+
+
+
+# 19.3 Вложенные словари и значения по умолчанию в get
+
+# Задача 1. Член семьи
+
+# family_member = {
+#
+#     "name": "Jane",
+#     "surname": "Doe",
+#     "hobbies": ["running", "sky diving", "singing"],
+#     "age": 35,
+#     "children": [ {"name": ["Alice", 'sdfds'], "age": 6 },{"name": "Bob","age": 8} ]
+#
+#                 }
+#
+# print('Имя', family_member['name'])
+# print('Фамилия', family_member['surname'])
+# print('Хобби ', end = '')
+# lst = family_member['hobbies']
+# print(' '.join(lst))
+# print(family_member['age'])
+# print(family_member['children'][0]['name'], family_member['children'][0]['age'])
+# print(family_member['children'][1]['name'], family_member['children'][1]['age'])
+#
+# n = input('Введите имя: ')
+# for i in family_member['children']:
+#     if i['name'] == n:
+#         print(n)
+#     else:
+#         print('Нет такого имени')
+
+# Задача 2. Игроки
+#
+# players_dict = {
+#
+#     1: {'name': 'Vanya', 'team': 'A', 'status': 'Rest'},
+#
+#     2: {'name': 'Lena', 'team': 'B', 'status': 'Training'},
+#
+#     3: {'name': 'Maxim', 'team': 'C', 'status': 'Travel'},
+#
+#     4: {'name': 'Egor', 'team': 'C', 'status': 'Rest'},
+#
+#     5: {'name': 'Andrei', 'team': 'A', 'status': 'Training'},
+#
+#     6: {'name': 'Sasha', 'team': 'A', 'status': 'Rest'},
+#
+#     7: {'name': 'Alina', 'team': 'B', 'status': 'Rest'},
+#
+#     8: {'name': 'Masha', 'team': 'C', 'status': 'Travel'}
+#
+# }
+#
+# print('Все члены команды из команды А, которые отдыхают')
+# a = [i['name'] for i in players_dict.values() if i['status'] == 'Rest' and i['team'] == 'A']
+# # for i in players_dict.values():
+# #     if i['status'] == 'Rest' and i['team'] == 'A':
+# #         print(i['name'])
+#
+# print(' '.join(a))
+
+
+a = {'a': '1', 't': '2', 'n':'0'}
+
+b = sorted(a)
+print()
