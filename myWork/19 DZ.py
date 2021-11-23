@@ -41,7 +41,9 @@ for number in range(1, 4):
     for i in dct:
         if city in dct[i]:
             print('Город {} расположен в стране {}.'.format(city, i))
+            break
         else:
             print('По городу {} данных нет.'.format(city))
+            break
 
 
