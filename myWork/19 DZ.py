@@ -240,3 +240,13 @@
 #     print(i, ':', dct_invert[i])
 
 
+
+# Задача 6. Словарь синонимов
+
+dct = dict()
+
+for i in range(1, (int(input('Введите количество пар слов: '))) + 1):
+    pair = input('{} пара: '.format(i)).split(' - ')
+    dct[pair[0]] = pair[1]
+
+
