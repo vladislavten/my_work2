@@ -38,6 +38,7 @@
 #     value = input(f'{i + 1} страна: ').split()
 #     for town in value[1:]:
 #         dct[town] = value[0]
+# print(dct)
 #
 # for i in range(1, 4):
 #     city = input(f'{i} город: ')
@@ -223,7 +224,7 @@
 #         dct[i] += 1
 #     else:
 #         dct[i] = 1
-#
+
 # for i in sorted(dct):
 #     print(i, ':', dct[i])
 #
@@ -243,10 +244,30 @@
 
 # Задача 6. Словарь синонимов
 
+# dct = dict()
+#
+# for i in range(1, (int(input('Введите количество пар слов: '))) + 1):
+#     pair = input('{} пара: '.format(i)).split(' - ')
+#     dct[pair[0]] = pair[1]
+#     dct[pair[1]] = pair[0]
+#
+# while True:
+#     word = input('Введите слово: ')
+#     if dct.get(word):
+#         print('Синоним: ', dct[word])
+#     else:
+#         print('Такого слова в словаре нет.')
+
+
+# Задача 7. Пицца
 dct = dict()
 
-for i in range(1, (int(input('Введите количество пар слов: '))) + 1):
-    pair = input('{} пара: '.format(i)).split(' - ')
-    dct[pair[0]] = pair[1]
-
-
+for i in range(1, int(input('Введите кол-во заказов: ')) + 1):
+    order = input(f'{i} заказ: ').split()
+    # dct[order[0]] = {order[1]: order[2]}
+    if not dct.get(order[0]) and dct[order[0]].get(order[1]) in dct:
+        dct[order[0]] = {order[1] : order[2]}
+    # else:
+    #     a = order[2] + dct[order[0]]['Пепперони']
+    #     dct[order[0]] = {order[1]: a}
+    print(dct)
