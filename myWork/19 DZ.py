@@ -260,14 +260,40 @@
 
 
 # Задача 7. Пицца
-dct = dict()
 
-for i in range(1, int(input('Введите кол-во заказов: ')) + 1):
-    order = input(f'{i} заказ: ').split()
-    # dct[order[0]] = {order[1]: order[2]}
-    if not dct.get(order[0]) and dct[order[0]].get(order[1]) in dct:
-        dct[order[0]] = {order[1] : order[2]}
-    # else:
-    #     a = order[2] + dct[order[0]]['Пепперони']
-    #     dct[order[0]] = {order[1]: a}
-    print(dct)
+
+# n = int(input('Введите кол-во заказов: '))
+# d = {}
+# for i in range(1, n + 1):
+#     order = input(f'{i} заказ: ').split()
+#     fio, pizza, amount = order[0], order[1], int(order[2])
+#
+#     if fio not in d:
+#         d[fio] = {pizza: amount}
+#     else:
+#         if pizza not in d[fio]:
+#             d[fio] |= {pizza: amount}
+#         else:
+#             d[fio][pizza] += amount
+# for fio, order in sorted(d.items()):
+#     print(f'{fio}:')
+#     for pizza, amount in sorted(order.items()):
+#         print('\t', pizza, amount)
+
+
+number = {str(i) for i in range(1, int(input('Введите максимальное число: ')) + 1)}
+while True:
+    choice = input('Нужное число есть среди вот этих чисел: ')
+    if choice == 'Помогите':
+        print('Артём мог загадать следующие числа:', number)
+        break
+    choice = choice.split(' ')
+    choice = set(choice)
+    answer = input('Ответ Артёма: ')
+    if answer == 'Да' or answer == 'да':
+        number = number & choice
+        print(number)
+    elif answer == 'нет' or answer == 'Нет':
+        number = number - choice
+        print(number)
+
