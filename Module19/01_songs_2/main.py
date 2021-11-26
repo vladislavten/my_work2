@@ -11,3 +11,14 @@ violator_songs = {
 }
 
 # TODO здесь писать код
+num = int(input('Сколько песен выбрать? '))
+all_time = 0
+
+for i in range(num):
+    song = input('Название {} песни: '.format(i + 1))
+    if violator_songs.get(song):
+        all_time += violator_songs[song]
+    else:
+        print('Такой песни нет')
+
+print('\nОбщее время звучания песен:', all_time, 'минут')
