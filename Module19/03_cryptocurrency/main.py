@@ -46,3 +46,16 @@ data = {
 
 
 # TODO здесь писать код
+for i in data:
+    print(i, '-', data[i])
+print()
+
+data['ETH'].update({'total_diff' : 100})
+data['tokens'][0]['fst_token_info'].update({'name' : 'doge'})
+data['ETH']['total_out'] = data['tokens'][0].pop('total_out')
+data['tokens'][1]['sec_token_info']['total_price'] = data['tokens'][1]['sec_token_info'].pop('price')
+
+print('Результат манипуляций')
+for i in data:
+    print(i, '-', data[i])
+print()
