@@ -281,19 +281,40 @@
 #         print('\t', pizza, amount)
 
 
-number = {str(i) for i in range(1, int(input('Введите максимальное число: ')) + 1)}
-while True:
-    choice = input('Нужное число есть среди вот этих чисел: ')
-    if choice == 'Помогите':
-        print('Артём мог загадать следующие числа:', number)
-        break
-    choice = choice.split(' ')
-    choice = set(choice)
-    answer = input('Ответ Артёма: ')
-    if answer == 'Да' or answer == 'да':
-        number = number & choice
-        print(number)
-    elif answer == 'нет' or answer == 'Нет':
-        number = number - choice
-        print(number)
+# Задача 8. Угадай число
+#
+# number = {str(i) for i in range(1, int(input('Введите максимальное число: ')) + 1)}
+# while True:
+#     choice = input('Нужное число есть среди вот этих чисел: ')
+#     if choice == 'Помогите':
+#         print('Артём мог загадать следующие числа:', sorted(number))
+#         break
+#     choice = choice.split(' ')
+#     choice = set(choice)
+#     answer = input('Ответ Артёма: ')
+#     if answer == 'Да' or answer == 'да':
+#         number = number & choice
+#     elif answer == 'нет' or answer == 'Нет':
+#         number = number - choice
+
+# Задача 9. Родословная
+
+def height(man):
+    if man not in p_tree:
+        return 0
+    else:
+        return 1 + height(p_tree[man])
+
+p_tree = {}
+n = int(input('Введите количество человек: '))
+for i in range(n - 1):
+    child, parent = input(f'{i + 1} пара: ').split()
+    p_tree[child] = parent
+
+heights = {}
+for man in set(p_tree.keys()).union(set(p_tree.values())):
+    heights[man] = height(man)
+print('\n“Высота” каждого члена семьи:')
+for key, value in sorted(heights.items()):
+    print(key, value)
 
