@@ -54,3 +54,41 @@
 # new_nums, rand_val2 = change(new_nums)
 # rand_val2 += rand_val
 # print(new_nums, rand_val2)
+
+
+
+# 20.3 Функция enumerate. Перебор нескольких значений
+
+# Задача 1. Саботаж!
+# Строка: so~mec~od~e
+# string = input('Строка: ')
+# result = []
+# for index, tilda in enumerate(string):
+#     if tilda == '~':
+#         result += str(index)
+# print('Ответ:', ' '.join(result))
+
+
+# Задача 2. Словари из списков
+
+import random
+def DIC(lst):
+    dic = dict()
+    for index, values in enumerate(lst):
+        dic[index] = values
+    return dic
+
+
+alphabet = ['а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф',
+            'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я']
+frs = [alphabet[random.randint(0,32)] for _ in range(10)]
+sec = [alphabet[random.randint(0,32)] for _ in range(10)]
+
+print('Первая строка', frs)
+print('Вторая строка', sec)
+
+frsD = DIC(frs)
+secD = DIC(sec)
+
+print('Первый словарь:', frsD)
+print('Второй словарь:', secD)
