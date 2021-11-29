@@ -73,30 +73,43 @@
 
 # Задача 2. Словари из списков
 
-import random
-import string
+# import random
+# import string
+#
+# def DIC(lst):
+#     dic = {index: values for index, values in enumerate(lst)}
+#     return dic
+#
+#
+# # alphabet = ['а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф',
+# #             'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я']
+#
+# frs = [random.choice(string.ascii_lowercase) for _ in range(10)]
+# sec = [random.choice(string.ascii_lowercase) for _ in range(10)]
+#
+# print('\nПервая строка', frs)
+# print('Вторая строка', sec)
+#
+# frsD = DIC(frs)
+# secD = DIC(sec)
+#
+# print('\nПервый словарь:', frsD)
+# print('Второй словарь:', secD)
 
-def DIC(lst):
-    dic = {index: values for index, values in enumerate(lst)}
-    return dic
+
+# Задача 3. Универсальная программа
+
+# text = 'О Дивный Новый мир!'
+# text = ('й', 'р', 'с', 'г', 'а', 'а', 'т', 'ж', 'е', 'к')
+# text = [100, 200, 300, 'буква', 0, 2, 'а']
+text = {0: 'д', 1: 'а', 2: 'а', 3: 'в', 4: 'т', 5: 'ж', 6: 'р', 7: 'б', 8: 'й', 9: 'р'}
+# result = [text[index] for index, values in enumerate(text) if index % 2 == 0]
+
+result = [text[index] for index in range(1, len(text), 2)]
 
 
-# alphabet = ['а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф',
-#             'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я']
-
-frs = [random.choice(string.ascii_lowercase) for _ in range(10)]
-sec = [random.choice(string.ascii_lowercase) for _ in range(10)]
-
-print('\nПервая строка', frs)
-print('Вторая строка', sec)
-
-frsD = DIC(frs)
-secD = DIC(sec)
-
-print('\nПервый словарь:', frsD)
-print('Второй словарь:', secD)
-
-
+# result = [text[i] for i in range(0, len(text), 2)]
+print(result)
 
 # 20.4 Перебор ключей и значений в словаре. Метод items
 
