@@ -49,15 +49,32 @@
 
 
 # Задача 2. Универсальная программа 2
+#
+def i_prime(n):
+    # lst = []
+    #
+    # for p in range(2, n):
+    #     for i in range(2, p):
+    #         if p % i == 0:
+    #             break
+    #     else:
+    #         lst.append(p)
+    # return lst
+    return [p if p % i == 0 else p for p in range(2, n)
+                                                for i in range(2, p)]
 
-# text = 'О Дивный Новый мир!'
+text = 'О Дивный Новый мир!'
 # text = ('й', 'р', 'с', 'г', 'а', 'а', 'т', 'ж', 'е', 'к')
 # text = [100, 200, 300, 'буква', 0, 2, 'а']
-text = {22: 'д', 1: 'а', 23: 'а', 3: 'в', 89: 'т', 5: 'ж', 6: 'р', 7: 'б', 8: 'й', 9: 'р'}
-# result = [text[index] for index, values in enumerate(text) if index % 2 == 0]
-
-result = [text[index] for index in range(1, len(text), 2)]
-
-
-# result = [text[i] for i in range(0, len(text), 2)]
+# text = {0: 'д', 1: 'а', 2: 'а', 3: 'в', 4: 'т', 5: 'ж', 6: 'р', 7: 'б', 8: 'й', 9: 'р'}
+#
+#
+#
+# result = [text[index] for index, values in enumerate(text) if index in lst]
+# print(lst)
+lst = i_prime(len(text))
+result = [text[index] for index in lst]
+#
 print(result)
+
+
