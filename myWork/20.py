@@ -102,14 +102,14 @@
 # text = 'О Дивный Новый мир!'
 # text = ('й', 'р', 'с', 'г', 'а', 'а', 'т', 'ж', 'е', 'к')
 # text = [100, 200, 300, 'буква', 0, 2, 'а']
-text = {0: 'д', 1: 'а', 2: 'а', 3: 'в', 4: 'т', 5: 'ж', 6: 'р', 7: 'б', 8: 'й', 9: 'р'}
+# text = {0: 'д', 1: 'а', 2: 'а', 3: 'в', 4: 'т', 5: 'ж', 6: 'р', 7: 'б', 8: 'й', 9: 'р'}
 # result = [text[index] for index, values in enumerate(text) if index % 2 == 0]
 
-result = [text[index] for index in range(1, len(text), 2)]
+# result = [text[index] for index in range(1, len(text), 2)]
 
 
 # result = [text[i] for i in range(0, len(text), 2)]
-print(result)
+# print(result)
 
 # 20.4 Перебор ключей и значений в словаре. Метод items
 
