@@ -50,28 +50,28 @@
 
 # Задача 2. Универсальная программа 2
 #
-def i_prime(n):
-    n = len(n)
-    lst = []
-
-    for p in range(2, n):
-        for i in range(2, p):
-            if p % i == 0:
-                break
-        else:
-            lst.append(p)
-    return lst
-
-######### переменные на выбор:
-text = 'О Дивный Новый мир!'
-# text = ('й', 'р', 'с', 'г', 'а', 'а', 'т', 'ж', 'е', 'к')
-# text = [100, 200, 300, 'буква', 0, 2, 'а']
-# text = {0: 'д', 1: 'а', 2: 'а', 3: 'в', 4: 'т', 5: 'ж', 6: 'р', 7: 'б', 8: 'й', 9: 'р'}
-################################
-lst = i_prime(text)
-result = [text[index] for index in lst]
-
-print(result)
+# def i_prime(n):
+#     n = len(n)
+#     lst = []
+#
+#     for p in range(2, n):
+#         for i in range(2, p):
+#             if p % i == 0:
+#                 break
+#         else:
+#             lst.append(p)
+#     return lst
+#
+# ######### переменные на выбор:
+# text = 'О Дивный Новый мир!'
+# # text = ('й', 'р', 'с', 'г', 'а', 'а', 'т', 'ж', 'е', 'к')
+# # text = [100, 200, 300, 'буква', 0, 2, 'а']
+# # text = {0: 'д', 1: 'а', 2: 'а', 3: 'в', 4: 'т', 5: 'ж', 6: 'р', 7: 'б', 8: 'й', 9: 'р'}
+# ################################
+# lst = i_prime(text)
+# result = [text[index] for index in lst]
+#
+# print(result)
 
 
 # Задача 3. Функция
@@ -123,4 +123,16 @@ family = {
     ("Веселов", "Евгений"): 32,
     ("Веселова", "Виктория"): 29,
     ("Веселов", "Роман"): 5,
+
 }
+surname = input('Введите фамилию: ')
+if surname[-1:] == 'а':
+    surname2 = surname[:-1]
+else:
+    surname2 = surname + 'а'
+
+for i, v in family.items():
+    if surname in i:
+        print(' '.join(i), v)
+    elif surname2 in i:
+        print(' '.join(i), v)
