@@ -14,10 +14,4 @@ while True:
     elif answer == 'нет' or answer == 'Нет':
         number = number - choice
 
-Задача 9. Родословная
 
-def height(man):
-    if man not in p_tree:
-        return 0
-    else:
-        return 1 + height(p_tree[man])

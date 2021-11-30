@@ -50,31 +50,49 @@
 
 # Задача 2. Универсальная программа 2
 #
-def i_prime(n):
-    # lst = []
-    #
-    # for p in range(2, n):
-    #     for i in range(2, p):
-    #         if p % i == 0:
-    #             break
-    #     else:
-    #         lst.append(p)
-    # return lst
-    return [p if p % i == 0 else p for p in range(2, n)
-                                                for i in range(2, p)]
-
-text = 'О Дивный Новый мир!'
+# def i_prime(n):
+#     n = len(n)
+#     lst = []
+#
+#     for p in range(2, n):
+#         for i in range(2, p):
+#             if p % i == 0:
+#                 break
+#         else:
+#             lst.append(p)
+#     return lst
+#
+########## переменные на выбор:
+# text = 'О Дивный Новый мир!'
 # text = ('й', 'р', 'с', 'г', 'а', 'а', 'т', 'ж', 'е', 'к')
 # text = [100, 200, 300, 'буква', 0, 2, 'а']
 # text = {0: 'д', 1: 'а', 2: 'а', 3: 'в', 4: 'т', 5: 'ж', 6: 'р', 7: 'б', 8: 'й', 9: 'р'}
+#################################
+# lst = i_prime(text)
+# result = [text[index] for index in lst]
 #
-#
-#
-# result = [text[index] for index, values in enumerate(text) if index in lst]
-# print(lst)
-lst = i_prime(len(text))
-result = [text[index] for index in lst]
-#
-print(result)
+# print(result)
 
 
+# Задача 3. Функция
+
+# def func(cort, elem):
+#     new_cort = []
+#     index =[]
+#
+#     for i, y in enumerate(cort):
+#         if y == elem:
+#             index.append(i)
+#     if len(index) >= 2:
+#         new_cort.extend(cort[index[0]:index[1]+1])
+#     elif len(index) == 1:
+#         new_cort.extend(cort[index[0]:])
+#
+#     return tuple(new_cort)
+#
+# cort= ('с', 'а', 'й', 'г', 'а', '4', 'т', 'ж', 'н', 'Й')
+#
+# print('Дан кортеж: ', cort)
+# elem = input('Введите элемент: ')
+#
+# print('\n', func(cort, elem))
