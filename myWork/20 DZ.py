@@ -116,23 +116,57 @@
 
 # Задача 5. Одна семья
 
-family = {
-    ("Сидоров", "Никита"): 35,
-    ("Сидорова", "Алина"): 34,
-    ("Сидоров", "Павел"): 10,
-    ("Веселов", "Евгений"): 32,
-    ("Веселова", "Виктория"): 29,
-    ("Веселов", "Роман"): 5,
+# family = {
+#     ("Сидоров", "Никита"): 35,
+#     ("Сидорова", "Алина"): 34,
+#     ("Сидоров", "Павел"): 10,
+#     ("Веселов", "Евгений"): 32,
+#     ("Веселова", "Виктория"): 29,
+#     ("Веселов", "Роман"): 5,
+#     ("Иванов", "Иван"): 45,
+#     ("Иванова", "Светлана"): 40,
+#
+# }
+# print('')
+# surname = input('Введите фамилию: ')
+# if surname[-1:] == 'а':
+#     surname2 = surname[:-1]
+# else:
+#     surname2 = surname + 'а'
+#
+# for i, v in family.items():
+#     if surname in i:
+#         print(' '.join(i), v)
+#     elif surname2 in i:
+#         print(' '.join(i), v)
 
-}
-surname = input('Введите фамилию: ')
-if surname[-1:] == 'а':
-    surname2 = surname[:-1]
-else:
-    surname2 = surname + 'а'
 
-for i, v in family.items():
-    if surname in i:
-        print(' '.join(i), v)
-    elif surname2 in i:
-        print(' '.join(i), v)
+# Задача 6. По парам
+
+# lst = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+#
+# new_lst = []
+#
+# for i in range(int(len(lst) / 2)):
+#     new_lst.append(tuple(lst[:2]))
+#     lst.remove(lst[0])
+#     lst.remove(lst[0])
+#
+# print(new_lst)
+#
+#
+# # Вариант второй
+#
+# lst = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+#
+# new_lst = []
+# count = 0
+# for i in range(int(len(lst) / 2)):
+#     new_lst.append(tuple(lst[count:2 + count]))
+#     count += 2
+#
+# print(new_lst)
+
+
+
+
