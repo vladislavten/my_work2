@@ -50,28 +50,28 @@
 
 # Задача 2. Универсальная программа 2
 #
-# def i_prime(n):
-#     n = len(n)
-#     lst = []
-#
-#     for p in range(2, n):
-#         for i in range(2, p):
-#             if p % i == 0:
-#                 break
-#         else:
-#             lst.append(p)
-#     return lst
-#
-########## переменные на выбор:
-# text = 'О Дивный Новый мир!'
+def i_prime(n):
+    n = len(n)
+    lst = []
+
+    for p in range(2, n):
+        for i in range(2, p):
+            if p % i == 0:
+                break
+        else:
+            lst.append(p)
+    return lst
+
+######### переменные на выбор:
+text = 'О Дивный Новый мир!'
 # text = ('й', 'р', 'с', 'г', 'а', 'а', 'т', 'ж', 'е', 'к')
 # text = [100, 200, 300, 'буква', 0, 2, 'а']
 # text = {0: 'д', 1: 'а', 2: 'а', 3: 'в', 4: 'т', 5: 'ж', 6: 'р', 7: 'б', 8: 'й', 9: 'р'}
-#################################
-# lst = i_prime(text)
-# result = [text[index] for index in lst]
-#
-# print(result)
+################################
+lst = i_prime(text)
+result = [text[index] for index in lst]
+
+print(result)
 
 
 # Задача 3. Функция
@@ -96,3 +96,31 @@
 # elem = input('Введите элемент: ')
 #
 # print('\n', func(cort, elem))
+
+
+# Задача 4. Игроки
+
+# players = {
+#     ("Ivan", "Volkin"): (10, 5, 13),
+#     ("Bob", "Robbin"): (7, 5, 14),
+#     ("Rob", "Bobbin"): (12, 8, 2)
+# }
+#
+# lst = []
+#
+# for key, value in players.items():
+#     lst.append(key + value)
+#
+# print(lst)
+
+
+# Задача 5. Одна семья
+
+family = {
+    ("Сидоров", "Никита"): 35,
+    ("Сидорова", "Алина"): 34,
+    ("Сидоров", "Павел"): 10,
+    ("Веселов", "Евгений"): 32,
+    ("Веселова", "Виктория"): 29,
+    ("Веселов", "Роман"): 5,
+}
