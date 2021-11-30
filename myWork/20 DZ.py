@@ -155,7 +155,7 @@
 # print(new_lst)
 #
 #
-# # Вариант второй
+# # ВТОРОЙ ВАРИАНТ
 #
 # lst = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 #
@@ -168,5 +168,16 @@
 # print(new_lst)
 
 
+# Задача 7. Функция сортировки
 
-
+# def sort(cort):
+#     for i in cort:
+#         if not isinstance(i, int):
+#             return cort
+#     return tuple(sorted(cort))
+#
+# cort = (1, 8, 17, 9, 20, 13, 2, 6, 20, 11, 7, 19, 13, 3, 7)
+# cort2 = (1, 8, 17, 9, 20, 13, 2.3, 6, 20, 11, 7, 19, 13, 3, 7)
+#
+# print(sort(cort))
+# print(sort(cort2))
