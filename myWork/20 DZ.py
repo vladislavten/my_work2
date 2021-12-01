@@ -208,3 +208,13 @@
 #         print('Ошибка ввода!')
 
 
+# Задача 9. Протокол соревнований
+dct = dict()
+for i in range(1, int(input('Сколько записей вносится в протокол? ')) + 1):
+    enter_result = input(f'{i} запись: ').split()
+    if not enter_result[1] in dct:
+        dct[enter_result[1]] = int(enter_result[0]), i
+
+print(dct)
+
+
