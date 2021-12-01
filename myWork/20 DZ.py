@@ -214,7 +214,12 @@ for i in range(1, int(input('Сколько записей вносится в �
     enter_result = input(f'{i} запись: ').split()
     if not enter_result[1] in dct:
         dct[enter_result[1]] = int(enter_result[0]), i
+    else:
+        if int(enter_result[0]) > dct[enter_result[1]][0]:
+            dct[enter_result[1]] = int(enter_result[0]), i
 
 print(dct)
+
+
 
 
