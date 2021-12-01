@@ -259,14 +259,26 @@ dct = {1: (69485, 'Jack'),
        8: (95715, 'Alex'),
        9: (95715, 'M')
        }
-for i in range(len(dct)):
-    enter_result = input(f'{i} запись: ').split()
-    if not enter_result[1] in dct:
-        dct[enter_result[1]] = int(enter_result[0]), i
-    else:
-        if int(enter_result[0]) > dct[enter_result[1]][0]:
-            dct[enter_result[1]] = int(enter_result[0]), i
+dct2 = dct.copy()
 
-print(dct)
+
+for place in range(1, 3 + 1):
+    a = [0, 0]
+    for i, v in enumerate(dct):
+        if dct[v][0] > a[0]:
+            a = [dct[v][0], v]
+    print(f'{place} место:', dct[a[1]][1], a[0])
+
+    for_delete = []
+    for index, value in enumerate(dct):
+        if dct[value][1] == dct[a[1]][1]:
+            for_delete.append(value)
+    for delete in for_delete:
+        dct.pop(delete)
+
+
+
+
+
 
 
