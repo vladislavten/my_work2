@@ -209,8 +209,57 @@
 
 
 # Задача 9. Протокол соревнований
-dct = dict()
-for i in range(1, int(input('Сколько записей вносится в протокол? ')) + 1):
+# dct = dict()
+# for i in range(1, int(input('Сколько записей вносится в протокол? ')) + 1):
+#     enter_result = input(f'{i} запись: ').split()
+#     if not enter_result[1] in dct:
+#         dct[enter_result[1]] = int(enter_result[0]), i
+#     else:
+#         if int(enter_result[0]) > dct[enter_result[1]][0]:
+#             dct[enter_result[1]] = int(enter_result[0]), i
+#
+# print(dct)
+
+# dct = (('Jack', 95715),
+#        ('qwerty', 197128),
+#        ('Alex', 95715),
+#        ('M', 95715)
+#        )
+
+# dct = {1: (69485, 'Jack'),
+#        2: (95715, 'qwerty'),
+#        3: (95715, 'Alex'),
+#        4: (83647, 'M'),
+#        5: (197128, 'qwerty'),
+#        6: (95715, 'Jack'),
+#        7: (93289, 'Alex'),
+#        8: (95715, 'Alex'),
+#        9: (95715, 'M')
+#        }
+
+# for place in range(1, 3 + 1):
+#     a = [0, 0]
+#     for i, v in enumerate(dct):
+#         if dct[v][0] > a[0]:
+#             a = [dct[v][0], v]
+#     print(f'{place} место:', dct[a[1]][1], a[0])
+#     dct.pop(a[1])
+# print(a)
+
+
+
+
+dct = {1: (69485, 'Jack'),
+       2: (95715, 'qwerty'),
+       3: (95715, 'Alex'),
+       4: (83647, 'M'),
+       5: (197128, 'qwerty'),
+       6: (95715, 'Jack'),
+       7: (93289, 'Alex'),
+       8: (95715, 'Alex'),
+       9: (95715, 'M')
+       }
+for i in range(len(dct)):
     enter_result = input(f'{i} запись: ').split()
     if not enter_result[1] in dct:
         dct[enter_result[1]] = int(enter_result[0]), i
@@ -219,7 +268,5 @@ for i in range(1, int(input('Сколько записей вносится в �
             dct[enter_result[1]] = int(enter_result[0]), i
 
 print(dct)
-
-
 
 
