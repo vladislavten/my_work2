@@ -49,30 +49,18 @@
 
 
 # Задача 2. Универсальная программа 2
-#
-# def i_prime(n):
-#     n = len(n)
-#     lst = []
-#
-#     for p in range(2, n):
-#         for i in range(2, p):
-#             if p % i == 0:
-#                 break
-#         else:
-#             lst.append(p)
-#     return lst
-#
-# ######### переменные на выбор:
-# text = 'О Дивный Новый мир!'
-# # text = ('й', 'р', 'с', 'г', 'а', 'а', 'т', 'ж', 'е', 'к')
-# # text = [100, 200, 300, 'буква', 0, 2, 'а']
-# # text = {0: 'д', 1: 'а', 2: 'а', 3: 'в', 4: 'т', 5: 'ж', 6: 'р', 7: 'б', 8: 'й', 9: 'р'}
-# ################################
-# lst = i_prime(text)
-# result = [text[index] for index in lst]
-#
-# print(result)
 
+# def i_prime(n):
+#     return [num for num in range(2, len(n)) if 0 not in [num % i for i in range(2, int(num / 2) + 1)]]
+
+######### переменные на выбор:
+text = 'О Дивный Новый мир!'
+# text = ('й', 'р', 'с', 'г', 'а', 'а', 'т', 'ж', 'е', 'к')
+# text = [100, 200, 300, 'буква', 0, 2, 'а']
+# text = {0: 'д', 1: 'а', 2: 'а', 3: 'в', 4: 'т', 5: 'ж', 6: 'р', 7: 'б', 8: 'й', 9: 'р'}
+################################
+# lst = i_prime(text)
+# print([text[index] for index in lst])
 
 # Задача 3. Функция
 
@@ -209,14 +197,14 @@
 
 
 # Задача 9. Протокол соревнований
-dct = dict()
-for i in range(1, int(input('Сколько записей вносится в протокол? ')) + 1):
-    enter_result = input(f'{i} запись: ').split()
-    if not enter_result[1] in dct:
-        dct[i] = int(enter_result[0]), enter_result[1]
-    else:
-        if int(enter_result[0]) > dct[enter_result[1]][0]:
-            dct[i] = int(enter_result[0]), enter_result[1]
+# dct = dict()
+# for i in range(1, int(input('Сколько записей вносится в протокол? ')) + 1):
+#     enter_result = input(f'{i} запись: ').split()
+#     if not enter_result[1] in dct:
+#         dct[i] = int(enter_result[0]), enter_result[1]
+#     else:
+#         if int(enter_result[0]) > dct[enter_result[1]][0]:
+#             dct[i] = int(enter_result[0]), enter_result[1]
 
 # dct = {1: (69485, 'Jack'),
 #        2: (95715, 'qwerty'),
@@ -228,24 +216,31 @@ for i in range(1, int(input('Сколько записей вносится в �
 #        8: (95715, 'Alex'),
 #        9: (95715, 'M')
 #        }
-
-for place in range(1, 3 + 1):
-    a = [0, 0]
-    for v in dct:
-        if dct[v][0] > a[0]:
-            a = [dct[v][0], v]
-    print(f'{place} место:', dct[a[1]][1], a[0])
-
-    for_delete = []
-    for value in dct:
-        if dct[value][1] == dct[a[1]][1]:
-            for_delete.append(value)
-    for delete in for_delete:
-        dct.pop(delete)
-
-
+#
+# for place in range(1, 3 + 1):
+#     a = [0, 0]
+#     for v in dct:
+#         if dct[v][0] > a[0]:
+#             a = [dct[v][0], v]
+#     print(f'{place} место:', dct[a[1]][1], a[0])
+#
+#     for_delete = []
+#     for value in dct:
+#         if dct[value][1] == dct[a[1]][1]:
+#             for_delete.append(value)
+#     for delete in for_delete:
+#         dct.pop(delete)
 
 
+# Задача 10. Свой zip
+# string = 'abcd'
+# cort = (10, 20, 30, 40)
+#
+# result = zip(string, cort)
+# print(result)
+#
+# for i_cort in result:
+#     print(i_cort)
 
 
 
