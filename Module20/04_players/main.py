@@ -5,3 +5,10 @@ players = {
 }
 
 # TODO здесь писать код
+
+lst = []
+
+for key, value in players.items():
+    lst.append(key + value)
+
+print(lst)

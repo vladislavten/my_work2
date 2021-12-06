@@ -42,3 +42,21 @@ l = f(students)[1]
 print(my_lst, l)
 
 # TODO исправить код
+
+def f(dict):
+    lst = []
+    string = []
+    for index, value in dict.items():
+        lst.extend(value['interests'])
+        string.extend(value['surname'])
+    string = len(string)
+    return lst, string
+
+
+for i, value in students.items():
+    print('ID студента', i, '— возраст', value['age'])
+
+
+hobbies, ages = f(students)
+print('Список интересов:', ' '.join(hobbies))
+print('Общая длина всех фамилий:', ages)
