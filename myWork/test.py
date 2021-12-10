@@ -75,12 +75,47 @@
 
 # простая рекурсия
 
-def foo1(start):
-    if start == 0:
-        return
+# def foo1(start):
+#     if start == 0:
+#         return
+#
+#     print(start)
+#     (foo1(start - 1))
+#
+#
+# foo1(100)
 
-    print(start)
-    (foo1(start - 1))
+
+# 21.3 Передача изменяемых и неизменяемых данных в функцию
+# Задача 1. Ошибка
+# (ошибка была в том что в функцию передавалась ссылка а нужно чтобы передавалось значение)
+
+# import random
+#
+# def change_dict(dct):
+#     num = random.randint(1, 100)
+#     for i_key, i_value in dct.items():
+#         if isinstance(i_value, list):
+#             i_value.append(num)
+#         if isinstance(i_value, dict):
+#             i_value[num] = i_key
+#         if isinstance(i_value, set):
+#             i_value.add(num)
+#     return dct
+#
+#
+# nums_list = [1, 2, 3]
+#
+# some_dict = {1: 'text', 2: 'another text'}
+#
+# uniq_nums = {1, 2, 3}
+#
+# common_dict = {1: [1, 2, 3], 2: {1: 'text', 2: 'another text'}, 3: {1, 2, 3}, 4: (10, 20, 30)}
+# print(nums_list, '\t', some_dict, '\t', uniq_nums)
+# change_dict(common_dict)
+# print(nums_list, '\t', some_dict, '\t', uniq_nums)
+#
+# print(common_dict)
 
 
-foo1(100)
+# Задача 2. Непонятно!
