@@ -109,18 +109,79 @@
 
 
 # Задача 2. Непонятно!              https://coderoad.ru/22199741/%D0%9E%D0%BF%D1%80%D0%B5%D0%B4%D0%B5%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D1%82%D0%B8%D0%BF%D0%B0-%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85-%D0%B2%D1%85%D0%BE%D0%B4%D0%BD%D1%8B%D1%85-%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85
-x = input("Введите данные: ")
+# x = input("Введите данные: ")
+#
+# try:
+#     if type(eval(x)) == float:
+#         print('Тип данных: Float')
+#         print('Неизменяемый (immutable)')
+#     elif type(eval(x)) == int:
+#         print(x, " is interger number")
+#     elif type(eval(x)) == bool:
+#         print(x, " is a boolean")
+#     elif type(eval(x)) == list:
+#         print(x, " is a list")
+# except:
+#     print('Тип данных: str (строка)')
+# print('ID:', id(x))
 
-try:
-    if type(eval(x)) == float:
-        print('Тип данных: Float')
-        print('Неизменяемый (immutable)')
-    elif type(eval(x)) == int:
-        print(x, " is interger number")
-    elif type(eval(x)) == bool:
-        print(x, " is a boolean")
-    elif type(eval(x)) == list:
-        print(x, " is a list")
-except:
-    print('Тип данных: str (строка)')
-print('ID:', id(x))
+
+# 21.4 Именованные аргументы и значения по умолчанию
+# Задача 1. Работа с файл
+
+# def ask_user(question,
+#              complaint = 'Неверный ввод. Введите да или нет',
+#              retries = 4):
+#     while True:
+#         answer = input(question).lower()
+#         if answer == 'да':
+#             return 1
+#         if answer == 'нет':
+#             return 0
+#         retries -= 1
+#         if retries == 0:
+#             print('Количество попыток истекло.')
+#             break
+#         print(complaint)
+#         print('Осталось попыток', retries)
+#
+# ask_user('Вы действительно хотите выйти? ')
+# ask_user('Удалить файл? ', 'Вы точно хотите удалить или нет?')
+# ask_user('Записать файл? ')
+
+
+# Задача 2. Накопление значений
+
+# def add_num(num, lst = []):
+#     lst.append(num)
+#     print(lst)
+#
+# add_num(5)
+# add_num(10)
+# add_num(15)
+
+
+# Задача 3. Помощь другу
+
+# def create_dict(data, template = dict() ):
+#     template = dict()
+#     if isinstance(data, dict):
+#         return data
+#     if isinstance(data, int) or isinstance(data, float) or isinstance(data, str):
+#         template[data] = data
+#         return template
+#     if isinstance(data, list) or isinstance(data, set):
+#         return ''
+#
+#
+#
+# def data_preparation(old_list):
+#     new_list = []
+#     for i_element in old_list:
+#         new_list.append(create_dict(i_element))
+#     return new_list
+#
+# data = ['sad', {'sds': 23}, 99, {43}, [12, 42, 1], 2323]
+# data = data_preparation(data)
+# print(data)
+
