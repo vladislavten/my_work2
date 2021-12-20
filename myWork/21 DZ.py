@@ -40,12 +40,14 @@
 #     }
 # }
 #
-# def find_key(struct, key):
+# def find_key(struct, key, deep):
+#     if deep == 0:
+#         return
 #     if key in struct:
 #         return struct[key]
 #     for i in struct.values():
 #         if isinstance(i, dict):
-#             result = find_key(i, key)
+#             result = find_key(i, key,deep - 1)
 #             if result:
 #                 break
 #     else:
@@ -54,7 +56,8 @@
 #     return result
 #
 # find = input('Какой ключ ищем? ')
-# result = find_key(site, find)
+# deep = int(input('Введите глубину: '))
+# result = find_key(site, find, deep)
 # if result:
 #     print(result)
 # else:
@@ -72,7 +75,7 @@
 #     site['html']['body']['h2'] = f'У нас самая низкая цена на {name}'
 #
 #     print(func(num - 1, name, site))
-#     print(f'Сайт для {name}')
+#
 #     return site
 #
 #
