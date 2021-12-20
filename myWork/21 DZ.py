@@ -97,3 +97,37 @@
 #
 # func(site_num, name, site)
 
+
+# Задача 7. Продвинутая функция sum
+
+# def summ(*args):
+#     return sum(summ(*a) if isinstance(a, list) else a for a in args)
+#
+# print(summ(1, 2, 8, 4, 9))
+# print(summ([[1, 2, [3]], [4], 5]))
+
+
+
+# Задача 8. Список списков 2
+
+
+# def summ(args):
+#     # return [num for row in listik for row_i in row for num in row_i]
+#     return [summ(a) if isinstance(a, list) else a for a in args]
+
+def summ(nice_list, result = []):
+    for i in nice_list:
+        if isinstance(i, list):
+            summ(i)
+        else:
+            result.append(i)
+    return result
+
+
+nice_list = [[[1, 2, 3], [4, 5, 6], [7, 8, 9]],[[10, 11, 12], [13, 14, 15], [16, 17, 18]]]
+print(summ(nice_list))
+
+
+
+
+
