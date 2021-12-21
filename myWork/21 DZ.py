@@ -1,4 +1,4 @@
-# Задача 1. Challenge 2
+# Задача 1. Challenge 2 (сделана)
 
 # def count(start):
 #     if start == 1:
@@ -10,11 +10,24 @@
 # count(num + 1)
 #
 
-# Задача 2. Свой zip 2
+# Задача 2. Свой zip 2 (допилить осталось)
+
+# def shortest_seq_range(string, tpl):
+#     return min(len(string), len(tpl))
+#
+#
+# syms_str = 'abcd'
+# nums_tpl = (10, 20, 30, 40)
+#
+# pairs = ((syms_str[i_elem], nums_tpl[i_elem])
+#          for i_elem in range(shortest_seq_range(syms_str, nums_tpl)))
+#
+# for i_elem in pairs:
+#     print(i_elem)
 
 
 
-# Задача 3. Ряд Фибоначчи
+# Задача 3. Ряд Фибоначчи (сделана)
 #
 # def fibonacci(n):
 #     if n in (1, 2):
@@ -25,7 +38,7 @@
 # print('Значение этого элемента:', fibonacci(n))
 
 
-# Задача 4. Поиск элемента 2
+# Задача 4. Поиск элемента 2 (сделана)
 
 # site = {
 #     'html': {
@@ -64,19 +77,32 @@
 #     print('Такого ключа в структуре сайта нет')
 
 
+# Задача 5. Ускоряем работу функции
 
-# Задача 6. Глубокое копирование   (ДОДЕЛАТЬ вывод "Сайт для ...")
+# def calculating_math_func(data):
+#     result = 1
+#     for index in range(1, data + 1):
+#         result *= index
+#     result /= data ** 3
+#     result = result ** 10
+#     return result
 
-# def func(num, name, site):
-#     if num == 0:
-#         return site
+
+
+
+# Задача 6. Глубокое копирование   (сделана)
+
+# import copy
 #
-#     site['html']['head']['title'] = f'Куплю/продам телефон {name} недорого'
-#     site['html']['body']['h2'] = f'У нас самая низкая цена на {name}'
-#
-#     print(func(num - 1, name, site))
-#
-#     return site
+# def func(num, site):
+#     if num > 0:
+#         name = input('Введите название продукта для нового сайта: ')
+#         print(f'Сайт для {name}:')
+#         site_copy = copy.deepcopy(site)
+#         site_copy['html']['head']['title'] = f'Куплю/продам телефон {name} недорого'
+#         site_copy['html']['body']['h2'] = f'У нас самая низкая цена на {name}'
+#         print(site_copy)
+#         func(num - 1, site_copy)
 #
 #
 # site = {
@@ -93,12 +119,11 @@
 # }
 #
 # site_num = int(input('Сколько сайтов: '))
-# name = input('Введите название продукта для нового сайта: ')
 #
-# func(site_num, name, site)
+# func(site_num, site)
 
 
-# Задача 7. Продвинутая функция sum
+# Задача 7. Продвинутая функция sum (сделана)
 
 # def summ(*args):
 #     return sum(summ(*a) if isinstance(a, list) else a for a in args)
@@ -108,26 +133,20 @@
 
 
 
-# Задача 8. Список списков 2
+# Задача 8. Список списков 2 (сделана)
 
 
-# def summ(args):
-#     # return [num for row in listik for row_i in row for num in row_i]
-#     return [summ(a) if isinstance(a, list) else a for a in args]
-
-def summ(nice_list, result = []):
-    for i in nice_list:
-        if isinstance(i, list):
-            summ(i)
-        else:
-            result.append(i)
-    return result
-
-
-nice_list = [[[1, 2, 3], [4, 5, 6], [7, 8, 9]],[[10, 11, 12], [13, 14, 15], [16, 17, 18]]]
-print(summ(nice_list))
-
-
-
-
-
+# def summ(nice_list, result = []):
+#     for i in nice_list:
+#         if isinstance(i, list):
+#             summ(i)
+#         else:
+#             result.append(i)
+#     return result
+#
+#
+# nice_list = [[[1, 2, 3], [4, 5, 6], [7, 8, 9]],[[10, 11, 12], [13, 14, 15], [16, 17, 18]]]
+# print(summ(nice_list))
+#
+#
+#
