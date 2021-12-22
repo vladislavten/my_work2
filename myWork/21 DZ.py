@@ -1,29 +1,29 @@
 # Задача 1. Challenge 2 (сделана)
 
-# def count(start):
-#     if start == 1:
-#         return start
-#     print(count(start - 1))
-#     return start
-#
-# num = int(input('Введите число: '))
-# count(num + 1)
+def count(start):
+    if start == 1:
+        return start
+    print(count(start - 1))
+    return start
+
+num = int(input('Введите число: '))
+count(num + 1)
 #
 
 # Задача 2. Свой zip 2 (допилить осталось)
 
-# def shortest_seq_range(string, tpl):
-#     return min(len(string), len(tpl))
+# def my_zip(*arg):
+#     arg = list(map(list, arg))
+#     try:
+#         yield tuple(map(lambda x : x.pop(0), arg))
+#         yield from my_zip(*arg)
+#     except:
+#         pass
 #
+# first_cort = (1, 2, 3)
+# second_cort = (11, 22, 33, 44)
 #
-# syms_str = 'abcd'
-# nums_tpl = (10, 20, 30, 40)
-#
-# pairs = ((syms_str[i_elem], nums_tpl[i_elem])
-#          for i_elem in range(shortest_seq_range(syms_str, nums_tpl)))
-#
-# for i_elem in pairs:
-#     print(i_elem)
+# print(*my_zip(first_cort, second_cort))
 
 
 
@@ -77,16 +77,23 @@
 #     print('Такого ключа в структуре сайта нет')
 
 
-# Задача 5. Ускоряем работу функции
+# Задача 5. Ускоряем работу функции (доделать)
 
 # def calculating_math_func(data):
-#     result = 1
-#     for index in range(1, data + 1):
-#         result *= index
+#     if data in factorials:
+#         result = factorials[data]
+#     else:
+#         result = 1
+#         for index in range(1, data + 1):
+#             result *= index
+#         factorials[data] = result
 #     result /= data ** 3
 #     result = result ** 10
 #     return result
-
+#
+# factorials = {}
+# print(calculating_math_func(5))
+# print(factorials)
 
 
 
