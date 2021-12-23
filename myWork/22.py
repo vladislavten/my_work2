@@ -11,3 +11,22 @@
 #
 # print(rel_path)
 
+
+
+# Задача 2. Содержимое
+
+# import os
+#
+# path = 'C:\Python310'
+#
+# for i_elem in os.listdir(path):
+#     print(os.path.join(path, i_elem))
+#
+# print(os.path.abspath(os.path.join(os.path.sep,'123') )) #пример работы os.path......
+
+
+# Задача 3. Корень диска
+
+import os
+
+print('Корень диска:', os.path.abspath(os.path.sep))
