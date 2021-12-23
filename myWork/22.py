@@ -1,3 +1,5 @@
+# 22.1 Модуль os: генерация путей и метод listdir
+
 # Задача 1. Сисадмин
 # import os
 #
@@ -27,6 +29,9 @@
 
 # Задача 3. Корень диска
 
-import os
+# import os
+#
+# print('Корень диска:', os.path.abspath(os.path.sep))
 
-print('Корень диска:', os.path.abspath(os.path.sep))
+
+
