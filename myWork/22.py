@@ -148,6 +148,8 @@ def find(path, name):
             open_file.write('\n')
             open_file.write('*' * 40)
             open_file.write('\n')
+            open_file.close()
+            source_file.close()
 
 abs_path = 'D:\Python_Basic'
 true_path = os.path.abspath(abs_path)
