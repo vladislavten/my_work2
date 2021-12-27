@@ -77,34 +77,36 @@
 #
 # find(true_path, file_name)
 
+# 22.3 Базовые операции с файлами: open, close, read
 
-import os
 
-# print(os.path.abspath(os.path.join(os.path.sep, 'task', 'group_1.txt' )))
-
-file = open(os.path.abspath(os.path.join(os.path.sep, 'task', 'group_1.txt')), 'r', encoding='utf-8')
-# data = file.read()
-
-summa = 0
-for i_line in file:
-    info = i_line.split()
-    print(info)
-    summa += int(info[2])
-
-# file = open('E:\task\group_1.txt', 'read')
+# import os
+#
+# file = open(os.path.abspath(os.path.join(os.path.sep, 'task', 'group_1.txt')), 'r', encoding='utf-8')
+#
+# summa = 0
 # diff = 0
 #
+# lst = []
 # for i_line in file:
 #     info = i_line.split()
-#     diff -= info[2]
+#     summa += int(info[2])
+#     diff -= int(info[2])
 #
-# file_2 = open('E:\task\group_2.txt', 'read')
-# compose = 0
 #
-# for i_line in file:
+# file_2 = open(os.path.abspath(os.path.join(os.path.sep, 'task', 'group_2.txt')), 'r', encoding='utf-8')
+# for i_line in file_2:
 #     info = i_line.split()
-#     compose *= info[2]
-
-print(summa)
+#     lst.append(int(info[2]))
+# file.close()
+# file_2.close()
+# compose = lst[0] * lst[1] * lst[2]
+# print(summa)
 # print(diff)
 # print(compose)
+
+
+
+# 22.4 Метод write. Режимы записи
+
+# Задача 1. Сумма чисел
