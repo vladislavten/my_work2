@@ -133,27 +133,33 @@
 
 
 # Задача 2. Всё в одном
+#
+# import os
+#
+# def find(path, name):
+#     for i_elem in os.listdir(path):
+#         if os.path.isdir(os.path.join(path, i_elem)):
+#             find(os.path.join(path, i_elem), name)
+#         if os.path.isfile(os.path.join(path, i_elem, name)):
+#             open_file = open(os.path.abspath(os.path.join(os.path.sep, 'task', 'scripts.txt')), 'a')
+#             source_file = open(os.path.join(path, i_elem, name), 'r', encoding='utf-8')
+#             for i in source_file:
+#                 open_file.write(i)
+#             open_file.write('\n')
+#             open_file.write('*' * 40)
+#             open_file.write('\n')
+#             open_file.close()
+#             source_file.close()
+#
+# abs_path = 'D:\Python_Basic'
+# true_path = os.path.abspath(abs_path)
+# file_name = 'main.py'
+#
+# find(true_path, file_name)
+# print('Копирование успешо завершено!')
 
-import os
 
-def find(path, name):
-    for i_elem in os.listdir(path):
-        if os.path.isdir(os.path.join(path, i_elem)):
-            find(os.path.join(path, i_elem), name)
-        if os.path.isfile(os.path.join(path, i_elem, name)):
-            open_file = open(os.path.abspath(os.path.join(os.path.sep, 'task', 'scripts.txt')), 'a')
-            source_file = open(os.path.join(path, i_elem, name), 'r', encoding='utf-8')
-            for i in source_file:
-                open_file.write(i)
-            open_file.write('\n')
-            open_file.write('*' * 40)
-            open_file.write('\n')
-            open_file.close()
-            source_file.close()
 
-abs_path = 'D:\Python_Basic'
-true_path = os.path.abspath(abs_path)
-file_name = 'main.py'
 
-find(true_path, file_name)
-print('Копирование успешо завершено!')
+# 22.5 Перемещение курсора в файле. Метод seek
+
