@@ -154,3 +154,4 @@ true_path = os.path.abspath(abs_path)
 file_name = 'main.py'
 
 find(true_path, file_name)
+print('Копирование успешо завершено!')
