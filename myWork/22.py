@@ -110,3 +110,22 @@
 # 22.4 Метод write. Режимы записи
 
 # Задача 1. Сумма чисел
+
+import os
+
+file = open(os.path.abspath(os.path.join(os.path.sep, 'task', 'numbers.txt')), 'r', encoding='utf-8')
+print('Содержимое файла: numbers.txt')
+summ = 0
+for i_int in file:
+    print(i_int, end = '')
+    summ += int(i_int)
+
+print()
+answer = open(os.path.abspath(os.path.join(os.path.sep, 'task', 'answer.txt')), 'w')
+answer.write(str(summ))
+answer.close()
+answer = open(os.path.abspath(os.path.join(os.path.sep, 'task', 'answer.txt')), 'r')
+print()
+print('Содержимое файла answer.txt по пути:', os.path.abspath(os.path.join(os.path.sep, 'task', 'answer.txt')))
+for i_int in answer:
+    print(i_int, end = '')
