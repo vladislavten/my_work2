@@ -111,21 +111,46 @@
 
 # Задача 1. Сумма чисел
 
+# import os
+#
+# file = open(os.path.abspath(os.path.join(os.path.sep, 'task', 'numbers.txt')), 'r', encoding='utf-8')
+# print('Содержимое файла: numbers.txt')
+# summ = 0
+# for i_int in file:
+#     print(i_int, end = '')
+#     summ += int(i_int)
+#
+# print()
+# answer = open(os.path.abspath(os.path.join(os.path.sep, 'task', 'answer.txt')), 'w')
+# answer.write(str(summ))
+# answer.close()
+# answer = open(os.path.abspath(os.path.join(os.path.sep, 'task', 'answer.txt')), 'r')
+# print()
+# print('Содержимое файла answer.txt по пути:', os.path.abspath(os.path.join(os.path.sep, 'task', 'answer.txt')))
+# for i_int in answer:
+#     print(i_int, end = '')
+
+
+
+# Задача 2. Всё в одном
+
 import os
 
-file = open(os.path.abspath(os.path.join(os.path.sep, 'task', 'numbers.txt')), 'r', encoding='utf-8')
-print('Содержимое файла: numbers.txt')
-summ = 0
-for i_int in file:
-    print(i_int, end = '')
-    summ += int(i_int)
+def find(path, name):
+    for i_elem in os.listdir(path):
+        if os.path.isdir(os.path.join(path, i_elem)):
+            find(os.path.join(path, i_elem), name)
+        if os.path.isfile(os.path.join(path, i_elem, name)):
+            open_file = open(os.path.abspath(os.path.join(os.path.sep, 'task', 'scripts.txt')), 'a')
+            source_file = open(os.path.join(path, i_elem, name), 'r', encoding='utf-8')
+            for i in source_file:
+                open_file.write(i)
+            open_file.write('\n')
+            open_file.write('*' * 40)
+            open_file.write('\n')
 
-print()
-answer = open(os.path.abspath(os.path.join(os.path.sep, 'task', 'answer.txt')), 'w')
-answer.write(str(summ))
-answer.close()
-answer = open(os.path.abspath(os.path.join(os.path.sep, 'task', 'answer.txt')), 'r')
-print()
-print('Содержимое файла answer.txt по пути:', os.path.abspath(os.path.join(os.path.sep, 'task', 'answer.txt')))
-for i_int in answer:
-    print(i_int, end = '')
+abs_path = 'D:\Python_Basic'
+true_path = os.path.abspath(abs_path)
+file_name = 'main.py'
+
+find(true_path, file_name)
