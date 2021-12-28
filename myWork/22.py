@@ -151,7 +151,7 @@
 #             open_file.close()
 #             source_file.close()
 #
-# abs_path = 'D:\Python_Basic'
+# abs_path = 'C:\Python_Basic'
 # true_path = os.path.abspath(abs_path)
 # file_name = 'main.py'
 #
