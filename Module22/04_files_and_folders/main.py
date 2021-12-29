@@ -33,7 +33,7 @@ for i_elem in os.listdir(enter_path):
     if os.path.isdir(os.path.join(enter_path, i_elem)):
         count += 1
 
-
+print(general_size)
 print('Размер каталога (в Кб):', round(general_size / 1024, 2))
 print('Количество подкаталогов:', count)
 print('Количество файлов: ', len(files))
