@@ -18,7 +18,6 @@ def file_size(path, size = []): #Считаю размеры всех папок
             file_size(os.path.join(path, i))
     return size
 
-
 enter_path = input('Пожалуйста, введите путь до директории: ')
 
 files = count_files(enter_path)
