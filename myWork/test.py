@@ -200,4 +200,3 @@
 #     print(f'Сайт для {product_name}:')
 #     print(site_copy, '\n')
 
-

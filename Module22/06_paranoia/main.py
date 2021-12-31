@@ -14,7 +14,11 @@ print('Содержимое файла cipher_text.txt:')
 for i in text_string:
     res = ''
     for x in i:
-        res += alpha[(alpha.index(x.lower()) + move) % len(alpha)]
+        if x.isupper():
+            b = alpha[(alpha.index(x.lower()) + move) % len(alpha)]
+            res += b.upper()
+        else:
+            res += alpha[(alpha.index(x.lower()) + move) % len(alpha)]
     file_write = open('cipher_text.txt', 'a')
     file_write.write(res + '\n')
     move += 1
@@ -25,4 +29,6 @@ result = file_write.read().split()
 
 for i_elem in result:
     print(i_elem)
+
+file_write.close()
 
