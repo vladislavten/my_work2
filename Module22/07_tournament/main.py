@@ -29,6 +29,13 @@ second_tour_file.write(str(count) + '\n')
 second_tour_file.close()
 second_tour_file = open('second_tour.txt', 'a')
 
+print(sorted(data, reverse=True))
+
+
+for i in sorted(data, reverse=True):
+    if count != 0:
+        print(i)
+        count -= 1
 
 # for index, value in enumerate(data):
 #     if index > count - 1:
@@ -41,5 +48,5 @@ second_tour_file = open('second_tour.txt', 'a')
 
 
 
-print(ball)
-print(data)
+# print(ball)
+# print(data)
