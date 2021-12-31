@@ -80,9 +80,9 @@
 # 22.3 Базовые операции с файлами: open, close, read
 
 
-# import os
-#
-# file = open(os.path.abspath(os.path.join(os.path.sep, 'task', 'group_1.txt')), 'r', encoding='utf-8')
+import os
+
+# file = open(os.path.abspath(os.path.join(os.path.sep, 'mask', 'group_1.txt')), 'w', encoding='utf-8')
 #
 # summa = 0
 # diff = 0
