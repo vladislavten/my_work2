@@ -8,6 +8,7 @@ min_letter = {}
 data = zen.read()
 
 letter_count = [i_letter.lower() for i_letter in data if i_letter.isalpha()] #Считаю буквы
+print(letter_count)
 
 for y in letter_count:
     if y in min_letter:
@@ -22,11 +23,6 @@ for i in zen: #Считаем строки
 
 for i in data.split(): #Считаем слова
     words_count += 1
-
-# one_min_letter = ''
-# for index, value in min_letter.items():
-#     if value == min(min_letter.values()):
-#         one_min_letter = index
 
 one_min_letter = [index for index, value in min_letter.items() if value == min(min_letter.values())]
 
