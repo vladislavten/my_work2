@@ -1,11 +1,6 @@
 # TODO здесь писать код
 first_tour_file = open('first_tour.txt', 'r')
 
-# for i in first_tour_file:
-#     print(i.split())
-
-# file = first_tour_file.read().split()
-
 flg = True
 data = {}
 count = 0
@@ -44,11 +39,3 @@ data = file.read()
 for i in data:
     print(i, end='')
 
-
-
-
-
-
-
-# print(ball)
-# print(data)
