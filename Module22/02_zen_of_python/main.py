@@ -1,5 +1,6 @@
 # TODO здесь писать код
 
+
 zen = open('zen.txt', 'r')
 lst_zen = []
 
