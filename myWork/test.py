@@ -200,3 +200,6 @@
 #     print(f'Сайт для {product_name}:')
 #     print(site_copy, '\n')
 
+a = 'vas'
+
+print(a[1:])
