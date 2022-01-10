@@ -43,7 +43,7 @@ with open('calc.txt', 'r') as calc:
         except ZeroDivisionError:
             print('Нельзя делить на "0"')
         except ValueError:
-            choice = input(f'Обнаружена ошибка в строке: {i} Хотите исправить? ').lower()
+            choice = input(f'Обнаружена ошибка в строке: {i[:-1]} Хотите исправить? ').lower()
             if choice == 'да':
                 new_i = input('Введите исправленную строку: ').split()
                 summ += check(new_i)
