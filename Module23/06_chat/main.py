@@ -1,7 +1,8 @@
 # TODO здесь писать код
-username = input('Введите имя пользователя: ')
+
 with open('chat.txt', 'a', encoding='utf-8') as chat:
     while True:
+        username = input('Введите имя пользователя: ')
         print('Выберите действие:'
               '\n1. Посмотреть текущий текст чата'
               '\n2. Отправить сообщение')
