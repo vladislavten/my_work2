@@ -11,16 +11,14 @@ def func(line):
         raise SyntaxError
     if int(line[2]) < 10 or int(line[2]) > 100:
         raise ValueError
-    else:
-        res = ''.join(i_line[:-1]) + '\n'
-        with open('registrations_good.log', 'a', encoding='utf-8') as file:
-            file.write(str(res))
 
 
 registr = open('registrations.txt', 'r', encoding = 'utf-8')
 for i_line in registr:
     try:
         func(i_line.split())
+        with open('registrations_good.log', 'a', encoding='utf-8') as file:
+            file.write(str(i_line))
     except IndexError:
         res = ''.join(i_line[:-1]) + '\t\tНЕ присутствуют все три поля' + '\n'
         with open('registrations_bad.log', 'a', encoding='utf-8') as file:
