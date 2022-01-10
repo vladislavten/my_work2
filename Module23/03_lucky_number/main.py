@@ -2,6 +2,7 @@
 
 import random
 
+
 r, f = 0, open('nums.txt', 'w')
 
 with f as file:
