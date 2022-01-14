@@ -1,4 +1,3 @@
-# TODO здесь писать код
 def func(line):
     if line == []:
         raise Exception

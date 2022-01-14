@@ -9,8 +9,8 @@ while True:
     if choice == '1':
         try:
             with open('chat.txt', 'r', encoding='utf-8') as chat:
-                for i_line in chat:
-                    print('\t', i_line, end='')
+                messages = chat.readlines()
+                print(''.join(messages))
         except FileNotFoundError:
             print('Файла еще не существует')
     elif choice == '2':
