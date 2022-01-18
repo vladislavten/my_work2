@@ -25,6 +25,6 @@ warrior_1 = Fight('Воин_1', 100)
 warrior_2 = Fight('Воин_2', 100)
 
 
-warrior_2.fight_warriors()
+warrior_1.fight_warriors()
 
 
