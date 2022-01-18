@@ -25,11 +25,11 @@ class Parent:
 
     def feed_child(self):
         print('Какого ребенка хотите покормить  ?')
-        choice = int(input('"1"-Земфира, "2"-Белла \nВвод '))
-        if choice == 1:
+        choice = input('"1"-Земфира, "2"-Белла \nВвод ')
+        if choice == '1':
             zemfira.feed = True
             print('Состояние голода', zemfira.name, '=', feed_dct[zemfira.feed])
-        elif choice == 2:
+        elif choice == '2':
             bella.feed = True
             print('Состояние голода', bella.name, '=', feed_dct[bella.feed])
         else:
