@@ -1,4 +1,4 @@
-# TODO здесь писать код
+
 class Parent:
     name_parent = 'Уля'
     age_parent = 34
@@ -35,6 +35,7 @@ class Parent:
         else:
             print('Ошибка ввода!')
 
+
 class Child:
     def __init__(self, name, age):
         self.name = name
@@ -47,6 +48,7 @@ class Child:
 
     def calm(self):
         self.calmness = True
+
 
 feed_dct = {True: 'Накормлена', False: 'Голодная'}
 calm_dct = {True: 'Спокойна', False: 'Не спокойна'}

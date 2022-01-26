@@ -1,4 +1,4 @@
-# TODO здесь писать код
+
 
 import random
 
@@ -6,6 +6,7 @@ class Fight:
      def __init__(self, name, health):
         self.name = name
         self.health = health
+
      def fight_warriors(self):
         while warrior_1.health > 0 and warrior_2.health > 0:
             rand = random.randint(1, 2)

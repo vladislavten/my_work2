@@ -1,4 +1,4 @@
-# TODO здесь писать код
+
 
 class Student:
      def __init__(self, name, g_number, balls):
