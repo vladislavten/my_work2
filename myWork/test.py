@@ -200,6 +200,24 @@
 #     print(f'Сайт для {product_name}:')
 #     print(site_copy, '\n')
 
-import 
+
+import random
+
+a = ['a', 2, 3]
+class Card:
+    def c(self):
+        cards = [random.choice(a), random.choice(a)]
+        print(cards)
+
+
+
+
+x = Card()
+x.c()
+
+
+print(type(x))
+
+
 
 

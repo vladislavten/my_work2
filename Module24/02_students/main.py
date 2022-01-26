@@ -1,6 +1,5 @@
 # TODO здесь писать код
 
-
 class Student:
      def __init__(self, name, g_number, balls):
         self.name = name
@@ -33,6 +32,7 @@ st_9= Student('Ульяна', 1, [90, 10, 11, 30, 56])
 st_9.middle_ball()
 st_10= Student('Нелля', 1, [44, 55, 59, 37, 56])
 st_10.middle_ball()
+
 
 for ball, name in sorted(lst_students.items()):
     print(name, '-', ball)
