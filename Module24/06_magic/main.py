@@ -1,14 +1,13 @@
-
 class Water:
     def __str__(self):
         return 'Вода'
 
     def __add__(self, other):
-        if isinstance(other,Air):
+        if isinstance(other, Air):
             return Storm()
-        elif isinstance(other,Fire):
+        elif isinstance(other, Fire):
             return Vapor()
-        elif isinstance(other,Earth):
+        elif isinstance(other, Earth):
             return Dirt()
         else:
             print('None')
