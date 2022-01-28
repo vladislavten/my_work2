@@ -54,5 +54,9 @@ for i in range(365):  # пробуем прожить год
     else:
         text = person.play()
     print(person.name, text)
+    if i == 364:
+        print('выжили')
 
-print('выжили' if i == 364 else 'все плохо')
+# TODO есть недочеты по PEP подчеркивания и выделения кода быть недолжно
+# TODO используйте в некоторых случаях code - reformat code
+
