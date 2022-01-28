@@ -54,5 +54,5 @@ for i in range(365):  # пробуем прожить год
     else:
         text = person.play()
     print(person.name, text)
-
-print('выжили' if i == 364 else 'все плохо')
+    if i == 364:
+        print('выжили')
