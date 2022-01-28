@@ -1,5 +1,4 @@
 
-
 class Potato:
     states = {0: 'Отсутствует', 1: 'Росток', 2: 'Зеленая', 3: 'Зрелая'}
 
@@ -55,3 +54,7 @@ class Gardener:
 name_gardener = Gardener('Дядя Вася')
 my_garden = PotatosGarden(5)
 name_gardener.care()
+
+# TODO есть недочеты по PEP подчеркивания и выделения кода быть недолжно
+# TODO используйте в некоторых случаях code - reformat code
+

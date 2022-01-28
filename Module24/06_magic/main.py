@@ -4,11 +4,11 @@ class Water:
         return 'Вода'
 
     def __add__(self, other):
-        if isinstance(other, Air):
+        if isinstance(other,Air):
             return Storm()
-        elif isinstance(other, Fire):
+        elif isinstance(other,Fire):
             return Vapor()
-        elif isinstance(other, Earth):
+        elif isinstance(other,Earth):
             return Dirt()
         else:
             print('None')
@@ -50,4 +50,3 @@ air = Air()
 fire = Fire()
 earth = Earth
 print(air + fire)
-

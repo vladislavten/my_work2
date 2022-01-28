@@ -30,5 +30,3 @@ while warrior_1.health > 0 and warrior_2.health > 0:
         print('Победил', warrior_2.name)
     elif warrior_2.test_health():
         print('Победил', warrior_1.name)
-
-123
