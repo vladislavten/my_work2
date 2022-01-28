@@ -34,4 +34,4 @@ circle.scale(5)
 circle.get_perimeter()
 circle.is_intersect(circle2)
 
-
+# TODO однобуквенных переменнных быть недолжно

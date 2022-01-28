@@ -1,6 +1,6 @@
 
 class Student:
-
+    # TODO параметры не должны быть подчеркнуты и пересекаться по неймингу с переменными из глобального скоупа
      def __init__(self, name, g_number, balls):
         self.name = name
         self.g_number = g_number
@@ -10,7 +10,8 @@ class Student:
          result = sum(self.balls) / len(self.balls)
          lst_students[result] = self.name
 
-
+# TODO не используем в именовании list set dict tuple и их сокращения
+# TODO в коде не пишем переменные в сокращенной форме как ниже
 lst_students = {}
 
 
@@ -37,3 +38,7 @@ st_10.middle_ball()
 
 for ball, name in sorted(lst_students.items()):
     print(name, '-', ball)
+
+# TODO есть недочеты по PEP подчеркивания и выделения кода быть недолжно
+# TODO используйте в некоторых случаях code - reformat code
+

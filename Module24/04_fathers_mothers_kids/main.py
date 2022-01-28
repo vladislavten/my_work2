@@ -49,7 +49,7 @@ class Child:
     def calm(self):
         self.calmness = True
 
-
+# TODO ключем не может быть булева переменная
 feed_dct = {True: 'Накормлена', False: 'Голодная'}
 calm_dct = {True: 'Спокойна', False: 'Не спокойна'}
 
@@ -70,3 +70,5 @@ while True:
         mother.feed_child()
     else:
         print('Ошибка ввода!')
+
+# TODO применить рекомендации данные ранее
