@@ -1,31 +1,33 @@
-
-
 import random
 
+
 class Fight:
-     def __init__(self, name, health):
+
+    def __init__(self, name, health=100):
         self.name = name
         self.health = health
 
-     def fight_warriors(self):
-        while warrior_1.health > 0 and warrior_2.health > 0:
-            rand = random.randint(1, 2)
-            if rand == 1:
-                warrior_2.health -= 20
-                print('Воин_1 {} атаковал, Воин_2 {}'.format(warrior_1.health, warrior_2.health))
-            elif rand == 2:
-                warrior_1.health -= 20
-                print('Воин_2 {} атаковал, Воин_1 {}'.format(warrior_2.health, warrior_1.health))
-            if  warrior_1.health <= 0:
-                print('Победил', warrior_2.name)
-            elif warrior_2.health <= 0:
-                print('Победил', warrior_1.name)
+    def test_health(self):
+        if self.health <= 0:
+            return True
+
+    def self_kick(self):
+        self.health -= 20
 
 
-warrior_1 = Fight('Воин_1', 100)
-warrior_2 = Fight('Воин_2', 100)
+warrior_1 = Fight('Воин_1')
+warrior_2 = Fight('Воин_2')
 
-
-warrior_1.fight_warriors()
-
+while warrior_1.health > 0 and warrior_2.health > 0:
+    rand = random.randint(1, 2)
+    if rand == 1:
+        warrior_2.self_kick()
+        print(f'{warrior_1.name} {warrior_1.health} атаковал, {warrior_2.name} {warrior_2.health}')
+    elif rand == 2:
+        warrior_1.self_kick()
+        print(f'{warrior_2.name} {warrior_2.health} атаковал, {warrior_1.name} {warrior_1.health}')
+    if warrior_1.test_health():
+        print('Победил', warrior_2.name)
+    elif warrior_2.test_health():
+        print('Победил', warrior_1.name)
 
