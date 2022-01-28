@@ -1,19 +1,15 @@
-
 class Student:
-    # TODO параметры не должны быть подчеркнуты и пересекаться по неймингу с переменными из глобального скоупа
-     def __init__(self, name, g_number, balls):
+    def __init__(self, name, g_number, balls):
         self.name = name
         self.g_number = g_number
         self.balls = balls
 
-     def middle_ball(self):
-         result = sum(self.balls) / len(self.balls)
-         lst_students[result] = self.name
+    def middle_ball(self):
+        result = sum(self.balls) / len(self.balls)
+        general_students[result] = self.name
 
-# TODO не используем в именовании list set dict tuple и их сокращения
-# TODO в коде не пишем переменные в сокращенной форме как ниже
-lst_students = {}
 
+general_students = {}
 
 st_1 = Student('Миша', 1, [44, 56, 64, 30, 56])
 st_1.middle_ball()
@@ -36,9 +32,5 @@ st_9.middle_ball()
 st_10 = Student('Нелля', 1, [44, 55, 59, 37, 56])
 st_10.middle_ball()
 
-for ball, name in sorted(lst_students.items()):
-    print(name, '-', ball)
-
-# TODO есть недочеты по PEP подчеркивания и выделения кода быть недолжно
-# TODO используйте в некоторых случаях code - reformat code
-
+for i_ball, i_name in sorted(general_students.items()):
+    print(i_name, '-', i_ball)

@@ -1,26 +1,27 @@
-# TODO здесь писать код
 import math
 
 
 class Circle:
 
-    def __init__(self, x=0, y=0, r=1):
-        self.x = x
-        self.y = y
-        self.r = r
+    def __init__(self, x_coordinate=0, y_coordinate=0, radius=1):
+        self.x_coordinate = x_coordinate
+        self.y_coordinate = y_coordinate
+        self.radius = radius
 
     def get_area(self):
-        print('Площадь равна:', round((self.r * self.r * math.pi),2))
+        print('Площадь равна:', round((self.radius * self.radius * math.pi), 2))
 
     def get_perimeter(self):
-        print('Периметр равен:', 2 * self.r * math.pi)
+        print('Периметр равен:', round((2 * self.radius * math.pi), 2))
 
-    def scale(self, k):
-        self.r *= k
-        print(f'Окружность увеличилась в {k} раз:', self.r)
+    def scale(self, x_scale):
+        self.radius *= x_scale
+        print(f'Окружность увеличилась в {x_scale} раз:', self.radius)
 
     def is_intersect(self, other):
-        intersection = ((self.x - other.x) ** 2 + (self.y - other.y) ** 2 <= (self.r + other.r) ** 2)
+        intersection = (
+                    (self.x_coordinate - other.x_coordinate) ** 2 + (self.y_coordinate - other.y_coordinate) ** 2 <= (
+                        self.radius + other.radius) ** 2)
         if intersection:
             print('Окружности пересекаются')
         else:

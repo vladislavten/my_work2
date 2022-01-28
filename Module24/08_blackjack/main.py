@@ -1,4 +1,3 @@
-
 from random import choice
 
 
@@ -6,21 +5,22 @@ class Cards:
     cards = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 
     def __init__(self, cards):
-        cards.extend([choice(self.cards),choice(self.cards)])
+        cards.extend([choice(self.cards), choice(self.cards)])
 
     def one_card(self, cards):
         cards.extend([choice(self.cards)])
 
-    def count(self, cards):
+    @staticmethod
+    def count(cards):
         result = 0
-        A_player = []
+        ace = []
         for i_card in cards:
             if isinstance(i_card, int):
                 result += i_card
             elif isinstance(i_card, str):
-                A_player.append(i_card)
-        if A_player:
-            for _ in A_player:
+                ace.append(i_card)
+        if ace:
+            for _ in ace:
                 if result < 11:
                     result += 11
                 elif result >= 11:
@@ -76,4 +76,3 @@ while True:
         break
     else:
         print('Ошибка ввода, выберите 1 или 2')
-

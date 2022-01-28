@@ -1,4 +1,3 @@
-
 class Potato:
     states = {0: 'Отсутствует', 1: 'Росток', 2: 'Зеленая', 3: 'Зрелая'}
 
@@ -20,23 +19,23 @@ class Potato:
         return False
 
 
-class PotatosGarden:
-    def __init__(self,count):
-        self.potatos = [Potato(index) for index in range(1,count + 1)]
+class GardenPotato:
+    def __init__(self, count):
+        self.potato = [Potato(index) for index in range(1, count + 1)]
         self.count = count
 
     def grow_all(self):
         print(f'Картошка прорастает')
 
-        for i_potato in self.potatos:
+        for i_potato in self.potato:
             i_potato.grow()
 
     def are_all_ripe(self):
-        if not all([i_potato.is_ripe() for i_potato in self.potatos]):
+        if not all([i_potato.is_ripe() for i_potato in self.potato]):
             print('картошка еще не созрела\n')
         else:
             print('картошка созрела\n')
-            print('картошку собрал ', name_gardener.name, 'в количестве ', self.count )
+            print('картошку собрал ', name_gardener.name, 'в количестве ', self.count)
 
 
 class Gardener:
@@ -44,7 +43,8 @@ class Gardener:
         self.name = name
         print(f'За картошкой ухаживает {self.name}')
 
-    def care(self):
+    @staticmethod
+    def care():
         my_garden.are_all_ripe()
         for i_count in range(3):
             my_garden.grow_all()
@@ -52,9 +52,6 @@ class Gardener:
 
 
 name_gardener = Gardener('Дядя Вася')
-my_garden = PotatosGarden(5)
+my_garden = GardenPotato(5)
 name_gardener.care()
-
-# TODO есть недочеты по PEP подчеркивания и выделения кода быть недолжно
-# TODO используйте в некоторых случаях code - reformat code
 

@@ -26,7 +26,8 @@ class Person:
         self.satiety -= 1
         return f'играет, сытость {self.satiety}'
 
-    def repast(self):  # идет в магазин
+    @staticmethod
+    def repast():  # идет в магазин
         House.food += 1
         House.money -= 1
         return f'идет в магазин, еда {House.food} деньги {House.money}'
@@ -56,7 +57,4 @@ for i in range(365):  # пробуем прожить год
     print(person.name, text)
     if i == 364:
         print('выжили')
-
-# TODO есть недочеты по PEP подчеркивания и выделения кода быть недолжно
-# TODO используйте в некоторых случаях code - reformat code
 
