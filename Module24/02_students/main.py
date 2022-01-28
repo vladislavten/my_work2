@@ -34,4 +34,3 @@ st_10.middle_ball()
 
 for i_ball, i_name in sorted(general_students.items()):
     print(i_name, '-', i_ball)
-
