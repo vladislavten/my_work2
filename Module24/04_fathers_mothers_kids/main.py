@@ -1,4 +1,3 @@
-
 class Parent:
     name_parent = 'Уля'
     age_parent = 34
@@ -16,10 +15,10 @@ class Parent:
         choice_element = int(input('"1"-Земфира, "2"-Белла \nВвод'))
         if choice_element == 1:
             zemfira.calmness = True
-            print('Состояние спокойствия', zemfira.name, '=', calm_dct[zemfira.calmness])
+            print('Состояние спокойствия', zemfira.name, '=', zemfira.calmness)
         elif choice_element == 2:
             bella.calmness = True
-            print('Состояние спокойствия', bella.name, '=', calm_dct[bella.calmness])
+            print('Состояние спокойствия', bella.name, '=', bella.calmness)
         else:
             print('Ошибка ввода!')
 
@@ -28,10 +27,10 @@ class Parent:
         choice_element = input('"1"-Земфира, "2"-Белла \nВвод ')
         if choice_element == '1':
             zemfira.feed = True
-            print('Состояние голода', zemfira.name, '=', feed_dct[zemfira.feed])
+            print('Состояние голода', zemfira.name, '=', zemfira.feed)
         elif choice_element == '2':
             bella.feed = True
-            print('Состояние голода', bella.name, '=', feed_dct[bella.feed])
+            print('Состояние голода', bella.name, '=', bella.feed)
         else:
             print('Ошибка ввода!')
 
@@ -49,9 +48,6 @@ class Child:
     def calm(self):
         self.calmness = True
 
-# TODO ключем не может быть булева переменная
-feed_dct = {True: 'Накормлена', False: 'Голодная'}
-calm_dct = {True: 'Спокойна', False: 'Не спокойна'}
 
 mother = Parent()
 zemfira = Child('Земфира', 11)
@@ -70,5 +66,3 @@ while True:
         mother.feed_child()
     else:
         print('Ошибка ввода!')
-
-# TODO применить рекомендации данные ранее
