@@ -1,79 +1,79 @@
-# TODO здесь писать код
+
 from random import choice
 
-card_types = ['A',2,3,4,5,6,7,8,9,10,10,10,10]
 
-player_card = [choice(card_types), choice(card_types)]
-diller_card = [choice(card_types), choice(card_types)]
+class Cards:
+    cards = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+
+    def __init__(self, cards):
+        cards.extend([choice(self.cards),choice(self.cards)])
+
+    def one_card(self, cards):
+        cards.extend([choice(self.cards)])
+
+    def count(self, cards):
+        result = 0
+        A_player = []
+        for i_card in cards:
+            if isinstance(i_card, int):
+                result += i_card
+            elif isinstance(i_card, str):
+                A_player.append(i_card)
+        if A_player:
+            for _ in A_player:
+                if result < 11:
+                    result += 11
+                elif result >= 11:
+                    result += 1
+        return result
+
+
+player_card = []
+casino_card = []
+
+player = Cards(player_card)
+casino = Cards(casino_card)
+
 player_flg = False
-diller_flg = False
+casino_flg = False
 
 while True:
-    player_res = 0
-    A_player = []
-
-    for i_card in player_card:
-        if isinstance(i_card, int):
-            player_res += i_card
-        elif isinstance(i_card, str):
-            A_player.append(i_card)
-    if A_player:
-        for i in A_player:
-            if player_res < 11:
-                player_res += 11
-            elif player_res >= 11:
-                player_res += 1
-    if player_res > 21:
+    if player.count(player_card) > 21:
         print('Карты игрока:', player_card)
-        print('У вас перебор! Сумма очков:', player_res)
+        print('У вас перебор! Сумма очков:', player.count(player_card))
         print('Диллер победил')
         player_flg = True
         break
 
-    print('Карты игрока:', player_card, 'обшая сумма очков:', player_res)
+    print('Карты игрока:', player_card, 'обшая сумма очков:', player.count(player_card))
 
     player_choice = input('\nВыберите действие:\n1 = взять еще карту\n2 = Остановиться\nВвод: ')
     if player_choice == '1':
-        player_card.append(choice(card_types))
+        player.one_card(player_card)
     elif player_choice == '2':
+
         while True:
-            diller_res = 0
-            A_diller = []
-            for i_card in diller_card:
-                if isinstance(i_card, int):
-                    diller_res += i_card
-                elif isinstance(i_card, str):
-                    A_diller.append(i_card)
-            if A_diller:
-                for i in A_diller:
-                    if diller_res < 11:
-                        diller_res += 11
-                    elif diller_res >= 11:
-                        diller_res += 1
-            if diller_res > 21:
-                diller_flg = True
+            if casino.count(casino_card) > 21:
+                casino_flg = True
                 break
-            if diller_res < 17:
-                diller_card.append(choice(card_types))
-            if diller_res >= 17:
+            if casino.count(casino_card) >= 17:
                 break
-        print('Карты игрока:', player_card, 'обшая сумма очков:', player_res)
-        print('Карты диллера:', diller_card, 'обшая сумма очков:', diller_res)
-        if diller_flg:
-            print('Победил игрок!')
+            if casino.count(casino_card) < 17:
+                casino.one_card(casino_card)
+
+        print('Карты игрока:', player_card, 'обшая сумма очков:', player.count(player_card))
+        print('Карты диллера:', casino_card, 'обшая сумма очков:', casino.count(casino_card))
+        if casino_flg:
+            print('Выиграл игрок!')
         elif player_flg:
-            print('Выиграл диллер')
-        elif player_res < diller_res:
-            print('Выиграл диллер')
-        elif player_res > diller_res:
-            print('Победил игрок!')
+            print('Выиграл диллер!')
+        elif player.count(player_card) < casino.count(casino_card):
+            print('Выиграл диллер!')
+        elif player.count(player_card) > casino.count(casino_card):
+            print('Выиграл игрок!')
         else:
             print('Ничья')
         break
     else:
         print('Ошибка ввода, выберите 1 или 2')
-
-
-
-
 
