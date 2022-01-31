@@ -1,4 +1,3 @@
-# TODO здесь писать код
 class Property:
     def __init__(self, worth):
         self.worth = worth
@@ -35,20 +34,20 @@ money = float(input('Введите ваше кол-во денег: '))
 price_apartment = float(input('Введите стоимость квартиры: '))
 apartment = Apartment(price_apartment)
 if price_apartment + apartment.tax() < money:
-    print('Налог ', apartment.tax())
+    print('Налог: ', apartment.tax())
 else:
-    print('У вас не хватает денег: ', abs(price_apartment + apartment.tax() - money))
+    print('У вас не хватает денег: ', price_apartment + apartment.tax() - money)
 
 price_car = float(input('Введите стоимость автомобиля: '))
 car = Car(price_car)
 if price_car + car.tax() < money:
-    print('Налог ', car.tax())
+    print('Налог: ', car.tax())
 else:
-    print('У вас не хватает денег: ', abs(price_car + car.tax() - money))
+    print('У вас не хватает денег: ', price_car + car.tax() - money)
 
 price_countryHouse = float(input('Введите стоимость дачи: '))
 countryHouse = CountryHouse(price_countryHouse)
 if price_countryHouse + countryHouse.tax() < money:
-    print('Налог ', countryHouse.tax())
+    print('Налог: ', countryHouse.tax())
 else:
-    print('У вас не хватает денег: ', abs(price_countryHouse + countryHouse.tax() - money))
+    print('У вас не хватает денег: ', price_countryHouse + countryHouse.tax() - money)
