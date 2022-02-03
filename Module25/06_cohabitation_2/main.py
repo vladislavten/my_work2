@@ -1,3 +1,32 @@
+
+class House:
+    __money = 100
+    __food = 50
+    __cat_food = 30
+    __dirt = 0
+
+    def set_husband_money(self):
+        self.__money += 150
+
+    def set_wife_money(self, spend):
+        self.__money -= spend
+
+    def set_goods(self):
+        self.__food += 10
+
+    def set_clean(self):
+        self.__dirt += 100
+
+    def set_dirt(self):
+        self.__dirt += 5
+
+    def get_111(self):
+        print(self.__food)
+
+    def set_222(self):
+        self.__food -= 15
+
+
 class Person:
     def __init__(self, name, hungry=30, happy=100):
         self.__name = name
@@ -6,7 +35,7 @@ class Person:
 
     def eat(self):
         self.__hungry += 30
-        House.set_222()
+        house.set_222()
 
     def caress_the_cat(self):
         self.__happy += 5
@@ -52,7 +81,6 @@ class Wife(Person):
         House.set_clean()
 
 
-
 class Cat:
     def __init__(self, cat_name, cat_hungry=30):
         self.cat_name = cat_name
@@ -69,35 +97,16 @@ class Cat:
         House.set_dirt()
 
 
-class House:
-    __money = 100
-    __food = 50
-    __cat_food = 30
-    __dirt = 0
+house = House()
 
-    def set_husband_money(self):
-        self.__money += 150
+house.get_111()
+wife = Wife('sdf')
+wife.eat()
+house.get_111()
 
-    def set_wife_money(self, spend):
-        self.__money -= spend
+man = Wife('sdf')
+man.eat()
 
-    def set_goods(self):
-        self.__food += 10
+house.get_111()
 
-    def set_clean(self):
-        self.__dirt += 100
-
-    def set_dirt(self):
-        self.__dirt += 5
-
-    def get_111(self):
-        print(self.__food)
-
-    def set_222(self):
-        self.__food -= 15
-
-a = House()
-a.get_111()
-cat = Wife('sdf')
-a.get_111()
 

@@ -161,3 +161,16 @@
 # war.kick_unit(20)
 
 
+class Test:
+    food = 50
+
+
+class Minus:
+    def ser(self, asd):
+        self.asd = asd
+        Test.food -= self.asd
+
+print(Test.food)
+a = Minus()
+a.ser(15)
+print(Test.food)
