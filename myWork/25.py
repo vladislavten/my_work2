@@ -75,3 +75,102 @@
 # new_name = 'Вова'
 # man.set_name(new_name)  # Замена имени СЕТТЕРОМ
 # print(man.get_name(), man.get_age())
+
+
+# 25.3 Наследование
+
+# Задача 2. Роботы
+
+# class Robot:
+#     def __init__(self, model):
+#         self.model = model
+#
+#
+# class Pil(Robot):
+#     def __init__(self, model):
+#         super().__init__(model)
+#         self.garbage = 0
+#
+#     def operate(self):
+#         print('Начал пылесосить\nЗаполненость мешка для мусора = {}'.format(self.garbage))
+#         self.garbage += 1
+#
+#
+# class Ship(Robot):
+#     def __init__(self, model):
+#         super().__init__(model)
+#         self.gun = 'Ракета'
+#
+#     def operate(self):
+#         print('защита объекта с помощью {}'.format(self.gun))
+#
+#
+# pil = Pil('Art3')
+# pil.operate()
+# pil.operate()
+#
+# warShip = Ship('Linkor-5')
+# warShip.operate()
+
+#
+# Задача 3. Кастомные исключения
+
+# class MyOwnException(Exception):
+#     pass
+#
+# try:
+#     qwe
+#
+# except:
+#     raise MyOwnException
+
+
+# 25.4 Полиморфизм
+
+# Задача 1. Юниты
+
+#
+# class Unit:
+#     def __init__(self):
+#         self.health = 100
+#
+#     def kick_unit(self, damage=0):
+#         self.health -= damage
+#         print('нанесен урон: {}\n'
+#               'Здоровье: {}'.format(damage, self.health))
+#
+# class Soldier(Unit):
+#     def __init__(self):
+#         super().__init__()
+#
+#
+# class Person(Unit):
+#     def __init__(self):
+#         super().__init__()
+#
+#     def kick_unit(self, damage=0):
+#         damage *= 2
+#         self.health -= damage
+#         print('нанесен урон: {}\n'
+#               'Здоровье: {}'.format(damage, self.health))
+#
+# man = Person()
+# man.kick_unit(1)
+#
+# war = Soldier()
+# war.kick_unit(20)
+
+
+class Test:
+    food = 50
+
+
+class Minus:
+    def ser(self, asd):
+        self.asd = asd
+        Test.food -= self.asd
+
+print(Test.food)
+a = Minus()
+a.ser(15)
+print(Test.food)
