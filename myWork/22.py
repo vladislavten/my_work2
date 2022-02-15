@@ -136,15 +136,15 @@ import os
 #
 # import os
 #
-# def find(path, name):
-#     for i_elem in os.listdir(path):
-#         if os.path.isdir(os.path.join(path, i_elem)):
-#             find(os.path.join(path, i_elem), name)
-#         if os.path.isfile(os.path.join(path, i_elem, name)):
-#             open_file = open(os.path.abspath(os.path.join(os.path.sep, 'task', 'scripts.txt')), 'a')
-#             source_file = open(os.path.join(path, i_elem, name), 'r', encoding='utf-8')
-#             for i in source_file:
-#                 open_file.write(i)
+def find(path, name):
+    for i_elem in os.listdir(path):
+        if os.path.isdir(os.path.join(path, i_elem)):
+            find(os.path.join(path, i_elem), name)
+        if os.path.isfile(os.path.join(path, i_elem, name)):
+            open_file = open(os.path.abspath(os.path.join(os.path.sep, 'task', 'scripts.txt')), 'a')
+            source_file = open(os.path.join(path, i_elem, name), 'r', encoding='utf-8')
+            for i in source_file:
+                open_file.write(i)
 #             open_file.write('\n')
 #             open_file.write('*' * 40)
 #             open_file.write('\n')
