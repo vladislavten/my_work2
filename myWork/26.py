@@ -63,34 +63,34 @@
 #     time.sleep(3)
 
 
-#
-# import random
-# import time
-# start_time = time.time()
-#
-#
-# class Calc:
-#     def __init__(self, num):
-#         self.counter = 0
-#         self.result = 0
-#         self.num = num
-#
-#     def __iter__(self):
-#         return self
-#
-#     def __next__(self):
-#         if self.result < self.num:
-#             self.counter += random.uniform(0, 1)
-#             self.result += 1
-#             return round(self.counter, 2)
-#         else:
-#             raise StopIteration()
-#
-#
-# number = int(input('Введите число: '))
-# my_iter = Calc(number)
-#
-# for num in my_iter:
-#     print(num)
-#
-# print("--- %g seconds ---" % (time.time() - start_time))
+
+import random
+import time
+start_time = time.time()
+
+
+class Calc:
+    def __init__(self, num):
+        self.counter = 0
+        self.result = 0
+        self.num = num
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.result < self.num:
+            self.counter += random.uniform(0, 1)
+            self.result += 1
+            return round(self.counter, 2)
+        else:
+            raise StopIteration()
+
+
+number = int(input('Введите число: '))
+my_iter = Calc(number)
+
+for num in my_iter:
+    print(num)
+
+print("--- %g seconds ---" % (time.time() - start_time))
