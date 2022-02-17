@@ -58,25 +58,31 @@
 
 
 # Задача 2. Таймер 2
+#
+# from typing import Callable
+# import time
+#
+#
+# def timer(func: Callable) -> Callable:
+#     """ Декоратор - таймер """
+#     def wrapped_func(*args, **kwargs):
+#         start_time = time.time()
+#         func()
+#         end_time = time.time()
+#         return round(end_time - start_time, 2)
+#     return wrapped_func()
+#
+#
+# @timer
+# def cubes():
+#     lst_cubes = [i ** 3 for i in range(4000000)]
+#     print('Готово!')
+#     return lst_cubes
+#
+#
+# print(cubes)
 
-from typing import Callable
-import time
 
 
-def timer(func: Callable):
-    def wrapped_func(*args, **kwargs):
-        start_time = time.time()
-        func()
-        end_time = time.time()
-        return round(end_time - start_time, 2)
-    return wrapped_func()
+# 27.4 Некоторые особенности использования декораторов
 
-
-@timer
-def cubes():
-    lst_cubes = [i ** 3 for i in range(4000000)]
-    print('Готово!')
-    return lst_cubes
-
-
-print(cubes)
