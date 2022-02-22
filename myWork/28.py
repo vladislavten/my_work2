@@ -84,12 +84,15 @@
 #         self.speed = speed
 #         self.move = False
 #
-#
+#     @abstractmethod
 #     def signal(self):
-#         print('Транспорт подал сигнал')
+#         pass
 #
 #
 # class MoveEarth(Transport):
+#     def signal(self):
+#         print('Транспорт подал сигнал')
+#
 #     def __init__(self, color: str, speed: int):
 #         super().__init__(color, speed)
 #         self.move_earth = False
@@ -104,7 +107,10 @@
 #         self.music = True
 #
 #
-# class MoveWater(Transport, ABC):
+# class MoveWater(Transport):
+#     def signal(self):
+#         print('Транспорт подал сигнал')
+#
 #     def __init__(self, color: str, speed: int):
 #         super().__init__(color, speed)
 #         self.move_water = False
@@ -201,39 +207,39 @@ from abc import ABC, abstractmethod
 # Задача 1. Транспорт 2
 
 
-class Person():
-    def __init__(self, name, age):
-        self._name = name
-        self._age = age
-
-    def __str__(self):
-        return ' '.join([self._name, str(self._age)])
-
-    def getter_name(self):
-        return self._name
-
-    def setter_name(self, name):
-        self._name = name
-
-    @property
-    def age(self):
-        return self._age
-
-    @age.setter
-    def age(self, a):
-        if a < 0:
-            raise Exception('Недопустимый возраст')
-        else:
-            self._age = a
-            return self._age
-
-
-tom = Person('Tom', 26)
-print(tom)
-print(tom.age)
-tom.age = -100
-print(tom.age)
-print(tom)
+# class Person():
+#     def __init__(self, name, age):
+#         self._name = name
+#         self._age = age
+#
+#     def __str__(self):
+#         return ' '.join([self._name, str(self._age)])
+#
+#     def getter_name(self):
+#         return self._name
+#
+#     def setter_name(self, name):
+#         self._name = name
+#
+#     @property
+#     def age(self):
+#         return self._age
+#
+#     @age.setter
+#     def age(self, a):
+#         if a < 0:
+#             raise Exception('Недопустимый возраст')
+#         else:
+#             self._age = a
+#             return self._age
+#
+#
+# tom = Person('Tom', 26)
+# print(tom)
+# print(tom.age)
+# tom.age = -100
+# print(tom.age)
+# print(tom)
 
 
 
