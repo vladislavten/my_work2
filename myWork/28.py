@@ -71,34 +71,38 @@
 # Также добавьте класс-примесь, в котором реализован функционал проигрывания музыки.
 # «Замешайте» этот класс в «Амфибию»
 
-from abc import ABC, abstractmethod
-
-
-class Transport(ABC):
-    """
-    Абстракный класс, его нельзя присвоить к экземпляру
-    """
-
-    def __init__(self, color: str, speed: int) -> None:
-        self.color = color
-        self.speed = speed
-        self.move = False
-
-    @abstractmethod
-    def signal(self):
-        print('Транспорт подал сигнал')
-
-
-class MoveEarth(Transport):
-    def __init__(self, color: str, speed: int):
-        super().__init__(color, speed)
-        self.move_earth = False
-
-    def move_to_earth(self):
-        self.move_earth = True
-        print('Транспорт начал движение по земле')
-
-
+# from abc import ABC, abstractmethod
+#
+#
+# class Transport(ABC):
+#     """
+#     Абстракный класс, его нельзя присвоить к экземпляру
+#     """
+#
+#     def __init__(self, color: str, speed: int) -> None:
+#         self.color = color
+#         self.speed = speed
+#         self.move = False
+#
+#
+#     def signal(self):
+#         print('Транспорт подал сигнал')
+#
+#
+# class MoveEarth(Transport):
+#     def __init__(self, color: str, speed: int):
+#         super().__init__(color, speed)
+#         self.move_earth = False
+#
+#     def move_to_earth(self):
+#         self.move_earth = True
+#         print('Транспорт начал движение по земле')
+#
+#
+# class Music:
+#     def __init__(self):
+#         self.music = True
+#
 #
 # class MoveWater(Transport, ABC):
 #     def __init__(self, color: str, speed: int):
@@ -110,12 +114,127 @@ class MoveEarth(Transport):
 #         print('Транспорт начал движение по воде')
 #
 #
-# class Amphibian(MoveWater, MoveEarth, ABC):
-#     def __init__(self, color: str, speed: int):
+# class Amphibian(MoveWater, MoveEarth, Music):
+#     def __init__(self, color: str, speed: int, music):
 #         super().__init__(color, speed)
 #         self.name = 'Амфибия'
+#         self.music = music
+#
+#
+# a = MoveEarth(color='red', speed=160)
+# a.signal()
+# b = Amphibian('Blue', 100, False)
+# print(b.music)
 
 
-a = MoveEarth(color='red', speed=160)
-a.signal()
-print(a.color)
+#######################################################################
+from abc import ABC, abstractmethod
+
+#
+# class Figure(ABC):
+#     """sdf"""
+#     def __init__(self, x: int, y: int, l: int, w: int):
+#         self.x = x
+#         self.y = y
+#         self.l = l
+#         self.w = w
+#
+#     @abstractmethod
+#     def move(self, x: int, y: int) -> None:
+#         self.x = x
+#         self.y = y
+#
+#
+# class ResizableMixin:
+#     def resize(self, l: int, w: int) -> None:
+#         self.l = l
+#         self.w = w
+#
+#
+# class Square(Figure, ResizableMixin):
+#     def __init__(self, x: int, y: int, l: int):
+#         super().__init__(x, y, l, l)
+#
+#
+# a = Square(x=10, y=20, l=5)
+# for figure in [a]:
+#     new_size_x = figure.l * 2
+#     new_size_y = figure.w * 2
+#     figure.resize(new_size_x, new_size_y)
+
+
+# 28.5 Класс как контекст-менеджер. Методы enter и exit
+# Задача 1. Работа с файлом
+#
+# Реализуйте класс File — контекстный менеджер для работы с файлами. Он должен принимать
+# на вход имя файла и режим чтения/записи и открывать сам файл. В начале работы менеджер
+# возвращает файловый объект, а в конце — закрывает файл.
+#
+# Пример основного кода:
+#
+# with File(‘example.txt’, ‘w’) as file:
+#     file.write(‘Всем привет!’)
+
+
+# class File:
+#     def __init__(self, name, read_write):
+#         self. name = name
+#         self.read_write = read_write
+#
+#     def __enter__(self):
+#         self.file = open(self.name, self.read_write, encoding='utf-8')
+#         return self.file
+#
+#     def __exit__(self, exc_type, exc_val, exc_tb):
+#         self.file.close()
+#
+#
+# with File('example.txt', 'w') as file:
+#     file.write('Всем привет!')
+
+
+
+
+
+# 28.6 Методы класса: декораторы setter и property
+#
+# Задача 1. Транспорт 2
+
+
+class Person():
+    def __init__(self, name, age):
+        self._name = name
+        self._age = age
+
+    def __str__(self):
+        return ' '.join([self._name, str(self._age)])
+
+    def getter_name(self):
+        return self._name
+
+    def setter_name(self, name):
+        self._name = name
+
+    @property
+    def age(self):
+        return self._age
+
+    @age.setter
+    def age(self, a):
+        if a < 0:
+            raise Exception('Недопустимый возраст')
+        else:
+            self._age = a
+            return self._age
+
+
+tom = Person('Tom', 26)
+print(tom)
+print(tom.age)
+tom.age = -100
+print(tom.age)
+print(tom)
+
+
+
+
