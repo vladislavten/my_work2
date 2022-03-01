@@ -87,13 +87,16 @@ from datetime import datetime
 import functools
 
 
+
 def createtime(cls):
     @functools.wraps(cls)
     def wrapper(*args, **kwargs):
         instance = cls(*args, **kwargs)
-        print('Время создания инстанса класса:', datetime.utcnow())
+        print('Время', datetime.utcnow())
+        print(dir(cls))
         return instance
     return wrapper
+
 
 
 @createtime
