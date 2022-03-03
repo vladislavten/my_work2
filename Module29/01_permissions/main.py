@@ -24,7 +24,6 @@ def add_comment():
     print('Добавляем комментарий')
 
 
-
-
 delete_site()
 add_comment()
+

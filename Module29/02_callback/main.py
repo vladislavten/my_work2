@@ -26,4 +26,4 @@ if route:
     resp = route()
     print('ответ:', resp)
 
-print('> конец')
+print('>  конец')

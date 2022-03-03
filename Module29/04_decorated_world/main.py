@@ -28,3 +28,5 @@ def decorated_function(text: str, num: int) -> None:
 
 
 decorated_function('Юзер', 101)
+
+
