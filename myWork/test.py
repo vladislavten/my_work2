@@ -121,7 +121,6 @@
 # Задача 2. Непонятно!
 
 
-
 # import copy
 #
 # site = {
@@ -200,6 +199,8 @@
 #     print(f'Сайт для {product_name}:')
 #     print(site_copy, '\n')
 
+# ПОКЕР###########################
+
 
 from random import randint , choice
 
@@ -276,6 +277,4 @@ while True:
         break
     else:
         print('Ошибка ввода, выберите 1 или 2')
-
-
 
