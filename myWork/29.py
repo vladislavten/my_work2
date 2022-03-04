@@ -81,47 +81,40 @@
 ############################УРОК ИЗ ВИДЕО ###############################
 
 # Декоратор класса
-
-import time
-from datetime import datetime
-import functools
-
-
-
-def createtime(cls):
-    @functools.wraps(cls)
-    def wrapper(*args, **kwargs):
-        instance = cls(*args, **kwargs)
-        print('Время', datetime.utcnow())
-        print(dir(cls))
-        return instance
-    return wrapper
-
-
-
-@createtime
-class Functions:
-    def __init__(self, num: int) -> None:
-        self.num = num
-
-    def square(self):
-        a = [i for i in range(self.num)]
-        print(a)
-        return a
-
-
-my_func_1 = Functions(10)
+#
+# import time
+# from datetime import datetime
+# import functools
+#
+#
+# def createtime(cls):
+#     @functools.wraps(cls)
+#     def wrapper(*args, **kwargs):
+#         instance = cls(*args, **kwargs)
+#         print('Время создания инстанса класса:', datetime.utcnow())
+#         return instance
+#     return wrapper
+#
+#
+# @createtime
+# class Functions:
+#     def __init__(self, num: int) -> None:
+#         self.num = num
+#
+#     def square(self):
+#         a = [i for i in range(self.num)]
+#         print(a)
+#         return a
+#
+#
+# my_func_1 = Functions(10)
 
 
-
-
+def sum_array(arr):
+    print(sorted(arr)[-2:])
+    return sum(sorted(arr)[:-2])
 
 
 
-
-
-
-
-
-
+print(sum_array([6, 2, 1, 8, 10]))
 

@@ -199,13 +199,8 @@
 #     print(f'Сайт для {product_name}:')
 #     print(site_copy, '\n')
 
-# ПОКЕР
+# ПОКЕР###########################
 
 
 
-def find_it(seq):
-    dct = {i:+1 for i in seq}
-    print(dct)
-
-find_it([1,2,2,3,3,3,4,3,3,3,2,2,1])
 
