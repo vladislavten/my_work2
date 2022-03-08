@@ -73,7 +73,7 @@
 #
 # print(my_req.text)
 #
-# data = json.loads(my_req.text, )  # Десерализация JSON
+# data = json.loads(my_req.text)  # Десерализация JSON
 # data['name'] = 'Vladislav'
 # print(data)
 #
