@@ -34,6 +34,7 @@ my_req = requests.get('https://www.breakingbadapi.com/api/deaths')
 
 data = json.loads(my_req.text)
 print(len(data))
+print(data)
 
 with open('Breaking_Bad.json', 'w') as file:
        json.dump(data, file, indent=4)
