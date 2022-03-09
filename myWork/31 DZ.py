@@ -26,16 +26,89 @@
 # print('Список номеров такси:', taxi)
 
 
-# 3 задача
+# Задача 3. Во все тяжкие
 
-import json, requests
+# import json, requests
+#
+# my_req = requests.get('https://www.breakingbadapi.com/api/deaths')
+#
+#
+# data = json.loads(my_req.text)
+# print(len(data))
+# print(data)
+#
+# with open('Breaking_Bad.json', 'w') as file:
+#        json.dump(data, file, indent=4)
 
-my_req = requests.get('https://www.breakingbadapi.com/api/deaths')
 
-data = json.loads(my_req.text)
-print(len(data))
-print(data)
 
-with open('Breaking_Bad.json', 'w') as file:
-       json.dump(data, file, indent=4)
+
+# Задача 4. Телефонные номера
+
+# import re
+#
+# phone_numbers = ['9999999999', '999999-999', '99999x9999']
+#
+#
+# for count, item  in enumerate(phone_numbers):
+#        if re.search(r'\b[8, 9]\d{9}', item):
+#               print(count + 1, 'номер: Всё в порядке')
+#        else:
+#               print(count + 1, 'номер: не подходит')
+
+
+
+# Задача 5. Пин-код
+
+# import itertools
+#
+# numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
+#
+# print(list(itertools.combinations(numbers, 4)))
+
+
+# Задача 6. Web scraping
+
+import requests, re
+
+my_req = requests.get('http://www.columbia.edu/~fdc/sample.html')
+
+data = my_req.text
+# print(data)
+
+ser = re.findall(r'>\b\w+<', data)
+print(ser)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
