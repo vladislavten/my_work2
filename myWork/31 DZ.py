@@ -28,20 +28,37 @@
 
 # Задача 3. Во все тяжкие
 
-# import json, requests
-#
-# my_req = requests.get('https://www.breakingbadapi.com/api/deaths')
-#
-#
-# data = json.loads(my_req.text)
-# print(len(data))
-# print(data)
-#
-# with open('Breaking_Bad.json', 'w') as file:
-#        json.dump(data, file, indent=4)
+import json, requests, re
+
+my_req = requests.get('https://www.breakingbadapi.com/api/deaths') # Список погибших
+general_death_req = requests.get('https://www.breakingbadapi.com/api/death-count') # Парсинг общего числа смертей
+episodes_req = requests.get('https://www.breakingbadapi.com/api/episodes')
+
+data = json.loads(my_req.text)
+deathCount = json.loads(general_death_req.text)
+episodes = json.loads(episodes_req.text)
 
 
+number_of_deaths = max(data, key=lambda elem: elem['number_of_deaths'])
 
+list_of_death = list(map(lambda x: x['death'], data))
+
+episode_id = {}
+for i in episodes:
+       if i['episode'] == '13' and i['season'] == '2':
+              episode_id = i
+              break
+
+
+print('ID эпизода:', episode_id['episode_id'])
+print('Номер сезона:', number_of_deaths['season'])
+print('Номер эпизода:', number_of_deaths['episode'])
+print('Общее число смертей:', deathCount[0]['deathCount']) #Общее число смертей
+print('Список погибших:', ', '.join(list_of_death))
+print('=' * 40)
+
+with open('Breaking_Bad.json', 'w') as file:
+       json.dump(number_of_deaths, file, indent=4)
 
 # Задача 4. Телефонные номера
 
@@ -69,15 +86,15 @@
 
 # Задача 6. Web scraping
 
-import requests, re
-
-my_req = requests.get('http://www.columbia.edu/~fdc/sample.html')
-
-data = my_req.text
-# print(data)
-
-ser = re.findall(r'<h3 id="\w+">CONTENTS</h3>', data)
-print(ser)
+# import requests, re
+#
+# my_req = requests.get('http://www.columbia.edu/~fdc/sample.html')
+#
+# data = my_req.text
+# # print(data)
+#
+# ser = re.findall(r'<h3 id="\w+">CONTENTS</h3>', data)
+# print(ser)
 #
 # ser = re.findall(r'<h3 id="\w">CONTENTS</h3>', data)
 # <h3 id="contents>CONTENTS</h3>
