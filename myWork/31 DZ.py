@@ -69,20 +69,16 @@
 
 # Задача 6. Web scraping
 
-import requests, re
-
-my_req = requests.get('http://www.columbia.edu/~fdc/sample.html')
-
-data = my_req.text
-# print(data)
-
-ser = re.findall(r'<h3 id="\w+">CONTENTS</h3>', data)
-print(ser)
+# import requests, re
 #
-# ser = re.findall(r'<h3 id="\w">CONTENTS</h3>', data)
-# <h3 id="contents>CONTENTS</h3>
+# my_req = requests.get('http://www.columbia.edu/~fdc/sample.html')
 #
-# <h3 id="contents">CONTENTS</h3>
+# find_data = re.findall(r'(<h3 id=.*>)(.*?)(</h3>)', my_req.text)
+# result = []
+# for i in find_data:
+#     result.append(i[1])
+#
+# print(result)
 
 
 
