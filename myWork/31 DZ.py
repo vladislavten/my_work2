@@ -27,6 +27,18 @@
 
 # Задача 3. Во все тяжкие
 
+
+# import re
+# numbers_car = 'А578ВЕ777 ОР233787 К901МН666 СТ46599 СНИ2929П777 666АМР666'
+#
+# private_car = re.findall(r'\b[АВЕКМНОРСТУХ]\d{3}\w{2}\d{2,3}', numbers_car)
+# taxi = re.findall(r'\b[АВЕКМНОРСТУХ]{2}\d{3}\d{2,3}',numbers_car)
+# print('Список номеров частных автомобилей:', private_car)
+# print('Список номеров такси:', taxi)
+
+
+# Задача 3. Во все тяжкие
+
 # import json, requests
 #
 # my_req = requests.get('https://www.breakingbadapi.com/api/deaths')  # Список погибших
@@ -63,6 +75,9 @@
 # with open('Breaking_Bad.json', 'w') as file:
 #     json.dump(result, file, indent=4)
 
+
+
+
 # Задача 4. Телефонные номера
 
 # import re
@@ -88,19 +103,15 @@
 
 # Задача 6. Web scraping
 
-import requests, re
-
-my_req = requests.get('http://www.columbia.edu/~fdc/sample.html')
-
-data = my_req.text
-print(data)
-
-ser = re.findall(r'<h3 id="\w+">CONTENTS</h3>', data)
-print(ser)
-
-ser = re.findall(r'<h3 id="\w">CONTENTS</h3>', data)
-
-
-# <h3 id="contents">CONTENTS</h3>
+# import requests, re
+#
+# my_req = requests.get('http://www.columbia.edu/~fdc/sample.html')
+#
+# find_data = re.findall(r'(<h3 id=.*>)(.*?)(</h3>)', my_req.text)
+# result = []
+# for i in find_data:
+#     result.append(i[1])
+#
+# print(result)
 
 
