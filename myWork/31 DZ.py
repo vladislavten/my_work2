@@ -13,7 +13,6 @@
 # print(result)
 
 
-
 # Задача 2. Регистрационные знаки
 
 
@@ -93,7 +92,6 @@
 #               print(count + 1, 'номер: не подходит')
 
 
-
 # Задача 5. Пин-код
 
 # import itertools
@@ -141,7 +139,9 @@
 
 
 
+ser = re.findall(r'<h3 id="\w">CONTENTS</h3>', data)
 
 
+# <h3 id="contents">CONTENTS</h3>
 
 
