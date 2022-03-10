@@ -115,33 +115,3 @@
 # print(result)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-ser = re.findall(r'<h3 id="\w">CONTENTS</h3>', data)
-
-
-# <h3 id="contents">CONTENTS</h3>
-
-
