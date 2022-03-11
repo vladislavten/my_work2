@@ -4,4 +4,7 @@ nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretiu
 Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate 
 """
 
-# TODO здесь писать код
+import re
+
+print(re.findall(r'\b\w{4}\b', text))
+
