@@ -22,6 +22,7 @@
 
 
 
+
 # 24.3 Методы класса, аргумент self
 #
 # Задача 2. Семья
@@ -57,10 +58,13 @@
 # my_family.buy_house(10 ** 6)
 #
 # my_family.info()
-# if not my_family.have_a_house:
-#     my_family.earn_money(800000)
-#     print('Очередная попытка купить дом')
-#     my_family.buy_house(10 ** 6, 10)
+# while True:
+#     if not my_family.have_a_house:
+#         my_family.earn_money(100000)
+#         print('Очередная попытка купить дом')
+#         my_family.buy_house(10 ** 6, 10)
+#     else:
+#         break
 #
 # my_family.info()
 

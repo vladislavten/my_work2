@@ -200,13 +200,55 @@
 #     print(site_copy, '\n')
 
 # ПОКЕР###########################
+import string
+#
+# import socket
+#
+# server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+# server_socket.bind(("172.16.112.238", 12345))
+# server_socket.listen()
+#
+# print("Сервер запущен на localhost:12345")
+#
+# client_socket, client_address = server_socket.accept()
+# print(f"Подключился клиент {client_address}")
+#
+# while True:
+#     data = client_socket.recv(1024).decode()
+#     if not data:
+#         break
+#     print(f"Получено сообщение от клиента: {data}")
+#
+# client_socket.close()
+# server_socket.close()
+
+ ######################################################
+
+# import socket
+#
+# client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+# ip = input('Введите IP адрес и нажмите Enter: ')
+# client_socket.connect((ip, 12345))
+#
+# while True:
+#     message = input("Введите сообщение:")
+#     client_socket.send(message.encode())
+#     if message == "exit":
+#         break
+#
+# client_socket.close()
+
+
+##########################
 
 
 
 
 
 
+a = '!!!ТTС аренда серв мощностей и каналов связи v 2'
+b = '!!!ТTС аренда серв мощностей и каналов связи v 2'
 
-
-
-
+count = 0
+for i in a:
+    if i == b[count]
