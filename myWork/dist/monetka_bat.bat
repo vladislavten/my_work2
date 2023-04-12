@@ -1,0 +1,2 @@
+python monetka.py
+pause
