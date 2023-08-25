@@ -240,15 +240,42 @@ import string
 
 
 ##########################
+from collections import Counter
+
+
+def xo(s):
+    a = dict(Counter(s))
+    if a['x'] + a['X'] == a['o'] + a['O']:
+        return True
+
+
+print(xo('xoXOO'))
 
 
 
 
 
 
-a = '!!!ТTС аренда серв мощностей и каналов связи v 2'
-b = '!!!ТTС аренда серв мощностей и каналов связи v 2'
 
-count = 0
-for i in a:
-    if i == b[count]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
