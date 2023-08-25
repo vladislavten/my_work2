@@ -3,15 +3,15 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 # Ваши учетные данные для почты
-sender_email = "kidalo87@mail.ru"
-sender_password = "WXz0v7i8vddtE3vjcUs5"
+sender_email = "anpz_notify@mail.ru"
+sender_password = "SqN8cwA44fcTh7fBcJiy"
 receiver_email = "v.ten@anpz.kz"
 
 # Создание объекта сообщения
 message = MIMEMultipart()
 message["From"] = sender_email
 message["To"] = receiver_email
-message["Subject"] = "Привет из Python"
+message["Subject"] = "ОПОВЕЩЕНИЕ ПО ЛИЦЕНЗИЯМ АНПЗ"
 
 # Текст сообщения
 body = "Привет! Это тестовое сообщение из Python."

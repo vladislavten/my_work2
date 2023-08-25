@@ -1,6 +1,7 @@
 from __future__ import print_function
 
 import os.path
+import time
 
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
@@ -8,6 +9,9 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 import datetime
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 # If modifying these scopes, delete the file token.json.
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
@@ -50,13 +54,47 @@ def main():
         if not values:
             print('No data found.')
             return
+        with open('body_mail.txt', 'w', encoding="utf-8") as file:
+            for row in values:
+                date = row[1].split('.')
+                target_date = datetime.datetime(int(date[2]), int(date[1]), int(date[0]))
+                days_remaining = target_date - datetime.datetime.now()
+                if days_remaining.days <= 45:
+                    file.write(f'Лицензия {row[0]} истекает через: {days_remaining.days} дней до {target_date}\n', )
 
-        for row in values:
-            date = row[1].split('.')
-            target_date = datetime.datetime(int(date[2]), int(date[1]), int(date[0]))
-            days_remaining = target_date - datetime.datetime.now()
-            if days_remaining.days <= 45:
-                print(f"Лицензия '{row[0]}' истекает через: {days_remaining.days} дней до {target_date}")
+        with open('body_mail.txt', 'r', encoding='utf-8') as file:
+            text = file.read()
+
+
+        # Ваши учетные данные для почты
+        sender_email = "anpz_notify@mail.ru"
+        sender_password = "SqN8cwA44fcTh7fBcJiy"
+        receiver_email = "v.ten@anpz.kz"
+
+        # Создание объекта сообщения
+        message = MIMEMultipart()
+        message["From"] = sender_email
+        message["To"] = receiver_email
+        message["Subject"] = "ОПОВЕЩЕНИЕ ПО ЛИЦЕНЗИЯМ АНПЗ"
+
+        # Текст сообщения
+        body = text
+        message.attach(MIMEText(body, "plain"))
+
+        # Подключение к серверу mail.ru
+        server = smtplib.SMTP("smtp.mail.ru", 587)
+        server.starttls()
+        server.login(sender_email, sender_password)
+
+        # Отправка сообщения
+        server.sendmail(sender_email, receiver_email, message.as_string())
+
+        # Завершение работы с сервером
+        server.quit()
+        print('Сообщение успешно отправлено')
+
+        print(f"Лицензия '{row[0]}' истекает через: {days_remaining.days} дней до {target_date}")
+
 
     except HttpError as err:
         print(err)
