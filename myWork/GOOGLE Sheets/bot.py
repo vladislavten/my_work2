@@ -158,9 +158,11 @@ async def answer(message: types.Message):
                                                         f'Количество продаж: {row[6]}\n'
                                                         f'Сумма продаж: {row[7]}', reply_markup=markup)
                         flg = True
+                        print('Бот использовался,', user_full_name)
 
                 if not flg:
                     await bot.send_message(user_id, 'За сегодня отчётов не найдено')
+                    print('Бот использовался,', user_full_name)
 
                 flg = False
             except HttpError as err:
