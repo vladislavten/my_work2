@@ -75,7 +75,7 @@ async def process_photo(message: types.Message):
     print(f'Бот был использован: {counter} раз(а)')
 
 if __name__ == '__main__':
-    executor.start_polling(dp, skip_updates=False)
+executor.start_polling(dp, skip_updates=False)
 
 
 
