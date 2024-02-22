@@ -37,7 +37,7 @@ class TimerApp:
         self.paused_time = 0
 
 
-        #Переменные
+        ###############################################  ПЕРЕМЕННЫЕ  ###########################################
         self.goal_home_var = tk.IntVar(value=0)
         self.goal_home_label = tk.Label(self.timer_window, textvariable=self.goal_home_var, font=("DS-Digital", 200), bg="black", fg="red")
         self.goal_home_label.place(relx=0.2, rely=0.3, anchor="center")
@@ -50,7 +50,7 @@ class TimerApp:
         self.period_var_label = tk.Label(self.timer_window, textvariable=self.period_var, font=("DS-Digital", 100), bg="black", fg="green")
         self.period_var_label.place(relx=0.5, rely=0.68, anchor="center")
 
-        ##############################################ТЕКСТЫ LABLES
+        ##############################################   ТЕКСТЫ LABLES #######################################
             #Текст таймера таймаута team1
         self.timeout_team1_label = tk.Label(self.timer_window, text="", font=("DS-Digital", 30), bg="black", fg="yellow")
         self.timeout_team1_label.place(relx=0.2, rely=0.49, anchor="center")
@@ -61,7 +61,6 @@ class TimerApp:
         self.timeout_team2_label.place(relx=0.8, rely=0.49, anchor="center")
         # self.timeout_team1_label.pack()
 
-
             #Текст ВРЕМЯ по центру
         self.time_text_label = tk.Label(self.timer_window, text="ТАЙМЕР", font=("Helvetica", 30), bg="black", fg="white")
         self.time_text_label.place(relx=0.5, rely=0.25, anchor="center")
@@ -70,12 +69,10 @@ class TimerApp:
         self.time_text_label = tk.Label(self.timer_window, text="ПЕРИОД", font=("Helvetica", 25), bg="black", fg="white")
         self.time_text_label.place(relx=0.5, rely=0.55, anchor="center")
 
-            ####################
+
         self.break_time = tk.Label(self.timer_window, text="", font=("DS-Digital", 45), bg="black", fg="white")
         self.break_time.place(relx=0.5, rely=0.87, anchor="center")
         # self.break_time.pack()
-
-            ################
 
             # Текст УДАЛЕНИЯ по БОКАМ
         self.time_text_label = tk.Label(self.timer_window, text="УДАЛЕНИЯ", font=("Helvetica", 25), bg="black", fg="white")
@@ -88,9 +85,9 @@ class TimerApp:
         self.time_text_label.place(relx=0.2, rely=0.03, anchor="center")
         self.time_text_label = tk.Label(self.timer_window, text="ГОСТИ", font=("Helvetica", 15), bg="black", fg="white")
         self.time_text_label.place(relx=0.8, rely=0.03, anchor="center")
-            ###############
 
-        #######################################   КНОПКИ в окне master
+
+        #######################################   КНОПКИ в окне master   ##########################################
         self.save_teams_button = tk.Button(master, text="Сохранить команды", command=self.save_teams)
         self.save_teams_button.pack()
 
@@ -130,7 +127,7 @@ class TimerApp:
         self.goal_home_decrease_button = tk.Button(master, text="- Период", command=self.period_decrease)
         self.goal_home_decrease_button.pack()
 
-        self.fullscreen_button = tk.Button(master, text="Во весь экран", command=self.fullscreen_timer)
+        self.fullscreen_button = tk.Button(master, text="Вывести на табло", command=self.fullscreen_timer)
         self.fullscreen_button.pack()
 
         #Кнопка перерыва между периодами
@@ -151,13 +148,19 @@ class TimerApp:
 
         self.timeout_label_team2 = None
 
+        # Кнопка включения ТАБЛО
         self.on_tablo_button = tk.Button(self.master, text="ВКЛ. Табло", command=self.on_tablo)
         self.on_tablo_button.pack()
+
+        # Кнопка выключения ТАБЛО
+        self.off_tablo_button = tk.Button(self.master, text="ВЫКЛ. Табло", command=self.off_tablo)
+        self.off_tablo_button.pack()
+        self.off_tablo_button.config(state=tk.DISABLED)
         ####################
 
         self.fullscreen_state = False
 
-        ###########################################Горячие КЛАВИШИ
+        ###########################################Горячие КЛАВИШИ  #######################################
         self.master.bind("<space>", self.toggle_timer_space)
         self.master.bind("<Return>", self.toggle_timer_enter)
 
@@ -166,6 +169,13 @@ class TimerApp:
     ##########################################  ФУНКЦИИ ###################################################
     def on_tablo(self):
         self.timer_window.deiconify()
+        self.off_tablo_button.config(state=tk.NORMAL)
+        self.on_tablo_button.config(state=tk.DISABLED)
+
+    def off_tablo(self):
+        self.timer_window.withdraw()
+        self.off_tablo_button.config(state=tk.DISABLED)
+        self.on_tablo_button.config(state=tk.NORMAL)
 
     # Таймаут функция team1
     def start_timeout_team1(self):
@@ -325,10 +335,12 @@ class TimerApp:
             self.timer_window.deiconify()
             self.timer_window.attributes("-fullscreen", True)
             self.fullscreen_state = True
+            self.fullscreen_button.config(text="Не выводить на табло")
         else:
             self.timer_window.attributes("-fullscreen", False)
             self.fullscreen_state = False
             self.timer_window.withdraw()
+            self.fullscreen_button.config(text="Вывести на табло")
 
     def update_timer(self):
         if self.timer_running:
