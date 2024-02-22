@@ -1,18 +1,24 @@
 import tkinter as tk
 
-root = tk.Tk()
-root.geometry("300x200")
 
-text = tk.Text(root)
-text.pack()
+def main():
+    # Создание главного окна
+    root = tk.Tk()
+    root.title("Пример с Tkinter")
 
-# Настройка тега с прозрачным фоном
-text.tag_configure("transparent", background="SystemButtonFace")
+    # Установка размеров окна
+    root.geometry("500x500")
 
-# Вставляем текст с использованием тега
-text.insert("1.0", "Привет, мир!", "transparent")
+    # Создание рамки
+    frame = tk.Frame(root, width=100, height=100, bg="red", highlightthickness=8, highlightbackground="black")
+    frame.place(relx=0.5, rely=0.5, anchor="center")
 
-# Устанавливаем альфа-канал цвета фона текста
-text.configure(insertbackground='white')
+    # Создание надписи внутри рамки
+    label = tk.Label(frame, text="РАМКА", fg="white", bg="red")
+    label.place(relx=0.5, rely=0.5, anchor="center")
 
-root.mainloop()
+    root.mainloop()
+
+
+if __name__ == "__main__":
+    main()
