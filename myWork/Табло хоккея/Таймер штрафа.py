@@ -16,7 +16,6 @@ class TimerApp:
         # self.timer_window.withdraw()
 
         self.timer_label = tk.Label(self.timer_window, text="00:00", font=("DS-Digital", 100), bg="black", fg="red")
-
         self.timer_label.pack(expand=True)
         self.timer_label.place(relx=0.5, rely=0.355, anchor="center")
 
@@ -27,7 +26,6 @@ class TimerApp:
         self.paused_time = 0
 
         self.penalty_timer_label = tk.Label(self.timer_window, text="00:00", font=("DS-Digital", 40), bg="black", fg="red")
-        # self.penalty_timer_label.pack(expand=True)
         self.penalty_timer_label.place(relx=0.9, rely=0.8, anchor="center")
         self.penalty_timer_label.place_forget()
 

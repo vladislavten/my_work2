@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import messagebox
 import time
 
 
@@ -39,20 +40,25 @@ class TimerApp:
 ####################################
 
         self.penalty_timer_label = tk.Label(self.timer_window, text="00:00", font=("DS-Digital", 40), bg="black", fg="red")
-        self.penalty_timer_label.pack(expand=True)
         self.penalty_timer_label.place(relx=0.9, rely=0.8, anchor="center")
+        self.penalty_timer_label.place_forget()
 
         self.penalty_timer_running = False
-        self.penalty_time_remaining = 20 * 60
+        self.penalty_time_remaining = 0 # БЫЛО 20 * 60
         self.penalty_start_time = 0
         self.penalty_paused_time = 0
-
 
 
 ###################################
 
 
         ###############################################  ПЕРЕМЕННЫЕ  ###########################################
+
+#######################################
+        self.penalty_minutes = '0'
+
+#######################################
+
         self.goal_home_var = tk.IntVar(value=0)
         self.goal_home_label = tk.Label(self.timer_window, textvariable=self.goal_home_var, font=("DS-Digital", 200), bg="black", fg="red")
         self.goal_home_label.place(relx=0.2, rely=0.3, anchor="center")
@@ -106,7 +112,7 @@ class TimerApp:
         self.save_teams_button = tk.Button(master, text="Записать команды", command=self.save_teams)
         self.save_teams_button.pack()
 
-        self.button = tk.Button(master, text="Игра", command=self.toggle_timer)
+        self.button = tk.Button(master, text="Игра", command=self.general_start)
         self.button.pack()
 
         self.reset_button = tk.Button(master, text="Начать сначала", command=self.reset_timer)
@@ -175,6 +181,16 @@ class TimerApp:
 
         self.fullscreen_state = False
 
+######################################################
+        self.penalty_button = tk.Button(master, text="Записать штраф", command=self.penalty_apply)
+        self.penalty_button.pack()
+
+        self.penalty_minutes_entry = tk.Entry(master)
+        self.penalty_minutes_entry.pack()
+
+
+######################################################
+
         ###########################################Горячие КЛАВИШИ  #######################################
         self.master.bind("<space>", self.toggle_timer_space)
         self.master.bind("<Return>", self.toggle_timer_enter)
@@ -182,42 +198,46 @@ class TimerApp:
         self.update_timer()
         self.penalty_update_timer()
 
+    ##########################################  ФУНКЦИИ ###################################################
 
 ####################################### тест штрафных
-        # Добавление полей ввода для номера игрока и штрафных минут
-        self.player_number_entry = tk.Entry(master)
-        self.player_number_entry.pack()
+    def general_start(self):
+        self.penalty_toggle_timer()
+        self.toggle_timer()
 
-        self.penalty_minutes_entry = tk.Entry(master)
-        self.penalty_minutes_entry.pack()
+    def penalty_apply(self):
+        if self.penalty_minutes_entry.get() == '2' or self.penalty_minutes_entry.get() == '4' or self.penalty_minutes_entry.get() == '5':
+            self.penalty_minutes = self.penalty_minutes_entry.get()
+            self.penalty_timer_label = tk.Label(self.timer_window, text=f"0{self.penalty_minutes}:00", font=("DS-Digital", 40), bg="black", fg="red")
+            self.penalty_timer_label.place(relx=0.9, rely=0.8, anchor="center")
+        else:
+            messagebox.showinfo("Информация", "Введены некоррктные данные")
 
-        # Кнопка "Штраф"
-        self.penalty_button = tk.Button(master, text="Игра", command=self.penalty_toggle_timer)
-        self.penalty_button.pack()
 
     def penalty_toggle_timer(self):
         if self.penalty_timer_running:
             self.penalty_timer_running = False
-            self.penalty_button.config(text="Игра")
+            # self.penalty_button.config(text="Игра")
             self.penalty_paused_time = time.time() - self.penalty_start_time
         else:
             if self.penalty_time_remaining == 0:
-                self.penalty_time_remaining = 20 * 60
+                self.penalty_time_remaining = int(self.penalty_minutes) * 60
             self.penalty_timer_running = True
-            self.penalty_button.config(text="Пауза")
-            self.penalty_start_time = time.time() - (20 * 60 - self.penalty_time_remaining)
+            # self.penalty_button.config(text="Пауза")
+            self.penalty_start_time = time.time() - (int(self.penalty_minutes) * 60 - self.penalty_time_remaining)
             self.penalty_update_timer()
+
 
     def penalty_update_timer(self):
         if self.penalty_timer_running:
             elapsed_time = int(time.time() - self.penalty_start_time)
-            self.penalty_time_remaining = max(0, 20 * 60 - elapsed_time)
+            self.penalty_time_remaining = max(0, int(self.penalty_minutes) * 60 - elapsed_time)
             self.penalty_timer_label.config(text=self.penalty_format_time(self.penalty_time_remaining))
             if self.penalty_time_remaining > 0:
                 self.timer_window.after(1000, self.penalty_update_timer)
             else:
                 self.penalty_timer_running = False
-                self.penalty_button.config(text="Старт")
+                # self.penalty_button.config(text="Старт")
         else:
             self.penalty_timer_label.config(text=self.penalty_format_time(self.penalty_time_remaining))
 
@@ -227,7 +247,6 @@ class TimerApp:
 
 ################################### КОНЕЦ тест штрафных
 
-    ##########################################  ФУНКЦИИ ###################################################
 
     def on_tablo(self):
         self.timer_window.deiconify()
