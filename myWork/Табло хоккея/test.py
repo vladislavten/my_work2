@@ -179,47 +179,9 @@ class TimerApp:
 
     #################################################### Тест штрафных минут
 
-    #     # Добавление полей ввода для номера игрока и штрафных минут
-    #     self.player_number_entry = tk.Entry(master)
-    #     self.player_number_entry.pack()
-    #
-    #     self.penalty_minutes_entry = tk.Entry(master)
-    #     self.penalty_minutes_entry.pack()
-    #
-    #     # Кнопка "Штраф"
-    #     self.apply_penalty_button = tk.Button(master, text="Штраф", command=self.apply_penalty)
-    #     self.apply_penalty_button.pack()
-    #
-    # def apply_penalty(self):
-    #     # Получение значений из полей ввода
-    #     player_number = self.player_number_entry.get()
-    #     penalty_minutes = self.penalty_minutes_entry.get()
-    #
-    #     # Проверка наличия значений
-    #     if player_number.isdigit() and penalty_minutes.isdigit():
-    #         self.start_penalty(player_number, penalty_minutes)
-    #
-    #
-    # def start_penalty(self,player_number, penalty_minutes):
-    #     self.penalty_label.config(text="00:00")
-    #
-    #     self.penalty_label1 = tk.Label(self.timer_window, text=player_number, font=("Helvetika", 16), bg="black", fg="white")
-    #     self.penalty_label1.place(relx=0.2, rely=0.45, anchor="center")
-    #     # self.timeout_label_team1.pack(pady=10)
-    #
-    #     self.countdown_panalty(int(penalty_minutes) * 60)
-    #
-    # def countdown_panalty(self, remaining_time):
-    #     if remaining_time <= 0:
-    #         self.penalty_label.config(text="")
-    #         if self.penalty_label1:
-    #             self.penalty_label1.place_forget()
-    #             self.penalty_label1 = None
-    #     else:
-    #         minutes = remaining_time // 60
-    #         seconds = remaining_time % 60
-    #         self.penalty_label.config(text="{:02d}:{:02d}".format(minutes, seconds))
-    #         self.master.after(1000, self.countdown_panalty, remaining_time - 1)
+    ##################### Добавление полей ввода для номера игрока и штрафных минут
+
+
 
     ############################################### конец теста
 
