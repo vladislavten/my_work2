@@ -1,23 +1,16 @@
-import tkinter as tk
-from tkinter import messagebox
+import pyautogui
 
-def function1():
-    print("Функция 1 запущена!")
+# Получить список всех подключенных мониторов
+monitors = pyautogui.getDisplays()
 
-def function2():
-    print("Функция 2 запущена!")
+# Если есть второй монитор, получить его размеры
+if len(monitors) >= 2:
+    second_monitor = monitors[1]
+    width = second_monitor.width
+    height = second_monitor.height
 
-def start_both_functions():
-    function1()
-    function2()
-    messagebox.showinfo("Информация", "Обе функции были успешно выполнены!")
-
-# Создание главного окна
-root = tk.Tk()
-root.title("Пример кнопки СТАРТ")
-
-# Создание кнопки "СТАРТ"
-start_button = tk.Button(root, text="СТАРТ", command=start_both_functions)
-start_button.pack()
-
-root.mainloop()
+    # Вывести информацию о размерах второго монитора
+    print(f"Ширина второго монитора: {width}")
+    print(f"Высота второго монитора: {height}")
+else:
+    print("Второй монитор не найден.")

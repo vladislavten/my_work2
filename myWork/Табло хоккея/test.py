@@ -8,8 +8,6 @@ class TimerApp:
         self.master.title("Управление Таймером")
         self.master.geometry("600x600")
 
-
-
         # Добавляем поля ввода для имен команд и кнопку "Сохранить команды"
         self.team1_name_entry = tk.Entry(master)
         self.team1_name_entry.pack()
