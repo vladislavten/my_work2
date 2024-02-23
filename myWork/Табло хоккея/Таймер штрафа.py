@@ -62,13 +62,22 @@ class TimerApp:
         self.penalty_toggle_timer()
         self.toggle_timer()
 
+    # def penalty_apply(self):
+    #     if self.penalty_minutes_entry.get() == '2' or self.penalty_minutes_entry.get() == '4' or self.penalty_minutes_entry.get() == '5':
+    #         self.penalty_minutes = self.penalty_minutes_entry.get()
+    #         self.penalty_timer_label = tk.Label(self.timer_window, text=f"0{self.penalty_minutes}:00", font=("DS-Digital", 40), bg="black", fg="red")
+    #         self.penalty_timer_label.place(relx=0.9, rely=0.8, anchor="center")
+    #     else:
+    #         messagebox.showinfo("Информация", "Введены некоррктные данные")
+
     def penalty_apply(self):
-        if self.penalty_minutes_entry.get() == '2' or self.penalty_minutes_entry.get() == '4' or self.penalty_minutes_entry.get() == '5':
+        if not self.timer_running:
             self.penalty_minutes = self.penalty_minutes_entry.get()
             self.penalty_timer_label = tk.Label(self.timer_window, text=f"0{self.penalty_minutes}:00", font=("DS-Digital", 40), bg="black", fg="red")
             self.penalty_timer_label.place(relx=0.9, rely=0.8, anchor="center")
         else:
-            messagebox.showinfo("Информация", "Введены некоррктные данные")
+            messagebox.showinfo('Ошибка', 'Нельзя вводить штрафное время пока идёт отсчет основного времени')
+
 
 
     def penalty_toggle_timer(self):
@@ -78,22 +87,24 @@ class TimerApp:
             self.penalty_paused_time = time.time() - self.penalty_start_time
         else:
             if self.penalty_time_remaining == 0:
-                self.penalty_time_remaining = int(self.penalty_minutes) * 60
+                self.penalty_time_remaining = int(self.penalty_minutes) * 6
             self.penalty_timer_running = True
             # self.penalty_button.config(text="Пауза")
-            self.penalty_start_time = time.time() - (int(self.penalty_minutes) * 60 - self.penalty_time_remaining)
+            self.penalty_start_time = time.time() - (int(self.penalty_minutes) * 6 - self.penalty_time_remaining)
             self.penalty_update_timer()
 
 
     def penalty_update_timer(self):
         if self.penalty_timer_running:
             elapsed_time = int(time.time() - self.penalty_start_time)
-            self.penalty_time_remaining = max(0, int(self.penalty_minutes) * 60 - elapsed_time)
+            self.penalty_time_remaining = max(0, int(self.penalty_minutes) * 6 - elapsed_time)
             self.penalty_timer_label.config(text=self.penalty_format_time(self.penalty_time_remaining))
             if self.penalty_time_remaining > 0:
                 self.timer_window.after(1000, self.penalty_update_timer)
             else:
                 self.penalty_timer_running = False
+                self.penalty_minutes = '0'
+                self.penalty_timer_label.place_forget()
                 # self.penalty_button.config(text="Старт")
         else:
             self.penalty_timer_label.config(text=self.penalty_format_time(self.penalty_time_remaining))
