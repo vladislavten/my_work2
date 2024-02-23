@@ -56,6 +56,12 @@ class TimerApp:
         self.timeout_team1_label.place(relx=0.2, rely=0.49, anchor="center")
         # self.timeout_team1_label.pack()
 
+        ###################################### тест penalty
+        # self.penalty_label = tk.Label(self.timer_window, text="", font=("DS-Digital", 30), bg="black", fg="yellow")
+        # self.penalty_label.place(relx=0.2, rely=0.49, anchor="center")
+        ############################################ конец тест penalty
+
+
             #Текст таймера таймаута team2
         self.timeout_team2_label = tk.Label(self.timer_window, text="", font=("DS-Digital", 30), bg="black", fg="yellow")
         self.timeout_team2_label.place(relx=0.8, rely=0.49, anchor="center")
@@ -91,7 +97,7 @@ class TimerApp:
         self.save_teams_button = tk.Button(master, text="Сохранить команды", command=self.save_teams)
         self.save_teams_button.pack()
 
-        self.button = tk.Button(master, text="Старт", command=self.toggle_timer)
+        self.button = tk.Button(master, text="Старт", command=self.toggle_timer, )
         self.button.pack()
 
         self.reset_button = tk.Button(master, text="Начать сначала", command=self.reset_timer)
@@ -142,6 +148,10 @@ class TimerApp:
 
         self.timeout_label_team1 = None
 
+        ############################# тест penalty
+        # self.penalty_label1 = None
+        ############################## конец тест penalty
+
         #Кнопка таймаут team2
         self.timeout_team2_button = tk.Button(self.master, text="Таймаут гости", command=self.start_timeout_team2)
         self.timeout_team2_button.pack()
@@ -165,6 +175,53 @@ class TimerApp:
         self.master.bind("<Return>", self.toggle_timer_enter)
 
         self.update_timer()
+
+
+    #################################################### Тест штрафных минут
+
+    #     # Добавление полей ввода для номера игрока и штрафных минут
+    #     self.player_number_entry = tk.Entry(master)
+    #     self.player_number_entry.pack()
+    #
+    #     self.penalty_minutes_entry = tk.Entry(master)
+    #     self.penalty_minutes_entry.pack()
+    #
+    #     # Кнопка "Штраф"
+    #     self.apply_penalty_button = tk.Button(master, text="Штраф", command=self.apply_penalty)
+    #     self.apply_penalty_button.pack()
+    #
+    # def apply_penalty(self):
+    #     # Получение значений из полей ввода
+    #     player_number = self.player_number_entry.get()
+    #     penalty_minutes = self.penalty_minutes_entry.get()
+    #
+    #     # Проверка наличия значений
+    #     if player_number.isdigit() and penalty_minutes.isdigit():
+    #         self.start_penalty(player_number, penalty_minutes)
+    #
+    #
+    # def start_penalty(self,player_number, penalty_minutes):
+    #     self.penalty_label.config(text="00:00")
+    #
+    #     self.penalty_label1 = tk.Label(self.timer_window, text=player_number, font=("Helvetika", 16), bg="black", fg="white")
+    #     self.penalty_label1.place(relx=0.2, rely=0.45, anchor="center")
+    #     # self.timeout_label_team1.pack(pady=10)
+    #
+    #     self.countdown_panalty(int(penalty_minutes) * 60)
+    #
+    # def countdown_panalty(self, remaining_time):
+    #     if remaining_time <= 0:
+    #         self.penalty_label.config(text="")
+    #         if self.penalty_label1:
+    #             self.penalty_label1.place_forget()
+    #             self.penalty_label1 = None
+    #     else:
+    #         minutes = remaining_time // 60
+    #         seconds = remaining_time % 60
+    #         self.penalty_label.config(text="{:02d}:{:02d}".format(minutes, seconds))
+    #         self.master.after(1000, self.countdown_panalty, remaining_time - 1)
+
+    ############################################### конец теста
 
     ##########################################  ФУНКЦИИ ###################################################
     def on_tablo(self):
@@ -261,7 +318,7 @@ class TimerApp:
             if self.time_remaining == 0:
                 self.time_remaining = 20 * 60
             self.timer_running = True
-            self.button.config(text="Стоп")
+            self.button.config(text="Пауза")
             self.start_time = time.time() - (20 * 60 - self.time_remaining)
             self.update_timer()
 
