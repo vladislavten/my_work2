@@ -47,6 +47,9 @@ class TimerApp:
         self.penalty_minutes_entry = tk.Entry(master)
         self.penalty_minutes_entry.pack()
 
+        self.penalty_number_entry = tk.Entry(master)
+        self.penalty_number_entry.pack()
+
         self.penalty_update_timer()
         self.update_timer()
 
@@ -62,14 +65,24 @@ class TimerApp:
         self.penalty_toggle_timer()
         self.toggle_timer()
 
+    # def penalty_apply(self):
+    #     if self.penalty_minutes_entry.get() == '2' or self.penalty_minutes_entry.get() == '4' or self.penalty_minutes_entry.get() == '5':
+    #         self.penalty_minutes = self.penalty_minutes_entry.get()
+    #         self.penalty_timer_label = tk.Label(self.timer_window, text=f"0{self.penalty_minutes}:00", font=("DS-Digital", 40), bg="black", fg="red")
+    #         self.penalty_timer_label.place(relx=0.9, rely=0.8, anchor="center")
+    #     else:
+    #         messagebox.showinfo("Информация", "Введены некоррктные данные")
+
     def penalty_apply(self):
-        if self.penalty_minutes_entry.get() == '2' or self.penalty_minutes_entry.get() == '4' or self.penalty_minutes_entry.get() == '5':
+        if not self.timer_running:
             self.penalty_minutes = self.penalty_minutes_entry.get()
             self.penalty_timer_label = tk.Label(self.timer_window, text=f"0{self.penalty_minutes}:00", font=("DS-Digital", 40), bg="black", fg="red")
             self.penalty_timer_label.place(relx=0.9, rely=0.8, anchor="center")
+            self.penalty_number = self.penalty_number_entry.get()
+            self.penalty_number_label = tk.Label(self.timer_window, text=self.penalty_number, font=("DS-Digital", 40), bg="black", fg="red")
+            self.penalty_number_label.place(relx=0.7, rely=0.8, anchor="center")
         else:
-            messagebox.showinfo("Информация", "Введены некоррктные данные")
-
+            messagebox.showinfo("Информация", "Нельзя записать данные о штрафе, пока идет таймер")
 
     def penalty_toggle_timer(self):
         if self.penalty_timer_running:
