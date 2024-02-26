@@ -33,7 +33,7 @@ class TimerApp:
         self.team2_label.place(relx=0.8, rely=0.1, anchor="center")
 
         self.timer_running = False
-        self.time_remaining = 20 * 60
+        self.time_remaining = 1 * 10
         self.start_time = 0
         self.paused_time = 0
 
@@ -654,20 +654,6 @@ class TimerApp:
             self.timer_window.after(1000, self.countdown_break, remaining_time - 1)
     ###############  КОНЕЦ Таймер перерыва 17 минут
 
-    def toggle_timer(self):
-        if self.timer_running:
-            self.timer_running = False
-            self.button.config(text="Игра")
-            self.paused_time = time.time() - self.start_time
-        else:
-            if self.time_remaining == 0:
-                self.time_remaining = 20 * 60
-            self.timer_running = True
-            self.button.config(text="Пауза")
-            self.start_time = time.time() - (20 * 60 - self.time_remaining)
-            self.update_timer()
-
-
     def toggle_timer_space(self, event):
         self.toggle_timer()
 
@@ -745,14 +731,30 @@ class TimerApp:
             self.timer_window.withdraw()
             self.fullscreen_button.config(text="Вывести на табло")
 
+    def toggle_timer(self):
+        if self.timer_running:
+            self.timer_running = False
+            self.button.config(text="Игра")
+            self.paused_time = time.time() - self.start_time
+        else:
+            if self.time_remaining <= 0:
+                self.time_remaining = 20 * 60
+            self.timer_running = True
+            self.button.config(text="Пауза")
+            self.start_time = time.time() - (20 * 60 - self.time_remaining)
+            self.update_timer()
+
     def update_timer(self):
         if self.timer_running:
+            # print(self.time_remaining)
             elapsed_time = int(time.time() - self.start_time)
             self.time_remaining = max(0, 20 * 60 - elapsed_time)
             self.timer_label.config(text=self.format_time(self.time_remaining))
             if self.time_remaining > 0:
                 self.timer_window.after(1000, self.update_timer)
             else:
+                print('Меньше нуля')
+                self.general_start()
                 self.timer_running = False
                 self.button.config(text="Старт")
         else:
