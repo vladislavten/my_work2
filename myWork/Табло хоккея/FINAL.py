@@ -9,6 +9,10 @@ class TimerApp:
         self.master.title("Управление Таймером")
         self.master.geometry("600x800")
 
+        self.new_window = tk.Toplevel(master)
+        self.new_window.title("Управление Таймером")
+        self.new_window.geometry('600x600')
+
 
 
         # Добавляем поля ввода для имен команд и кнопку "Сохранить команды"
@@ -121,6 +125,9 @@ class TimerApp:
         self.period_var_label.place(relx=0.5, rely=0.68, anchor="center")
 
         ##############################################   ТЕКСТЫ LABLES #######################################
+        self.name_team1_label = tk.Label(self.master, text= 'НАСТРОЙКА КОМАНД', font=("tahoma", 10))
+        self.name_team1_label.place(x=20, y=10)
+
             #Текст таймера таймаута team1
         self.timeout_team1_label = tk.Label(self.timer_window, text="", font=("DS-Digital", 30), bg="black", fg="yellow")
         self.timeout_team1_label.place(relx=0.2, rely=0.49, anchor="center")
