@@ -131,7 +131,9 @@ class TimerApp:
             #Текст таймера таймаута team1
         self.timeout_team1_label = tk.Label(self.timer_window, text="", font=("DS-Digital", 30), bg="black", fg="yellow")
         self.timeout_team1_label.place(relx=0.2, rely=0.49, anchor="center")
-        self.timeout_team1_label.pack()
+        # self.timeout_team1_label.pack()
+        # self.timeout_team1_label.pack()
+
 
             #Текст таймера таймаута team2
         self.timeout_team2_label = tk.Label(self.timer_window, text="", font=("DS-Digital", 30), bg="black", fg="yellow")
