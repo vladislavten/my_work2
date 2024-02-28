@@ -26,15 +26,11 @@ class TimerApp:
         self.timer_window.geometry("1024x768")
         self.timer_window['bg'] = 'black'
         self.timer_window.withdraw()
+        print(self.timer_window)
 
         self.timer_label = tk.Label(self.timer_window, text="00:00", font=("DS-Digital", 100), bg="black", fg="red")
         self.timer_label.pack(expand=True)
         self.timer_label.place(relx=0.5, rely=0.355, anchor="center")
-
-        self.team1_label = tk.Label(self.timer_window, text="", font=("Helvetica", 40, "bold"), bg="black", fg="white")
-        self.team1_label.place(relx=0.2, rely=0.1, anchor="center")
-        self.team2_label = tk.Label(self.timer_window, text="", font=("Helvetica", 40, "bold"), bg="black", fg="white")
-        self.team2_label.place(relx=0.8, rely=0.1, anchor="center")
 
         self.timer_running = False
         self.time_remaining = 1 * 10
@@ -119,6 +115,11 @@ class TimerApp:
         self.goal_away_var = tk.IntVar(value=0)
         self.goal_away_label = tk.Label(self.timer_window, textvariable=self.goal_away_var, font=("DS-Digital", 200), bg="black", fg="red")
         self.goal_away_label.place(relx=0.8, rely=0.3, anchor="center")
+
+        self.team1_label = tk.Label(self.timer_window, text="", font=("Helvetica", 40, "bold"), bg="black", fg="white")
+        self.team1_label.place(relx=0.2, rely=0.1, anchor="center")
+        self.team2_label = tk.Label(self.timer_window, text="", font=("Helvetica", 40, "bold"), bg="black", fg="white")
+        self.team2_label.place(relx=0.8, rely=0.1, anchor="center")
 
         self.period_var = tk.IntVar(value=1)
         self.period_var_label = tk.Label(self.timer_window, textvariable=self.period_var, font=("DS-Digital", 100), bg="black", fg="green")
