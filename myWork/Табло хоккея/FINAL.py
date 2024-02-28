@@ -9,9 +9,9 @@ class TimerApp:
         self.master.title("Управление Таймером")
         self.master.geometry("600x800")
 
-        self.new_window = tk.Toplevel(master)
-        self.new_window.title("Управление Таймером")
-        self.new_window.geometry('600x600')
+        # self.new_window = tk.Toplevel(master)
+        # self.new_window.title("Управление Таймером")
+        # self.new_window.geometry('600x600')
 
 
 
@@ -664,7 +664,7 @@ class TimerApp:
     ###############  КОНЕЦ Таймер перерыва 17 минут
 
     def toggle_timer_space(self, event):
-        self.toggle_timer()
+        self.general_start()
 
     def toggle_timer_enter(self, event):
         self.save_teams()
