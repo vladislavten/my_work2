@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 import time
+from screeninfo import get_monitors
 
 
 class TimerApp:
@@ -21,12 +22,21 @@ class TimerApp:
         self.team2_name_entry = tk.Entry(master)
         self.team2_name_entry.pack()
 
+        self.monitors = get_monitors()
+        # Выбираем второй монитор (индекс 1)
+        if len(self.monitors) < 2:
+            messagebox.showinfo('INFO', 'Табло не обнаружено')
+            self.secondary_monitor = self.monitors[0]
+        else:
+            self.secondary_monitor = self.monitors[1]
+
         self.timer_window = tk.Toplevel(master)
         self.timer_window.title("Таймер")
-        self.timer_window.geometry("1024x768")
+        self.timer_window.geometry(
+            f"{self.secondary_monitor.width}x{self.secondary_monitor.height}+{self.secondary_monitor.x}+{self.secondary_monitor.y}")
         self.timer_window['bg'] = 'black'
+        self.timer_window.overrideredirect(True)
         self.timer_window.withdraw()
-        print(self.timer_window)
 
         self.timer_label = tk.Label(self.timer_window, text="00:00", font=("DS-Digital", 100), bg="black", fg="red")
         self.timer_label.pack(expand=True)
