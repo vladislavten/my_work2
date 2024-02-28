@@ -739,17 +739,17 @@ class TimerApp:
             self.time_remaining = max(0, self.time_remaining - 1)
             self.timer_label.config(text=self.format_time(self.time_remaining))
 
-    # def fullscreen_timer(self):
-    #     if not self.fullscreen_state:
-    #         self.timer_window.deiconify()
-    #         self.timer_window.attributes("-fullscreen", True)
-    #         self.fullscreen_state = True
-    #         self.fullscreen_button.config(text="Не выводить на табло")
-    #     else:
-    #         self.timer_window.attributes("-fullscreen", False)
-    #         self.fullscreen_state = False
-    #         self.timer_window.withdraw()
-    #         self.fullscreen_button.config(text="Вывести на табло")
+    def fullscreen_timer(self):
+        if not self.fullscreen_state:
+            self.timer_window.deiconify()
+            self.timer_window.attributes("-fullscreen", True)
+            self.fullscreen_state = True
+            self.fullscreen_button.config(text="Не выводить на табло")
+        else:
+            self.timer_window.attributes("-fullscreen", False)
+            self.fullscreen_state = False
+            self.timer_window.withdraw()
+            self.fullscreen_button.config(text="Вывести на табло")
 
     def toggle_timer(self):
         if self.timer_running:
