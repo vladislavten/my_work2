@@ -192,8 +192,8 @@ class TimerApp:
         self.period_var_label.place(x=450, y=185, anchor="center")
 
         ##############################################   ТЕКСТЫ LABLES #######################################
-        self.name_team1_label = tk.Label(self.master, text= 'НАСТРОЙКА КОМАНД', font=("tahoma", 10))
-        self.name_team1_label.place(x=20, y=10)
+        self.name_team1_label = tk.Label(self.control_panel, text= 'НАЗВАНИЕ КОМАНДЫ', font=("Helvetica", 8), fg='black', bg='lightblue')
+        self.name_team1_label.place(x=215, y=274, anchor='center')
 
             #Текст таймера таймаута team1
         self.timeout_team1_label = tk.Label(self.timer_window, text="", font=("DS-Digital", 30), bg="black", fg="yellow")
@@ -568,7 +568,7 @@ class TimerApp:
                     self.penalty_timer_label6 = tk.Label(self.timer_window, text=f"0{self.penalty_minutes6}:00",
                                                         font=("DS-Digital", 50), bg="black", fg="yellow")
                     self.penalty_timer_label6.place(relx=0.86, rely=0.83, anchor="center")
-                    self.penalty_number6 = self.penalty_number_entry.get().strip()
+                    self.penalty_number6 = self.penalty_number_entry6.get().strip()
                     self.penalty_number_label6 = tk.Label(self.timer_window, text=self.penalty_number6,
                                                          font=("DS-Digital", 50), bg="black", fg="yellow")
                     self.penalty_number_label6.place(relx=0.7, rely=0.83, anchor="center")
