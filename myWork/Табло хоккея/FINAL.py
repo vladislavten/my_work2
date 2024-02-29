@@ -27,19 +27,23 @@ class TimerApp:
         self.control_panel.resizable(False, False)
         self.control_panel['bg'] = 'lightblue'
 
+################################ ДЕКОРАЦИИ ##################################################
         black_strip = tk.Frame(self.control_panel, bg="black", width=900, height=260)
         black_strip.pack(side="top")
 
         green_strip = tk.Frame(self.control_panel, bg="green", width=900, height=58)
         green_strip.pack(side="bottom")
 
+        grey_strip = tk.Frame(self.control_panel, bg="grey", width=900, height=1)
+        grey_strip.place(x=0,y=328)
+
 
 
         # Добавляем поля ввода для имен команд и кнопку "Сохранить команды"
-        self.team1_name_entry = tk.Entry(master)
-        self.team1_name_entry.pack()
-        self.team2_name_entry = tk.Entry(master)
-        self.team2_name_entry.pack()
+        self.team1_name_entry = tk.Entry(self.control_panel,font=("Helvetica", 14))
+        self.team1_name_entry.place(x=215, y=302, anchor='center', width=180, height= 25)
+        self.team2_name_entry = tk.Entry(self.control_panel,font=("Helvetica", 14))
+        self.team2_name_entry.place(x=675, y=302, anchor='center', width=180, height= 25)
 
         self.timer_window = tk.Toplevel(master)
         self.timer_window.title("Таймер")
@@ -178,12 +182,12 @@ class TimerApp:
 
         self.team1_label = tk.Label(self.timer_window, text="", font=("Helvetica", 40, "bold"), bg="black", fg="white")
         self.team1_label.place(relx=0.2, rely=0.1, anchor="center")
-        self.team1_label = tk.Label(self.control_panel, text="КОМАНДА 1", font=("Helvetica", 18), bg="black", fg="white")
-        self.team1_label.place(x=215, y=40, anchor="center")
+        self.team1_label_control = tk.Label(self.control_panel, text="", font=("Helvetica", 18), bg="black", fg="white")
+        self.team1_label_control.place(x=215, y=40, anchor="center")
         self.team2_label = tk.Label(self.timer_window, text="", font=("Helvetica", 40, "bold"), bg="black", fg="white")
         self.team2_label.place(relx=0.8, rely=0.1, anchor="center")
-        self.team2_label = tk.Label(self.control_panel, text="КОМАНДА 2", font=("Helvetica", 18), bg="black", fg="white")
-        self.team2_label.place(x=674, y=40, anchor="center")
+        self.team2_label_control = tk.Label(self.control_panel, text="", font=("Helvetica", 18), bg="black", fg="white")
+        self.team2_label_control.place(x=674, y=40, anchor="center")
 
         self.period_var = tk.IntVar(value=1)
         self.period_var_label = tk.Label(self.timer_window, textvariable=self.period_var, font=("DS-Digital", 100), bg="black", fg="green")
@@ -247,10 +251,9 @@ class TimerApp:
         self.time_text_label2 = tk.Label(self.control_panel, text="ГОСТИ", font=("Helvetica", 9), bg="black", fg="white")
         self.time_text_label2.place(x=652, y=5, anchor="nw")
 
-
         #######################################   КНОПКИ в окне master   ##########################################
-        self.save_teams_button = tk.Button(master, text="Записать команды", command=self.save_teams)
-        self.save_teams_button.pack()
+        self.save_teams_button = tk.Button(self.control_panel, text="ЗАПИСАТЬ КОМАНДЫ", width=20, command=self.save_teams)
+        self.save_teams_button.place(x=450, y=302, anchor='center')
 
         self.button = tk.Button(master, text="Игра", command=self.general_start)
         self.button.pack()
@@ -321,7 +324,7 @@ class TimerApp:
 
         self.fullscreen_state = False
 
-######################################################
+###################################################### КНОПКИ
         self.penalty_button = tk.Button(master, text="Записать штраф 1", command=self.penalty_apply)
         self.penalty_button.pack()
 
@@ -932,10 +935,12 @@ class TimerApp:
 
     def save_teams(self):
         if not self.timer_running:
-            team1_name = self.team1_name_entry.get()
-            team2_name = self.team2_name_entry.get()
+            team1_name = self.team1_name_entry.get().strip()
+            team2_name = self.team2_name_entry.get().strip()
             self.team1_label.config(text=team1_name.upper())
+            self.team1_label_control.config(text=team1_name.upper())
             self.team2_label.config(text=team2_name.upper())
+            self.team2_label_control.config(text=team2_name.upper())
 
     def goal_home_increase(self):
         if not self.timer_running:
