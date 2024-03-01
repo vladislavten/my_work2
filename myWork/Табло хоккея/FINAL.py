@@ -6,65 +6,59 @@ from screeninfo import get_monitors
 
 class TimerApp:
     def __init__(self, master):
-        # self.monitors = get_monitors()
-        # # Выбираем второй монитор (индекс 1)
-        # if len(self.monitors) < 2:
-        #     messagebox.showinfo('INFO', 'Табло не обнаружено')
-        #     self.secondary_monitor = self.monitors[0]
-        # else:
-        #     self.secondary_monitor = self.monitors[1]
+        self.monitors = get_monitors()
+        # Выбираем второй монитор (индекс 1)
+        if len(self.monitors) < 2:
+            messagebox.showinfo('INFO', 'Табло не обнаружено')
+            self.secondary_monitor = self.monitors[0]
+        else:
+            self.secondary_monitor = self.monitors[1]
 
 
         self.master = master
-        # self.master.title("Управление Таймером")
-        # self.master.geometry("600x800")
-
-
-
-        self.control_panel = tk.Toplevel(master)
-        self.control_panel.title("Управление Таймером")
-        self.control_panel.geometry('900x757')
-        self.control_panel.resizable(False, False)
-        self.control_panel['bg'] = 'lightblue'
+        self.master.title("Управление Таймером")
+        self.master.geometry('900x757')
+        self.master.resizable(False, False)
+        self.master['bg'] = 'lightblue'
 
 ################################ ДЕКОРАЦИИ ##################################################
-        black_strip = tk.Frame(self.control_panel, bg="black", width=900, height=260)
+        black_strip = tk.Frame(self.master, bg="black", width=900, height=260)
         black_strip.pack(side="top")
 
-        green_strip = tk.Frame(self.control_panel, bg="green", width=900, height=58)
+        green_strip = tk.Frame(self.master, bg="green", width=900, height=58)
         green_strip.pack(side="bottom")
 
-        white_strip = tk.Frame(self.control_panel, bg="white", width=900, height=1)
+        white_strip = tk.Frame(self.master, bg="white", width=900, height=1)
         white_strip.place(x=0,y=328)
-        white_strip = tk.Frame(self.control_panel, bg="white", width=1, height=250)
+        white_strip = tk.Frame(self.master, bg="white", width=1, height=250)
         white_strip.place(x=449,y=329)
-        white_strip = tk.Frame(self.control_panel, bg="white", width=900, height=1)
+        white_strip = tk.Frame(self.master, bg="white", width=900, height=1)
         white_strip.place(x=0,y=407)
-        white_strip = tk.Frame(self.control_panel, bg="white", width=900, height=1)
+        white_strip = tk.Frame(self.master, bg="white", width=900, height=1)
         white_strip.place(x=0,y=578)
 
 
 
         # Добавляем поля ввода для имен команд и кнопку "Сохранить команды"
-        self.team1_name_entry = tk.Entry(self.control_panel, font=("Helvetica", 14), justify="center")
+        self.team1_name_entry = tk.Entry(self.master, font=("Helvetica", 14), justify="center")
         self.team1_name_entry.place(x=215, y=302, anchor='center', width=180, height= 25)
-        self.team2_name_entry = tk.Entry(self.control_panel,font=("Helvetica", 14))
+        self.team2_name_entry = tk.Entry(self.master,font=("Helvetica", 14), justify="center")
         self.team2_name_entry.place(x=675, y=302, anchor='center', width=180, height= 25)
 
         self.timer_window = tk.Toplevel(master)
         self.timer_window.title("Таймер")
-        # self.timer_window.geometry(
-        #     f"{self.secondary_monitor.width}x{self.secondary_monitor.height}+{self.secondary_monitor.x}+{self.secondary_monitor.y}")
-        # # self.timer_window.geometry('1024x768')
-        self.timer_window.geometry('1280x1024')
+        self.timer_window.geometry(
+            f"{self.secondary_monitor.width}x{self.secondary_monitor.height}+{self.secondary_monitor.x}+{self.secondary_monitor.y}")
+        # self.timer_window.geometry('1024x768')
+        # self.timer_window.geometry('1280x1024')
         self.timer_window['bg'] = 'black'
-        # self.timer_window.overrideredirect(True)
+        self.timer_window.overrideredirect(True)
         self.timer_window.withdraw()
 
         self.timer_label = tk.Label(self.timer_window, text="00:00", font=("DS-Digital", 100), bg="black", fg="red")
         self.timer_label.place(relx=0.5, rely=0.355, anchor="center")
 
-        self.timer_label_control = tk.Label(self.control_panel, text="00:00", font=("DS-Digital", 30), bg="black", fg="red")
+        self.timer_label_control = tk.Label(self.master, text="00:00", font=("DS-Digital", 30), bg="black", fg="red")
         self.timer_label_control.place(x=450, y=88, anchor="center")
 
         self.timer_running = False
@@ -177,107 +171,107 @@ class TimerApp:
         self.goal_home_var = tk.IntVar(value=0)
         self.goal_home_label = tk.Label(self.timer_window, textvariable=self.goal_home_var, font=("DS-Digital", 200), bg="black", fg="red")
         self.goal_home_label.place(relx=0.2, rely=0.3, anchor="center")
-        self.goal_home_label = tk.Label(self.control_panel, textvariable=self.goal_home_var, font=("DS-Digital", 58), bg="black", fg="red")
+        self.goal_home_label = tk.Label(self.master, textvariable=self.goal_home_var, font=("DS-Digital", 58), bg="black", fg="red")
         self.goal_home_label.place(x=215, y=88, anchor="center")
 
         self.goal_away_var = tk.IntVar(value=0)
         self.goal_away_label = tk.Label(self.timer_window, textvariable=self.goal_away_var, font=("DS-Digital", 200), bg="black", fg="red")
         self.goal_away_label.place(relx=0.8, rely=0.3, anchor="center")
-        self.goal_away_label = tk.Label(self.control_panel, textvariable=self.goal_away_var, font=("DS-Digital", 58), bg="black", fg="red")
+        self.goal_away_label = tk.Label(self.master, textvariable=self.goal_away_var, font=("DS-Digital", 58), bg="black", fg="red")
         self.goal_away_label.place(x=673, y=88, anchor="center")
 
         self.team1_label = tk.Label(self.timer_window, text="", font=("Helvetica", 40, "bold"), bg="black", fg="white")
         self.team1_label.place(relx=0.2, rely=0.1, anchor="center")
-        self.team1_label_control = tk.Label(self.control_panel, text="", font=("Helvetica", 18), bg="black", fg="white")
+        self.team1_label_control = tk.Label(self.master, text="", font=("Helvetica", 18), bg="black", fg="white")
         self.team1_label_control.place(x=215, y=40, anchor="center")
         self.team2_label = tk.Label(self.timer_window, text="", font=("Helvetica", 40, "bold"), bg="black", fg="white")
         self.team2_label.place(relx=0.8, rely=0.1, anchor="center")
-        self.team2_label_control = tk.Label(self.control_panel, text="", font=("Helvetica", 18), bg="black", fg="white")
+        self.team2_label_control = tk.Label(self.master, text="", font=("Helvetica", 18), bg="black", fg="white")
         self.team2_label_control.place(x=674, y=40, anchor="center")
 
         self.period_var = tk.IntVar(value=1)
         self.period_var_label = tk.Label(self.timer_window, textvariable=self.period_var, font=("DS-Digital", 100), bg="black", fg="green")
         self.period_var_label.place(relx=0.5, rely=0.68, anchor="center")
-        self.period_var_label = tk.Label(self.control_panel, textvariable=self.period_var, font=("DS-Digital", 30), bg="black", fg="green")
+        self.period_var_label = tk.Label(self.master, textvariable=self.period_var, font=("DS-Digital", 30), bg="black", fg="green")
         self.period_var_label.place(x=450, y=185, anchor="center")
 
         ##############################################   ТЕКСТЫ LABLES #######################################
-        self.name_team2_label = tk.Label(self.control_panel, text= 'НАЗВАНИЕ КОМАНДЫ ХОЗЯЕВ', font=("Helvetica", 8), fg='black', bg='lightblue')
+        self.name_team2_label = tk.Label(self.master, text= 'НАЗВАНИЕ КОМАНДЫ ХОЗЯЕВ', font=("Helvetica", 8), fg='black', bg='lightblue')
         self.name_team2_label.place(x=215, y=274, anchor='center')
 
-        self.name_team1_label = tk.Label(self.control_panel, text= 'НАЗВАНИЕ КОМАНДЫ ГОСТЕЙ', font=("Helvetica", 8), fg='black', bg='lightblue')
+        self.name_team1_label = tk.Label(self.master, text= 'НАЗВАНИЕ КОМАНДЫ ГОСТЕЙ', font=("Helvetica", 8), fg='black', bg='lightblue')
         self.name_team1_label.place(x=675, y=274, anchor='center')
 
-        self.control_team1_label = tk.Label(self.control_panel, text= 'УПРАВЛЕНИЕ КОМАНДОЙ ХОЗЯЕВ', font=("Helvetica", 8), fg='black', bg='lightblue')
+        self.control_team1_label = tk.Label(self.master, text= 'УПРАВЛЕНИЕ КОМАНДОЙ ХОЗЯЕВ', font=("Helvetica", 8), fg='black', bg='lightblue')
         self.control_team1_label.place(x=215, y=345, anchor='center')
 
-        self.penalty_team1_label = tk.Label(self.control_panel, text= 'ШТРАФЫ', font=("Helvetica", 8), fg='black', bg='lightblue')
+        self.penalty_team1_label = tk.Label(self.master, text= 'ШТРАФЫ', font=("Helvetica", 8), fg='black', bg='lightblue')
         self.penalty_team1_label.place(x=215, y=425, anchor='center')
 
-        self.penalty_team1_label = tk.Label(self.control_panel, text= 'ШТРАФЫ', font=("Helvetica", 8), fg='black', bg='lightblue')
+        self.penalty_team1_label = tk.Label(self.master, text= 'ШТРАФЫ', font=("Helvetica", 8), fg='black', bg='lightblue')
         self.penalty_team1_label.place(x=665, y=425, anchor='center')
 
-        self.number1 = tk.Label(self.control_panel, text= '1.  НОМЕР', font=("Helvetica", 8), fg='black', bg='lightblue')
+        self.number1 = tk.Label(self.master, text= '1.  НОМЕР', font=("Helvetica", 8), fg='black', bg='lightblue')
         self.number1.place(x=49, y=461, anchor='center')
-        self.number1 = tk.Label(self.control_panel, text= '2.  НОМЕР', font=("Helvetica", 8), fg='black', bg='lightblue')
+        self.number1 = tk.Label(self.master, text= '2.  НОМЕР', font=("Helvetica", 8), fg='black', bg='lightblue')
         self.number1.place(x=49, y=505, anchor='center')
-        self.number1 = tk.Label(self.control_panel, text= '3.  НОМЕР', font=("Helvetica", 8), fg='black', bg='lightblue')
+        self.number1 = tk.Label(self.master, text= '3.  НОМЕР', font=("Helvetica", 8), fg='black', bg='lightblue')
         self.number1.place(x=49, y=548, anchor='center')
 
-        self.number2 = tk.Label(self.control_panel, text= '1.  НОМЕР', font=("Helvetica", 8), fg='black', bg='lightblue')
+        self.number2 = tk.Label(self.master, text= '1.  НОМЕР', font=("Helvetica", 8), fg='black', bg='lightblue')
         self.number2.place(x=496, y=461, anchor='center')
-        self.number2 = tk.Label(self.control_panel, text= '2.  НОМЕР', font=("Helvetica", 8), fg='black', bg='lightblue')
+        self.number2 = tk.Label(self.master, text= '2.  НОМЕР', font=("Helvetica", 8), fg='black', bg='lightblue')
         self.number2.place(x=496, y=505, anchor='center')
-        self.number2 = tk.Label(self.control_panel, text= '3.  НОМЕР', font=("Helvetica", 8), fg='black', bg='lightblue')
+        self.number2 = tk.Label(self.master, text= '3.  НОМЕР', font=("Helvetica", 8), fg='black', bg='lightblue')
         self.number2.place(x=496, y=548, anchor='center')
 
-        self.minutes1 = tk.Label(self.control_panel, text= 'МИНУТЫ', font=("Helvetica", 8), fg='black', bg='lightblue')
+        self.minutes1 = tk.Label(self.master, text= 'МИНУТЫ', font=("Helvetica", 8), fg='black', bg='lightblue')
         self.minutes1.place(x=154, y=461, anchor='center')
-        self.minutes1 = tk.Label(self.control_panel, text= 'МИНУТЫ', font=("Helvetica", 8), fg='black', bg='lightblue')
+        self.minutes1 = tk.Label(self.master, text= 'МИНУТЫ', font=("Helvetica", 8), fg='black', bg='lightblue')
         self.minutes1.place(x=154, y=505, anchor='center')
-        self.minutes1 = tk.Label(self.control_panel, text= 'МИНУТЫ', font=("Helvetica", 8), fg='black', bg='lightblue')
+        self.minutes1 = tk.Label(self.master, text= 'МИНУТЫ', font=("Helvetica", 8), fg='black', bg='lightblue')
         self.minutes1.place(x=154, y=548, anchor='center')
 
-        self.minutes2 = tk.Label(self.control_panel, text= 'МИНУТЫ', font=("Helvetica", 8), fg='black', bg='lightblue')
+        self.minutes2 = tk.Label(self.master, text= 'МИНУТЫ', font=("Helvetica", 8), fg='black', bg='lightblue')
         self.minutes2.place(x=604, y=461, anchor='center')
-        self.minutes2 = tk.Label(self.control_panel, text= 'МИНУТЫ', font=("Helvetica", 8), fg='black', bg='lightblue')
+        self.minutes2 = tk.Label(self.master, text= 'МИНУТЫ', font=("Helvetica", 8), fg='black', bg='lightblue')
         self.minutes2.place(x=604, y=505, anchor='center')
-        self.minutes2 = tk.Label(self.control_panel, text= 'МИНУТЫ', font=("Helvetica", 8), fg='black', bg='lightblue')
+        self.minutes2 = tk.Label(self.master, text= 'МИНУТЫ', font=("Helvetica", 8), fg='black', bg='lightblue')
         self.minutes2.place(x=604, y=548, anchor='center')
 
-        self.control_penalty_label = tk.Label(self.control_panel, text= 'УПРАВЛЕНИЕ ТАЙМЕРОМ', font=("Helvetica", 8), fg='black', bg='lightblue')
+        self.control_penalty_label = tk.Label(self.master, text= 'УПРАВЛЕНИЕ ТАЙМЕРОМ', font=("Helvetica", 8), fg='black', bg='lightblue')
         self.control_penalty_label.place(x=450, y=595, anchor='center')
 
             #Текст таймера таймаута team1
         self.timeout_team1_label = tk.Label(self.timer_window, text="", font=("DS-Digital", 30), bg="black", fg="yellow")
         self.timeout_team1_label.place(relx=0.2, rely=0.49, anchor="center")
-        self.timeout_team1_label_control = tk.Label(self.control_panel, text="", font=("DS-Digital", 19), bg="black", fg="yellow")
+        self.timeout_team1_label_control = tk.Label(self.master, text="", font=("DS-Digital", 19), bg="black", fg="yellow")
         self.timeout_team1_label_control.place(x=215, y=141, anchor="center")
 
 
             #Текст таймера таймаута team2
         self.timeout_team2_label = tk.Label(self.timer_window, text="", font=("DS-Digital", 30), bg="black", fg="yellow")
         self.timeout_team2_label.place(relx=0.8, rely=0.49, anchor="center")
-        self.timeout_team2_label_control = tk.Label(self.control_panel, text="", font=("DS-Digital", 19), bg="black", fg="yellow")
+        self.timeout_team2_label_control = tk.Label(self.master, text="", font=("DS-Digital", 19), bg="black", fg="yellow")
         self.timeout_team2_label_control.place(x=674, y=141, anchor="center")
 
 
             #Текст ВРЕМЯ по центру
         self.time_text_label = tk.Label(self.timer_window, text="ТАЙМЕР", font=("Helvetica", 30), bg="black", fg="white")
         self.time_text_label.place(relx=0.5, rely=0.25, anchor="center")
-        self.time_text_label = tk.Label(self.control_panel, text="ТАЙМЕР", font=("Helvetica", 10), bg="black", fg="white")
+        self.time_text_label = tk.Label(self.master, text="ТАЙМЕР", font=("Helvetica", 10), bg="black", fg="white")
         self.time_text_label.place(x=450, y=61, anchor="center")
 
             # Текст ПЕРИОД по центру
         self.time_text_label = tk.Label(self.timer_window, text="ПЕРИОД", font=("Helvetica", 25), bg="black", fg="white")
         self.time_text_label.place(relx=0.5, rely=0.55, anchor="center")
-        self.time_text_label = tk.Label(self.control_panel, text="ПЕРИОД", font=("Helvetica", 10), bg="black", fg="white")
+        self.time_text_label = tk.Label(self.master, text="ПЕРИОД", font=("Helvetica", 10), bg="black", fg="white")
         self.time_text_label.place(x=450, y=154, anchor="center")
 
 
         self.break_time = tk.Label(self.timer_window, text="", font=("DS-Digital", 45), bg="black", fg="yellow")
         self.break_time.place(relx=0.5, rely=0.87, anchor="center")
-        self.break_time_control = tk.Label(self.control_panel, text="", font=("DS-Digital", 18), bg="black", fg="yellow")
+        self.break_time_control = tk.Label(self.master, text="", font=("DS-Digital", 18), bg="black", fg="yellow")
         self.break_time_control.place(x=450, y=244, anchor="center")
 
 
@@ -291,160 +285,161 @@ class TimerApp:
         self.time_text_label = tk.Label(self.timer_window, text="ХОЗЯЕВА", font=("Helvetica", 15), bg="black", fg="white")
         self.time_text_label.place(relx=0.2, rely=0.03, anchor="center")
 
-        self.time_text_label = tk.Label(self.control_panel, text="ХОЗЯЕВА", font=("Helvetica", 9), bg="black", fg="white")
+        self.time_text_label = tk.Label(self.master, text="ХОЗЯЕВА", font=("Helvetica", 9), bg="black", fg="white")
         self.time_text_label.place(x=189, y=5, anchor="nw")
 
         self.time_text_label2 = tk.Label(self.timer_window, text="ГОСТИ", font=("Helvetica", 15), bg="black", fg="white")
         self.time_text_label2.place(relx=0.8, rely=0.03, anchor="center")
 
-        self.time_text_label2 = tk.Label(self.control_panel, text="ГОСТИ", font=("Helvetica", 9), bg="black", fg="white")
+        self.time_text_label2 = tk.Label(self.master, text="ГОСТИ", font=("Helvetica", 9), bg="black", fg="white")
         self.time_text_label2.place(x=652, y=5, anchor="nw")
 
         #######################################   КНОПКИ в окне master   ##########################################
-        self.save_teams_button = tk.Button(self.control_panel, text="ЗАПИСАТЬ КОМАНДЫ", width=20, command=self.save_teams)
+        self.save_teams_button = tk.Button(self.master, text="ЗАПИСАТЬ КОМАНДЫ", width=20, command=self.save_teams)
         self.save_teams_button.place(x=450, y=302, anchor='center')
 
-        self.button = tk.Button(master, text="Игра", command=self.general_start)
-        self.button.pack()
+        self.button = tk.Button(self.master, text="ИГРА", width=12, command=self.general_start)
+        self.button.place(x=65, y=729, anchor='center')
 
-        self.reset_button = tk.Button(master, text="Начать сначала", command=self.reset_timer)
-        self.reset_button.pack()
+        self.reset_button = tk.Button(self.master, text="Начать сначала", width=15, command=self.reset_timer)
+        self.reset_button = tk.Button(self.master, text="Начать сначала", width=15, command=self.reset_timer)
+        self.reset_button.place(x=193, y=728, anchor='center')
 
-        self.goal_home_increase_button = tk.Button(self.control_panel, text="ГОЛ", width=16, command=self.goal_home_increase)
+        self.goal_home_increase_button = tk.Button(self.master, text="ГОЛ", width=16, command=self.goal_home_increase)
         self.goal_home_increase_button.place(x = 82, y = 375, anchor='center')
 
-        self.goal_home_decrease_button = tk.Button(self.control_panel, text="ГОЛ (-1)", width=16, command=self.goal_home_decrease)
+        self.goal_home_decrease_button = tk.Button(self.master, text="ГОЛ (-1)", width=16, command=self.goal_home_decrease)
         self.goal_home_decrease_button.place(x = 224, y = 375, anchor='center')
 
-        self.goal_away_increase_button = tk.Button(self.control_panel, text="ГОЛ", width=16, command=self.goal_away_increase)
+        self.goal_away_increase_button = tk.Button(self.master, text="ГОЛ", width=16, command=self.goal_away_increase)
         self.goal_away_increase_button.place(x = 532, y = 375, anchor='center')
 
-        self.goal_away_decrease_button = tk.Button(self.control_panel, text="ГОЛ (-1)", width=16, command=self.goal_away_decrease)
+        self.goal_away_decrease_button = tk.Button(self.master, text="ГОЛ (-1)", width=16, command=self.goal_away_decrease)
         self.goal_away_decrease_button.place(x = 674, y = 375, anchor='center')
 
-        self.add_minute_button = tk.Button(self.control_panel, text="+1 МИНУТА", command=self.add_minute)
+        self.add_minute_button = tk.Button(self.master, text="+1 МИНУТА", width=12, command=self.add_minute)
         self.add_minute_button.place(x = 290, y = 626, anchor='center')
 
-        self.subtract_minute_button = tk.Button(self.control_panel, text="-1 МИНУТА", command=self.subtract_minute)
+        self.subtract_minute_button = tk.Button(self.master, text="-1 МИНУТА", width=12, command=self.subtract_minute)
         self.subtract_minute_button.place(x = 397, y = 626, anchor='center')
 
-        self.add_second_button = tk.Button(self.control_panel, text="+1 СЕКУНДА", command=self.add_second)
+        self.add_second_button = tk.Button(self.master, text="+1 СЕКУНДА", width=12, command=self.add_second)
         self.add_second_button.place(x = 504, y = 626, anchor='center')
 
-        self.subtract_second_button = tk.Button(self.control_panel, text="-1 СЕКУНДА", command=self.subtract_second)
+        self.subtract_second_button = tk.Button(self.master, text="-1 СЕКУНДА", width=12, command=self.subtract_second)
         self.subtract_second_button.place(x = 611, y = 626, anchor='center')
 
-        self.period_increase_button = tk.Button(master, text="+ Период", command=self.period_increase)
-        self.period_increase_button.pack()
+        self.period_increase_button = tk.Button(self.master, text="+1 ПЕРИОД", width=12,command=self.period_increase)
+        self.period_increase_button.place(x = 344, y = 668, anchor='center')
 
-        self.goal_home_decrease_button = tk.Button(master, text="- Период", command=self.period_decrease)
-        self.goal_home_decrease_button.pack()
+        self.goal_home_decrease_button = tk.Button(self.master, text="-1 ПЕРИОД", width=12, command=self.period_decrease)
+        self.goal_home_decrease_button.place(x = 450, y = 668, anchor='center')
 
-        self.fullscreen_button = tk.Button(master, text="Вывести на табло", command=self.fullscreen_timer)
-        self.fullscreen_button.pack()
+        # self.fullscreen_button = tk.Button(master, text="Вывести на табло", command=self.fullscreen_timer)
+        # self.fullscreen_button.pack()
 
         #Кнопка перерыва между периодами
-        self.button_break = tk.Button(self.master, text="Перерыв", command=self.start_break_timer)
-        self.button_break.pack()
+        self.button_break = tk.Button(self.master, text="ПЕРЕРЫВ", width=12, command=self.start_break_timer, bg='yellow')
+        self.button_break.place(x = 558, y = 668, anchor='center')
 
         self.break_label = None
 
         #Кнопка таймаут team1
-        self.timeout_team1_button = tk.Button(self.control_panel, text="ТАЙМАУТ", width=16, command=self.start_timeout_team1)
+        self.timeout_team1_button = tk.Button(self.master, text="ТАЙМАУТ", width=16, bg='yellow', command=self.start_timeout_team1)
         self.timeout_team1_button.place(x = 366, y = 375, anchor='center')
 
         self.timeout_label_team1 = None
 
         #Кнопка таймаут team2
-        self.timeout_team2_button = tk.Button(self.control_panel, text="ТАЙМАУТ", width=16, command=self.start_timeout_team2)
+        self.timeout_team2_button = tk.Button(self.master, text="ТАЙМАУТ", width=16, bg='yellow', command=self.start_timeout_team2)
         self.timeout_team2_button.place(x = 816, y = 375, anchor='center')
 
         self.timeout_label_team2 = None
 
         # Кнопка включения ТАБЛО
-        self.on_tablo_button = tk.Button(master, text="ВКЛ. Табло", command=self.on_tablo)
-        self.on_tablo_button.pack()
+        self.on_tablo_button = tk.Button(self.master, text="ВКЛ. Табло", width=12, command=self.on_tablo)
+        self.on_tablo_button.place(x = 727, y = 729, anchor='center')
 
         # Кнопка выключения ТАБЛО
-        self.off_tablo_button = tk.Button(self.master, text="ВЫКЛ. Табло", command=self.off_tablo)
-        self.off_tablo_button.pack()
+        self.off_tablo_button = tk.Button(self.master, text="ВЫКЛ. Табло", width=12, command=self.off_tablo)
+        self.off_tablo_button.place(x = 834, y = 729, anchor='center')
         self.off_tablo_button.config(state=tk.DISABLED)
         ####################
 
         self.fullscreen_state = False
 
 ###################################################### КНОПКИ
-        self.penalty_button = tk.Button(self.control_panel, text="ШТРАФ", width=11, command=self.penalty_apply)
+        self.penalty_button = tk.Button(self.master, text="ШТРАФ", width=11, command=self.penalty_apply)
         self.penalty_button.place(x=276, y= 464, anchor='center')
 
-        self.penalty_button2 = tk.Button(self.control_panel, text="ШТРАФ", width=11, command=self.penalty_apply2)
+        self.penalty_button2 = tk.Button(self.master, text="ШТРАФ", width=11, command=self.penalty_apply2)
         self.penalty_button2.place(x=276, y= 507, anchor='center')
 
-        self.penalty_button3 = tk.Button(self.control_panel, text="ШТРАФ", width=11, command=self.penalty_apply3)
+        self.penalty_button3 = tk.Button(self.master, text="ШТРАФ", width=11, command=self.penalty_apply3)
         self.penalty_button3.place(x=276, y= 550, anchor='center')
 
-        self.penalty_button4 = tk.Button(self.control_panel, text="ШТРАФ", width=11, command=self.penalty_apply4)
+        self.penalty_button4 = tk.Button(self.master, text="ШТРАФ", width=11, command=self.penalty_apply4)
         self.penalty_button4.place(x=727, y= 464, anchor='center')
 
-        self.penalty_button5 = tk.Button(self.control_panel, text="ШТРАФ", width=11, command=self.penalty_apply5)
+        self.penalty_button5 = tk.Button(self.master, text="ШТРАФ", width=11, command=self.penalty_apply5)
         self.penalty_button5.place(x=727, y= 507, anchor='center')
 
-        self.penalty_button5 = tk.Button(self.control_panel, text="ШТРАФ", width=11, command=self.penalty_apply6)
+        self.penalty_button5 = tk.Button(self.master, text="ШТРАФ", width=11, command=self.penalty_apply6)
         self.penalty_button5.place(x=727, y= 550, anchor='center')
 
 
 ######################################################
 
 #######################################  ВВОД ДАННЫХ В ОКНЕ MASTER #####################################
-        self.penalty_number_entry = tk.Entry(self.control_panel, font=("Helvetica", 14), justify="center")
+        self.penalty_number_entry = tk.Entry(self.master, font=("Helvetica", 14), justify="center")
         self.penalty_number_entry.place(x=102, y=462, anchor='center', width=30, height=25)
 
-        self.penalty_minutes_entry = tk.Entry(self.control_panel, font=("Helvetica", 14), justify="center")
+        self.penalty_minutes_entry = tk.Entry(self.master, font=("Helvetica", 14), justify="center")
         self.penalty_minutes_entry.insert(0, '2')
         self.penalty_minutes_entry.place(x=200, y=462, anchor='center', width=30, height=25)
 
         self.penalty_update_timer()
 
-        self.penalty_number_entry2 = tk.Entry(self.control_panel, font=("Helvetica", 14), justify="center")
+        self.penalty_number_entry2 = tk.Entry(self.master, font=("Helvetica", 14), justify="center")
         self.penalty_number_entry2.place(x=102, y=505, anchor='center', width=30, height=25)
 
-        self.penalty_minutes_entry2 = tk.Entry(self.control_panel, font=("Helvetica", 14), justify="center")
+        self.penalty_minutes_entry2 = tk.Entry(self.master, font=("Helvetica", 14), justify="center")
         self.penalty_minutes_entry2.insert(0, '2')
         self.penalty_minutes_entry2.place(x=200, y=505, anchor='center', width=30, height=25)
 
         self.penalty_update_timer2()
 
-        self.penalty_number_entry3 = tk.Entry(self.control_panel, font=("Helvetica", 14), justify="center")
+        self.penalty_number_entry3 = tk.Entry(self.master, font=("Helvetica", 14), justify="center")
         self.penalty_number_entry3.place(x=102, y=548, anchor='center', width=30, height=25)
 
-        self.penalty_minutes_entry3 = tk.Entry(self.control_panel, font=("Helvetica", 14), justify="center")
+        self.penalty_minutes_entry3 = tk.Entry(self.master, font=("Helvetica", 14), justify="center")
         self.penalty_minutes_entry3.insert(0, '2')
         self.penalty_minutes_entry3.place(x=200, y=548, anchor='center', width=30, height=25)
 
         self.penalty_update_timer3()
 
-        self.penalty_number_entry4 = tk.Entry(self.control_panel, font=("Helvetica", 14), justify="center")
+        self.penalty_number_entry4 = tk.Entry(self.master, font=("Helvetica", 14), justify="center")
         self.penalty_number_entry4.place(x=552, y=462, anchor='center', width=30, height=25)
 
-        self.penalty_minutes_entry4 = tk.Entry(self.control_panel, font=("Helvetica", 14), justify="center")
+        self.penalty_minutes_entry4 = tk.Entry(self.master, font=("Helvetica", 14), justify="center")
         self.penalty_minutes_entry4.insert(0, '2')
         self.penalty_minutes_entry4.place(x=650, y=462, anchor='center', width=30, height=25)
 
         self.penalty_update_timer4()
 
-        self.penalty_number_entry5 = tk.Entry(self.control_panel, font=("Helvetica", 14), justify="center")
+        self.penalty_number_entry5 = tk.Entry(self.master, font=("Helvetica", 14), justify="center")
         self.penalty_number_entry5.place(x=552, y=505, anchor='center', width=30, height=25)
 
-        self.penalty_minutes_entry5 = tk.Entry(self.control_panel, font=("Helvetica", 14), justify="center")
+        self.penalty_minutes_entry5 = tk.Entry(self.master, font=("Helvetica", 14), justify="center")
         self.penalty_minutes_entry5.insert(0, '2')
         self.penalty_minutes_entry5.place(x=650, y= 505, anchor='center', width=30, height=25)
 
         self.penalty_update_timer5()
 
-        self.penalty_number_entry6 = tk.Entry(self.control_panel, font=("Helvetica", 14), justify="center")
+        self.penalty_number_entry6 = tk.Entry(self.master, font=("Helvetica", 14), justify="center")
         self.penalty_number_entry6.place(x=552, y=548, anchor='center', width=30, height=25)
 
-        self.penalty_minutes_entry6 = tk.Entry(self.control_panel, font=("Helvetica", 14), justify="center")
+        self.penalty_minutes_entry6 = tk.Entry(self.master, font=("Helvetica", 14), justify="center")
         self.penalty_minutes_entry6.insert(0, '2')
         self.penalty_minutes_entry6.place(x=650, y=548, anchor='center', width=30, height=25)
 
@@ -891,7 +886,7 @@ class TimerApp:
 
         self.timeout_label_team1 = tk.Label(self.timer_window, text="ТАЙМАУТ", font=("Helvetika", 18), bg="black", fg="white")
         self.timeout_label_team1.place(relx=0.2, rely=0.45, anchor="center")
-        self.timeout_label_team1_control = tk.Label(self.control_panel, text="ТАЙМАУТ", font=("Helvetika", 6), bg="black", fg="white")
+        self.timeout_label_team1_control = tk.Label(self.master, text="ТАЙМАУТ", font=("Helvetika", 6), bg="black", fg="white")
         self.timeout_label_team1_control.place(x=215, y=125, anchor="center")
 
         self.countdown_team1(1 * 30)
@@ -920,7 +915,7 @@ class TimerApp:
 
         self.timeout_label_team2 = tk.Label(self.timer_window, text="ТАЙМАУТ", font=("Helvetika", 18), bg="black", fg="white")
         self.timeout_label_team2.place(relx=0.8, rely=0.45, anchor="center")
-        self.timeout_label_team2_control = tk.Label(self.control_panel, text="ТАЙМАУТ", font=("Helvetika", 6), bg="black", fg="white")
+        self.timeout_label_team2_control = tk.Label(self.master, text="ТАЙМАУТ", font=("Helvetika", 6), bg="black", fg="white")
         self.timeout_label_team2_control.place(x=674, y=125, anchor="center")
 
         self.countdown_team2(1 * 30)
@@ -950,7 +945,7 @@ class TimerApp:
 
         self.break_label = tk.Label(self.timer_window, text="ПЕРЕРЫВ", font=("Helvetica", 25), bg="black", fg="white")
         self.break_label.place(relx=0.5, rely=0.80, anchor="center")
-        self.break_label = tk.Label(self.control_panel, text="ПЕРЕРЫВ", font=("Helvetica", 10), bg="black", fg="white")
+        self.break_label = tk.Label(self.master, text="ПЕРЕРЫВ", font=("Helvetica", 10), bg="black", fg="white")
         self.break_label.place(x=450, y=223, anchor="center")
         # self.break_label.pack(pady=20)
 
@@ -983,7 +978,9 @@ class TimerApp:
         self.timer_running = False
         self.button.config(text="Игра")
         self.time_remaining = 20 * 60
-        self.timer_label.config(text=self.format_time(self.time_remaining))
+        self.timer_label.config(text='20:00')
+        self.timer_label_control.config(text='20:00')
+        # self.timer_label.config(text=self.format_time(self.time_remaining)) # так было на всякий случай
         self.start_time = 0
         self.paused_time = 0
 
