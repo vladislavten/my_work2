@@ -3,6 +3,9 @@ from tkinter import messagebox
 import time
 from screeninfo import get_monitors
 
+def on_closing():
+    if messagebox.askokcancel("Выход", "Вы действительно хотите завершить работу программы: Управление таймером?"):
+        root.destroy()
 
 class TimerApp:
     def __init__(self, master):
@@ -1232,9 +1235,16 @@ class TimerApp:
         self.penalty_number_label6.place_forget()
         self.penalty_number_label6_control.place_forget()
 
+        def on_closing():
+            if messagebox.askokcancel("Выход", "Вы действительно хотите завершить работу программы?"):
+                root.destroy()
+
+
+
 
 
 if __name__ == "__main__":
     root = tk.Tk()
     app = TimerApp(root)
+    root.protocol("WM_DELETE_WINDOW", on_closing)
     root.mainloop()
