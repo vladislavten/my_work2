@@ -2,6 +2,8 @@ import tkinter as tk
 from tkinter import messagebox
 import time
 from screeninfo import get_monitors
+from PIL import Image, ImageTk
+import os.path
 
 def on_closing():
     if messagebox.askokcancel("Выход", "Вы действительно хотите завершить работу программы: Управление таймером?"):
@@ -156,6 +158,9 @@ class TimerApp:
         self.penalty_minutes5 = '0'
         self.penalty_minutes6 = '0'
 
+        self.data_team = {'23': 'Тен Владислав', '22': 'Тен Ульяна'}
+        self.data_team2 = {}
+
 
 #######################################
 
@@ -195,6 +200,10 @@ class TimerApp:
 
         self.control_team1_label = tk.Label(self.master, text= 'УПРАВЛЕНИЕ КОМАНДОЙ ХОЗЯЕВ', font=("Helvetica", 8), fg='black', bg='lightblue')
         self.control_team1_label.place(x=215, y=345, anchor='center')
+        self.control_team1_label.place(x=215, y=345, anchor='center')
+
+        self.control_team1_label = tk.Label(self.master, text= 'УПРАВЛЕНИЕ КОМАНДОЙ ГОСТЕЙ', font=("Helvetica", 8), fg='black', bg='lightblue')
+        self.control_team1_label.place(x=674, y=345, anchor='center')
 
         self.penalty_team1_label = tk.Label(self.master, text= 'ШТРАФЫ', font=("Helvetica", 8), fg='black', bg='lightblue')
         self.penalty_team1_label.place(x=215, y=425, anchor='center')
@@ -359,6 +368,10 @@ class TimerApp:
         self.off_tablo_button = tk.Button(self.master, text="ВЫКЛ. Табло", width=12, command=self.off_tablo)
         self.off_tablo_button.place(x = 834, y = 729, anchor='center')
         self.off_tablo_button.config(state=tk.DISABLED)
+
+        # Кнопка записать списки команд
+        self.list_teams = tk.Button(self.master, text="Записать списки команд", width=22, command=self.list_save_comands)
+        self.list_teams.place(x = 450, y = 729, anchor='center')
         ####################
 
         self.fullscreen_state = False
@@ -1235,9 +1248,93 @@ class TimerApp:
         self.penalty_number_label6.place_forget()
         self.penalty_number_label6_control.place_forget()
 
-        def on_closing():
-            if messagebox.askokcancel("Выход", "Вы действительно хотите завершить работу программы?"):
-                root.destroy()
+    def list_save_comands(self):
+        root2 = tk.Toplevel(root)
+        root2.title("Гол забил")
+        root2.geometry('400x400')
+        def save1():
+            self.data_team[player_number_entry.get()] = player_name_entry.get()
+
+        def save2():
+            self.data_team2[player_number_entry2.get()] = player_name_entry2.get()
+
+        def goal():
+            if goal_scored_number.get() in self.data_team and os.path.exists(
+                    f'{os.path.dirname(__file__)}\\photo\\{goal_scored_number.get()}.jpg'):
+                print('фото доступно')
+                window_goal = tk.Toplevel(root2)
+                window_goal.geometry('1280x1024')
+                # window_goal.attributes('-fullscreen', True)
+                window_goal.title('ГОЛ')
+                window_goal['bg'] = 'black'
+
+                window_goal.geometry(
+                    f"{self.secondary_monitor.width}x{self.secondary_monitor.height}+{self.secondary_monitor.x}+{self.secondary_monitor.y}")
+                window_goal['bg'] = 'black'
+                window_goal.overrideredirect(True)
+
+                image_path = f"photo\\{goal_scored_number.get()}.jpg"
+                image = Image.open(image_path)
+                image = image.resize((400, 400))
+                photo = ImageTk.PhotoImage(image)
+
+                photo_label = tk.Label(window_goal, image=photo)
+
+                photo_label.image = photo  # сохраняем ссылку на изображение, чтобы избежать сборщика мусора
+
+                photo_label.place(relx=0.5, rely=0.4, anchor='center')
+
+
+                number1 = goal_scored_number.get()
+                name1 = self.data_team[number1]
+                print('ok6')
+
+                goal_home = tk.Label(window_goal, text=f'Гол забил\nномер: {number1}, {name1} ', justify='center',
+                                     font=("Helvetica", 50), bg="black", fg="red")
+                goal_home.place(relx=0.5, rely=0.8, anchor='center')
+                window_goal.after(3000, window_goal.destroy)
+            elif goal_scored_number.get() in self.data_team:
+                window_goal = tk.Toplevel(root2)
+                window_goal.title('ГОЛ')
+                window_goal['bg'] = 'black'
+                window_goal.geometry(
+                    f"{self.secondary_monitor.width}x{self.secondary_monitor.height}+{self.secondary_monitor.x}+{self.secondary_monitor.y}")
+                window_goal['bg'] = 'black'
+                window_goal.overrideredirect(True)
+
+                number1 = goal_scored_number.get()
+                name1 = self.data_team[number1]
+
+                goal_home = tk.Label(window_goal, text=f'Гол забил\nномер: {number1}, {name1} ', justify='center',
+                                     font=("Helvetica", 50), bg="black", fg="red")
+                goal_home.place(relx=0.5, rely=0.5, anchor='center')
+                window_goal.after(3000, window_goal.destroy)
+            else:
+                messagebox.showinfo('Ошибка', 'Такого номера нет в списках игроков')
+
+        player_number_entry = tk.Entry(root2)
+        player_number_entry.pack()
+        player_name_entry = tk.Entry(root2)
+        player_name_entry.pack()
+        save_button = tk.Button(root2, text="Записать 1", command=save1)
+        save_button.pack()
+
+        player_number_entry2 = tk.Entry(root2)
+        player_number_entry2.pack()
+        player_name_entry2 = tk.Entry(root2)
+        player_name_entry2.pack()
+        save_button2 = tk.Button(root2, text="Записать 2", command=save2)
+        save_button2.pack()
+
+        goal_scored_number = tk.Entry(root2)
+        goal_scored_number.pack()
+        goal_scored = tk.Button(root2, text="Гол забил", command=goal)
+        goal_scored.pack()
+
+        goal_scored_number2 = tk.Entry(root2)
+        goal_scored_number2.pack()
+        goal_scored2 = tk.Button(root2, text="Гол забил", command=goal)
+        goal_scored2.pack()
 
 
 
