@@ -26,6 +26,7 @@ class TimerApp:
         self.master.resizable(False, False)
         self.master['bg'] = 'lightblue'
 
+
 ################################ ДЕКОРАЦИИ ##################################################
         black_strip = tk.Frame(self.master, bg="black", width=900, height=260)
         black_strip.pack(side="top")
@@ -41,7 +42,10 @@ class TimerApp:
         white_strip.place(x=0,y=407)
         white_strip = tk.Frame(self.master, bg="white", width=900, height=1)
         white_strip.place(x=0,y=578)
-
+        white_strip = tk.Frame(self.master, bg="white", width=1, height=120)
+        white_strip.place(x=673,y=579)
+        white_strip = tk.Frame(self.master, bg="white", width=1, height=120)
+        white_strip.place(x=223,y=579)
 
 
         # Добавляем поля ввода для имен команд и кнопку "Сохранить команды"
@@ -158,7 +162,7 @@ class TimerApp:
         self.penalty_minutes5 = '0'
         self.penalty_minutes6 = '0'
 
-        self.data_team = {'23': 'Тен Владислав', '22': 'Тен Ульяна'}
+        self.data_team = {}
         self.data_team2 = {}
 
 
@@ -242,6 +246,12 @@ class TimerApp:
         self.control_penalty_label = tk.Label(self.master, text= 'УПРАВЛЕНИЕ ТАЙМЕРОМ', font=("Helvetica", 8), fg='black', bg='lightblue')
         self.control_penalty_label.place(x=450, y=595, anchor='center')
 
+        self.control_goal_label = tk.Label(self.master, text= 'ГОЛ ЗАБИЛ', font=("Helvetica", 8), fg='black', bg='lightblue')
+        self.control_goal_label.place(x=114, y=595, anchor='center')
+
+        self.control_goal_label2 = tk.Label(self.master, text= 'ГОЛ ЗАБИЛ', font=("Helvetica", 8), fg='black', bg='lightblue')
+        self.control_goal_label2.place(x=785, y=595, anchor='center')
+
             #Текст таймера таймаута team1
         self.timeout_team1_label = tk.Label(self.timer_window, text="", font=("DS-Digital", 30), bg="black", fg="yellow")
         self.timeout_team1_label.place(relx=0.2, rely=0.49, anchor="center")
@@ -306,7 +316,7 @@ class TimerApp:
         self.button = tk.Button(self.master, text="ИГРА", width=12, command=self.general_start)
         self.button.place(x=65, y=729, anchor='center')
 
-        self.reset_button = tk.Button(self.master, text="Начать сначала", width=15, command=self.reset_timer)
+        self.reset_button = tk.Button(self.master, text="НАЧАТЬ СНАЧАЛА", width=15, command=self.reset_timer)
         self.reset_button.place(x=193, y=728, anchor='center')
 
         self.goal_home_increase_button = tk.Button(self.master, text="ГОЛ", width=16, command=self.goal_home_increase)
@@ -370,7 +380,7 @@ class TimerApp:
         self.off_tablo_button.config(state=tk.DISABLED)
 
         # Кнопка записать списки команд
-        self.list_teams = tk.Button(self.master, text="Записать списки команд", width=22, command=self.list_save_comands)
+        self.list_teams = tk.Button(self.master, text="ЗАПИСАТЬ СПИСКИ ИГРОКОВ",  command=self.list_save_comands)
         self.list_teams.place(x = 450, y = 729, anchor='center')
         ####################
 
@@ -414,7 +424,27 @@ class TimerApp:
         self.penalty_cancel_button6.place(x=834, y= 550, anchor='center')
 
 
-######################################################
+###################################################### Нонец штрафных
+
+        ########################### ГОЛ ЗАБИЛ ##########################
+        self.number1_goal_label = tk.Label(self.master, text= 'НОМЕР', font=("Helvetica", 8), fg='black', bg='lightblue')
+        self.number1_goal_label.place(x=38, y=639, anchor='center')
+
+        self.goal_scored_number = tk.Entry(self.master, font=("Helvetica", 14), justify="center")
+        self.goal_scored_number.place(x=83, y=639, anchor='center', width=30, height=25)
+        self.goal_scored = tk.Button(self.master, text="ГОЛ ЗАБИЛ", width=11, command=self.goal)
+        self.goal_scored.place(x=160, y= 640, anchor='center')
+
+
+        self.number_goal_label2 = tk.Label(self.master, text= 'НОМЕР', font=("Helvetica", 8), fg='black', bg='lightblue')
+        self.number_goal_label2.place(x=709, y=639, anchor='center')
+
+        self.goal_scored_number2 = tk.Entry(self.master, font=("Helvetica", 14), justify="center")
+        self.goal_scored_number2.place(x=754, y=639, anchor='center', width=30, height=25)
+        self.goal_scored2 = tk.Button(self.master, text="ГОЛ ЗАБИЛ", width=11, command=self.goal2)
+        self.goal_scored2.place(x=831, y= 640, anchor='center')
+
+
 
 #######################################  ВВОД ДАННЫХ В ОКНЕ MASTER #####################################
         self.penalty_number_entry = tk.Entry(self.master, font=("Helvetica", 14), justify="center")
@@ -1248,97 +1278,195 @@ class TimerApp:
         self.penalty_number_label6.place_forget()
         self.penalty_number_label6_control.place_forget()
 
+
+############################# ЗАПИСЬ КОМАНД ################################################
     def list_save_comands(self):
-        root2 = tk.Toplevel(root)
-        root2.title("Гол забил")
-        root2.geometry('400x400')
         def save1():
-            self.data_team[player_number_entry.get()] = player_name_entry.get()
+            self.data_team[self.player_number_entry.get()] = self.player_name_entry.get().upper()
+            print(self.data_team)
 
         def save2():
-            self.data_team2[player_number_entry2.get()] = player_name_entry2.get()
-
-        def goal():
-            if goal_scored_number.get() in self.data_team and os.path.exists(
-                    f'{os.path.dirname(__file__)}\\photo\\{goal_scored_number.get()}.jpg'):
-                print('фото доступно')
-                window_goal = tk.Toplevel(root2)
-                window_goal.geometry('1280x1024')
-                # window_goal.attributes('-fullscreen', True)
-                window_goal.title('ГОЛ')
-                window_goal['bg'] = 'black'
-
-                window_goal.geometry(
-                    f"{self.secondary_monitor.width}x{self.secondary_monitor.height}+{self.secondary_monitor.x}+{self.secondary_monitor.y}")
-                window_goal['bg'] = 'black'
-                window_goal.overrideredirect(True)
-
-                image_path = f"photo\\{goal_scored_number.get()}.jpg"
-                image = Image.open(image_path)
-                image = image.resize((400, 400))
-                photo = ImageTk.PhotoImage(image)
-
-                photo_label = tk.Label(window_goal, image=photo)
-
-                photo_label.image = photo  # сохраняем ссылку на изображение, чтобы избежать сборщика мусора
-
-                photo_label.place(relx=0.5, rely=0.4, anchor='center')
+            self.data_team2[self.player_number_entry2.get()] = self.player_name_entry2.get().upper()
+            print(self.data_team2)
 
 
-                number1 = goal_scored_number.get()
-                name1 = self.data_team[number1]
-                print('ok6')
+        self.save_comands_window = tk.Toplevel(root)
+        self.save_comands_window.title("ЗАПИСЬ ИГРОКОВ")
+        self.save_comands_window.geometry('600x445')
+        self.save_comands_window['bg'] = 'lightblue'
 
-                goal_home = tk.Label(window_goal, text=f'Гол забил\nномер: {number1}, {name1} ', justify='center',
-                                     font=("Helvetica", 50), bg="black", fg="red")
-                goal_home.place(relx=0.5, rely=0.8, anchor='center')
-                window_goal.after(3000, window_goal.destroy)
-            elif goal_scored_number.get() in self.data_team:
-                window_goal = tk.Toplevel(root2)
-                window_goal.title('ГОЛ')
-                window_goal['bg'] = 'black'
-                window_goal.geometry(
-                    f"{self.secondary_monitor.width}x{self.secondary_monitor.height}+{self.secondary_monitor.x}+{self.secondary_monitor.y}")
-                window_goal['bg'] = 'black'
-                window_goal.overrideredirect(True)
+        self.text_box_home = tk.Text(self.save_comands_window, height=15, width=34)
+        self.text_box_home.place(relx=0.25, y= 310, anchor='center')
 
-                number1 = goal_scored_number.get()
-                name1 = self.data_team[number1]
+        self.text_box_guests = tk.Text(self.save_comands_window, height=15, width=34)
+        self.text_box_guests.place(relx=0.75, y= 310, anchor='center')
 
-                goal_home = tk.Label(window_goal, text=f'Гол забил\nномер: {number1}, {name1} ', justify='center',
-                                     font=("Helvetica", 50), bg="black", fg="red")
-                goal_home.place(relx=0.5, rely=0.5, anchor='center')
-                window_goal.after(3000, window_goal.destroy)
-            else:
-                messagebox.showinfo('Ошибка', 'Такого номера нет в списках игроков')
+        white_strip = tk.Frame(self.save_comands_window, bg="white", width=600, height=1)
+        white_strip.place(x=0,y=35)
+        white_strip = tk.Frame(self.save_comands_window, bg="white", width=1, height=160)
+        white_strip.place(x=300,y=0)
 
-        player_number_entry = tk.Entry(root2)
-        player_number_entry.pack()
-        player_name_entry = tk.Entry(root2)
-        player_name_entry.pack()
-        save_button = tk.Button(root2, text="Записать 1", command=save1)
-        save_button.pack()
+        team1_label = tk.Label(self.save_comands_window, text= 'КОМАНДА ХОЗЯЕВ', font=("Helvetica", 10), fg='black', bg='lightblue')
+        team1_label.place(x=150, y=19, anchor='center')
+        team2_label = tk.Label(self.save_comands_window, text= 'КОМАНДА ГОСТЕЙ', font=("Helvetica", 10), fg='black', bg='lightblue')
+        team2_label.place(x=450, y=19, anchor='center')
 
-        player_number_entry2 = tk.Entry(root2)
-        player_number_entry2.pack()
-        player_name_entry2 = tk.Entry(root2)
-        player_name_entry2.pack()
-        save_button2 = tk.Button(root2, text="Записать 2", command=save2)
-        save_button2.pack()
+        number_team1_label = tk.Label(self.save_comands_window, text= 'Номер', font=("Helvetica", 10), fg='black', bg='lightblue')
+        number_team1_label.place(x=43, y=58, anchor='center')
+        number_team2_label = tk.Label(self.save_comands_window, text= 'Номер', font=("Helvetica", 10), fg='black', bg='lightblue')
+        number_team2_label.place(x=345, y=58, anchor='center')
 
-        goal_scored_number = tk.Entry(root2)
-        goal_scored_number.pack()
-        goal_scored = tk.Button(root2, text="Гол забил", command=goal)
-        goal_scored.pack()
+        fio_team1_label = tk.Label(self.save_comands_window, text= 'Имя/Фамилия', font=("Helvetica", 10), fg='black', bg='lightblue')
+        fio_team1_label.place(x=184, y=58, anchor='center')
+        fio_team2_label = tk.Label(self.save_comands_window, text= 'Имя/Фамилия', font=("Helvetica", 10), fg='black', bg='lightblue')
+        fio_team2_label.place(x=484, y=58, anchor='center')
 
-        goal_scored_number2 = tk.Entry(root2)
-        goal_scored_number2.pack()
-        goal_scored2 = tk.Button(root2, text="Гол забил", command=goal)
-        goal_scored2.pack()
+        self.player_number_entry = tk.Entry(self.save_comands_window, font=("Helvetica", 12), justify="center")
+        self.player_number_entry.place(x=45, y=84, anchor='center', width=30, height= 25)
+        self.player_name_entry = tk.Entry(self.save_comands_window, font=("Helvetica", 12), justify="center")
+        self.player_name_entry.place(x=184, y=84, anchor='center', width=180, height=25)
+        self.save_button = tk.Button(self.save_comands_window, text="СОХРАНИТЬ", command=save1)
+        self.save_button.place(x=152, y=123, anchor='center', width=244)
+
+        self.player_number_entry2 = tk.Entry(self.save_comands_window, font=("Helvetica", 12), justify="center")
+        self.player_number_entry2.place(x=345, y=84, anchor='center', width=30, height=25)
+        self.player_name_entry2 = tk.Entry(self.save_comands_window, font=("Helvetica", 12), justify="center")
+        self.player_name_entry2.place(x=484, y=84, anchor='center', width=180, height=25, )
+        self.save_button2 = tk.Button(self.save_comands_window, text="СОХРАНИТЬ", command=save2)
+        self.save_button2.place(x=453, y=123, anchor='center', width=244)
+
+        show_team1_button = tk.Button(self.save_comands_window, text="Показать игроков", command=self.show_players)
+        show_team1_button.place(x=152, y=159, anchor='center', width=244)
+
+        show_team2_button = tk.Button(self.save_comands_window, text="Показать игроков", command=self.show_players2)
+        show_team2_button.place(x=452, y=159, anchor='center', width=244)
 
 
 
+    def goal(self):
+        if self.goal_scored_number.get() in self.data_team and os.path.exists(
+                f'{os.path.dirname(__file__)}\\photo_home\\{self.goal_scored_number.get()}.jpg'):
+            print('фото доступно')
+            window_goal = tk.Toplevel(self.master)
+            window_goal.geometry('1280x1024')
+            # window_goal.attributes('-fullscreen', True)
+            window_goal.title('ГОЛ')
+            window_goal['bg'] = 'black'
 
+            window_goal.geometry(
+                f"{self.secondary_monitor.width}x{self.secondary_monitor.height}+{self.secondary_monitor.x}+{self.secondary_monitor.y}")
+            window_goal['bg'] = 'black'
+            window_goal.overrideredirect(True)
+
+            image_path = f"photo_home\\{self.goal_scored_number.get()}.jpg"
+            image = Image.open(image_path)
+            image = image.resize((550, 400))
+            photo = ImageTk.PhotoImage(image)
+
+            photo_label = tk.Label(window_goal, image=photo)
+
+            photo_label.image = photo  # сохраняем ссылку на изображение, чтобы избежать сборщика мусора
+
+            photo_label.place(relx=0.5, rely=0.4, anchor='center')
+
+
+            number1 = self.goal_scored_number.get()
+            name1 = self.data_team[number1]
+            print('ok6')
+
+            goal_home = tk.Label(window_goal, text=f'ГОЛ ЗАБИЛ\nНОМЕР: {number1}\n{name1}', justify='center',
+                                 font=("Helvetica", 50), bg="black", fg="red")
+            goal_home.place(relx=0.5, rely=0.8, anchor='center')
+            window_goal.after(6000, window_goal.destroy)
+        elif self.goal_scored_number.get() in self.data_team:
+            window_goal = tk.Toplevel(self.master)
+            window_goal.title('ГОЛ')
+            window_goal['bg'] = 'black'
+            window_goal.geometry(
+                f"{self.secondary_monitor.width}x{self.secondary_monitor.height}+{self.secondary_monitor.x}+{self.secondary_monitor.y}")
+            window_goal['bg'] = 'black'
+            window_goal.overrideredirect(True)
+
+            number1 = self.goal_scored_number.get()
+            name1 = self.data_team[number1]
+
+            goal_home = tk.Label(window_goal, text=f'ГОЛ ЗАБИЛ\nНОМЕР: {number1}\n{name1}', justify='center',
+                                 font=("Helvetica", 50), bg="black", fg="red")
+            goal_home.place(relx=0.5, rely=0.5, anchor='center')
+            window_goal.after(6000, window_goal.destroy)
+        else:
+            messagebox.showinfo('Ошибка', 'Такого номера нет в списках игроков')
+
+    def goal2(self):
+        if self.goal_scored_number2.get() in self.data_team2 and os.path.exists(
+                f'{os.path.dirname(__file__)}\\photo_guests\\{self.goal_scored_number2.get()}.jpg'):
+            window_goal = tk.Toplevel(self.master)
+            window_goal.geometry('1280x1024')
+            window_goal.title('ГОЛ')
+            window_goal['bg'] = 'black'
+
+            window_goal.geometry(
+                f"{self.secondary_monitor.width}x{self.secondary_monitor.height}+{self.secondary_monitor.x}+{self.secondary_monitor.y}")
+            window_goal['bg'] = 'black'
+            window_goal.overrideredirect(True)
+
+            image_path = f"photo_guests\\{self.goal_scored_number2.get()}.jpg"
+            image = Image.open(image_path)
+            image = image.resize((550, 400))
+            photo = ImageTk.PhotoImage(image)
+
+            photo_label = tk.Label(window_goal, image=photo)
+
+            photo_label.image = photo  # сохраняем ссылку на изображение, чтобы избежать сборщика мусора
+
+            photo_label.place(relx=0.5, rely=0.4, anchor='center')
+
+            number2 = self.goal_scored_number2.get()
+            name2 = self.data_team2[number2]
+
+            goal_home = tk.Label(window_goal, text=f'ГОЛ ЗАБИЛ\nНОМЕР: {number2}\n{name2}', justify='center',
+                                 font=("Helvetica", 50), bg="black", fg="red")
+            goal_home.place(relx=0.5, rely=0.8, anchor='center')
+            window_goal.after(6000, window_goal.destroy)
+        elif self.goal_scored_number2.get() in self.data_team2:
+            window_goal = tk.Toplevel(self.master)
+            window_goal.title('ГОЛ')
+            window_goal['bg'] = 'black'
+            window_goal.geometry(
+                f"{self.secondary_monitor.width}x{self.secondary_monitor.height}+{self.secondary_monitor.x}+{self.secondary_monitor.y}")
+            window_goal['bg'] = 'black'
+            window_goal.overrideredirect(True)
+
+            number2 = self.goal_scored_number2.get()
+            name2 = self.data_team2[number2]
+
+            goal_home = tk.Label(window_goal, text=f'ГОЛ ЗАБИЛ\nНОМЕР: {number2}\n{name2}', justify='center',
+                                 font=("Helvetica", 50), bg="black", fg="red")
+            goal_home.place(relx=0.5, rely=0.5, anchor='center')
+            window_goal.after(6000, window_goal.destroy)
+        else:
+            messagebox.showinfo('Ошибка', 'Такого номера нет в списках игроков')
+
+    def show_players(self):
+        # Очищаем текстовое поле перед добавлением новых данных
+        self.text_box_home.delete(1.0, tk.END)
+
+        # Выводим игроков в текстовое поле
+        count = 0
+        for number, name in self.data_team.items():
+            self.text_box_home.insert(tk.END, f"{count + 1}. {number} : {name}\n")
+            count += 1
+
+    def show_players2(self):
+        # Очищаем текстовое поле перед добавлением новых данных
+        self.text_box_guests.delete(1.0, tk.END)
+
+        # Выводим игроков в текстовое поле
+        count = 0
+        for number, name in self.data_team2.items():
+            self.text_box_guests.insert(tk.END, f"{count + 1}. {number} : {name}\n")
+            count += 1
+    #
 
 if __name__ == "__main__":
     root = tk.Tk()
