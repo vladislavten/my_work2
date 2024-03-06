@@ -165,7 +165,7 @@ class TimerApp:
         self.penalty_minutes5 = '0'
         self.penalty_minutes6 = '0'
 
-        self.data_team = {}
+        self.data_team = {'62': 'Смирягина', '20':'Краснодаров', '30':'Жопашников'}
         self.data_team2 = {}
 
 
@@ -1366,34 +1366,51 @@ class TimerApp:
     def goal(self):
         if self.goal_scored_number.get() in self.data_team and os.path.exists(f'photo_home/{self.goal_scored_number.get()}.jpg'):
             window_goal = tk.Toplevel(self.master)
-            window_goal.geometry('1280x1024')
-            # window_goal.attributes('-fullscreen', True)
+            # window_goal.geometry('1280x1024')
+            # window_goal.geometry('1280x1024')
+
             window_goal.title('ГОЛ')
             window_goal['bg'] = 'black'
-
             window_goal.geometry(
                 f"{self.secondary_monitor.width}x{self.secondary_monitor.height}+{self.secondary_monitor.x}+{self.secondary_monitor.y}")
             window_goal['bg'] = 'black'
             window_goal.overrideredirect(True)
+            window_goal.attributes('-topmost')
 
             image_path = f'photo_home/{self.goal_scored_number.get()}.jpg'
-            print(image_path)
             image = Image.open(image_path)
-            image = image.resize((550, 400))
+
+            width, height = image.size
+            # Вычисление нового размера изображения
+            new_height = 400
+            new_width = int(width * (new_height / height))
+
+            image = image.resize((new_width, new_height))
             photo = ImageTk.PhotoImage(image)
-
             photo_label = tk.Label(window_goal, image=photo)
-
             photo_label.image = photo  # сохраняем ссылку на изображение, чтобы избежать сборщика мусора
-
-            photo_label.place(relx=0.5, rely=0.4, anchor='center')
+            photo_label.place(relx=0.5, rely=0.44, anchor='center')
 
             number1 = self.goal_scored_number.get()
             name1 = self.data_team[number1]
 
-            goal_home = tk.Label(window_goal, text=f'ГОЛ ЗАБИЛ\nНОМЕР: {number1}\n{name1}', justify='center',
-                                 font=("Helvetica", 50), bg="black", fg="red")
-            goal_home.place(relx=0.5, rely=0.8, anchor='center')
+            top_goal_label = tk.Label(window_goal, text='ГОЛ ЗАБИЛ', font=('Helvetica', 30, 'bold'), fg='white', bg='black')
+            top_goal_label.place(relx=0.5, rely=0.12, anchor='center')
+
+            plashka_label = tk.Frame(window_goal, width=130, height=120, bg='green')
+            plashka_label.place(relx=0.5, rely=0.8, anchor='center')
+
+            bottom_number_label = tk.Label(window_goal, text='НОМЕР', justify='center',
+                                 font=("Helvetica", 23, 'bold'), bg="black", fg="white")
+            bottom_number_label.place(relx=0.5, rely=0.72, anchor='center')
+
+            goal_home_number = tk.Label(window_goal, text=f'{number1}', justify='center',
+                                 font=("Helvetica", 69, 'bold'), bg="green", fg="white")
+            goal_home_number.place(relx=0.5, rely=0.8, anchor='center')
+            goal_home_name = tk.Label(window_goal, text=f'{name1}', justify='center',
+                                 font=("Helvetica", 42, 'bold'), bg="black", fg="white")
+            goal_home_name.place(relx=0.5, rely=0.9, anchor='center')
+
             window_goal.after(6000, window_goal.destroy)
         elif self.goal_scored_number.get() in self.data_team:
             window_goal = tk.Toplevel(self.master)
@@ -1418,33 +1435,47 @@ class TimerApp:
     def goal2(self):
         if self.goal_scored_number2.get() in self.data_team2 and os.path.exists(f'photo_guests/{self.goal_scored_number2.get()}.jpg'):
             window_goal = tk.Toplevel(self.master)
-            window_goal.geometry('1280x1024')
+            # window_goal.geometry('1280x1024')
             window_goal.title('ГОЛ')
             window_goal['bg'] = 'black'
-
             window_goal.geometry(
                 f"{self.secondary_monitor.width}x{self.secondary_monitor.height}+{self.secondary_monitor.x}+{self.secondary_monitor.y}")
             window_goal['bg'] = 'black'
             window_goal.overrideredirect(True)
+            window_goal.attributes('-topmost')
 
             image_path = f'photo_guests/{self.goal_scored_number2.get()}.jpg'
-            print(image_path)
             image = Image.open(image_path)
-            image = image.resize((550, 400))
+            width, height = image.size
+            # Вычисление нового размера изображения
+            new_height = 400
+            new_width = int(width * (new_height / height))
+            image = image.resize((new_width, new_height))
             photo = ImageTk.PhotoImage(image)
 
             photo_label = tk.Label(window_goal, image=photo)
-
             photo_label.image = photo  # сохраняем ссылку на изображение, чтобы избежать сборщика мусора
-
-            photo_label.place(relx=0.5, rely=0.4, anchor='center')
+            photo_label.place(relx=0.5, rely=0.44, anchor='center')
 
             number2 = self.goal_scored_number2.get()
             name2 = self.data_team2[number2]
 
-            goal_home = tk.Label(window_goal, text=f'ГОЛ ЗАБИЛ\nНОМЕР: {number2}\n{name2}', justify='center',
-                                 font=("Helvetica", 50), bg="black", fg="red")
-            goal_home.place(relx=0.5, rely=0.8, anchor='center')
+            top_goal_label = tk.Label(window_goal, text='ГОЛ ЗАБИЛ', font=('Helvetica', 30, 'bold'), fg='white', bg='black')
+            top_goal_label.place(relx=0.5, rely=0.12, anchor='center')
+
+            plashka_label = tk.Frame(window_goal, width=130, height=120, bg='green')
+            plashka_label.place(relx=0.5, rely=0.8, anchor='center')
+
+            bottom_number_label = tk.Label(window_goal, text='НОМЕР', justify='center',
+                                 font=("Helvetica", 23, 'bold'), bg="black", fg="white")
+            bottom_number_label.place(relx=0.5, rely=0.72, anchor='center')
+
+            goal_guests_number = tk.Label(window_goal, text=f'{number2}', justify='center',
+                                 font=("Helvetica", 69, 'bold'), bg="green", fg="white")
+            goal_guests_number.place(relx=0.5, rely=0.8, anchor='center')
+            goal_guests_name = tk.Label(window_goal, text=f'{name2}', justify='center',
+                                 font=("Helvetica", 42, 'bold'), bg="black", fg="white")
+            goal_guests_name.place(relx=0.5, rely=0.9, anchor='center')
             window_goal.after(6000, window_goal.destroy)
         elif self.goal_scored_number2.get() in self.data_team2:
             window_goal = tk.Toplevel(self.master)
