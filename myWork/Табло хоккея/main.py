@@ -1,65 +1,39 @@
 import tkinter as tk
-from datetime import datetime, timedelta
+from tkinter import messagebox
+from PIL import Image, ImageTk
+import os
 
-# Функция для переключения в полноэкранный режим
-def fullscreen():
-  # Переводим новое окно в полноэкранный режим
-  new_window.deiconify()
-  new_window.attributes('-fullscreen', True)
-  new_window['bg'] = 'black'
+class PhotoViewerApp:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Photo Viewer")
+        self.root.attributes('-topmost', True)  # Устанавливаем флаг topmost для окна
 
-# Функция для выхода из полноэкранного режима
-def exit_fullscreen():
-  # Проверяем, находится ли новое окно в полноэкранном режиме
-  if new_window.attributes('-fullscreen'):
-    # Выходим из полноэкранного режима
-    # new_window.withdraw()
-    new_window.attributes('-fullscreen', False)
+        self.label = tk.Label(root, text="Введите номер игрока:")
+        self.label.pack()
 
-def Hi():
-  print('Hello dude!')
+        self.player_number_entry = tk.Entry(root)
+        self.player_number_entry.pack()
 
+        self.show_photo_button = tk.Button(root, text="Показать фото", command=self.show_photo)
+        self.show_photo_button.pack()
 
+    def show_photo(self):
+        player_number = self.player_number_entry.get()
+        photo_path = f"photo/{player_number}.jpg"
 
-# Создаем корневой элемент окна
-root = tk.Tk()
-root.title('Бей-бей-Бейбарыс')
+        if os.path.exists(photo_path):
+            photo = Image.open(photo_path)
+            photo = photo.resize((300, 300))
+            photo = ImageTk.PhotoImage(photo)
 
-root['bg'] = 'black'
+            self.photo_label = tk.Label(self.root, image=photo)
+            self.photo_label.image = photo
+            self.photo_label.pack()
+        else:
+            messagebox.showinfo("Ошибка", "Такое фото отсутствует")
 
-# Задаем размер окна
-root.geometry('500x500')
-
-# Создаем новое окно
-new_window = tk.Toplevel(root)
-test = tk.Toplevel(root)
-test.geometry('500x500')
-# new_window.withdraw()
-new_window.geometry('300x300')
-new_window['bg'] = 'black'
-
-#Создаем лейбл
-a = 0
-time_text_label = tk.Label(test, text=a, font=("Helvetica", 35))
-time_text_label.place(relx=0.5, rely=0.1, anchor="center")
-
-# Создаем кнопки
-button = tk.Button(root, text="Перейти в полноэкранный режим", command=fullscreen, bg="red", fg="white")
-button_exit = tk.Button(root, text="Выйти из полноэкранного режима", command=exit_fullscreen, bg="red", fg="white")
-button_test2 = tk.Button(root, text='+1', command=a+1)
-button_test = tk.Button(new_window, text='TECT', command=Hi)
-start_timer = tk.Button(root, text='Старт таймера')
-
-# Размещаем кнопки
-button.pack(expand=True)
-button_exit.pack(expand=True)
-button_test.pack(expand=True)
-button_test2.pack()
-
-
-# Обрабатываем нажатие клавиши ESC
-root.bind("<Escape>", lambda event: exit_fullscreen())
-new_window.bind("<Escape>", lambda event: exit_fullscreen())
-
-# Запускаем главный цикл окна
-root.mainloop()
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = PhotoViewerApp(root)
+    root.mainloop()

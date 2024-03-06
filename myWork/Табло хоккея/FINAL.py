@@ -14,10 +14,12 @@ class TimerApp:
         self.monitors = get_monitors()
         # Выбираем второй монитор (индекс 1)
         if len(self.monitors) < 2:
+            print(len(self.monitors))
             messagebox.showinfo('INFO', 'Табло не обнаружено')
             self.secondary_monitor = self.monitors[0]
         else:
-            self.secondary_monitor = self.monitors[1]
+            print(len(self.monitors))
+            self.secondary_monitor = self.monitors[1] #1 это второй монитор, 0 это первый
 
 
         self.master = master
@@ -62,6 +64,7 @@ class TimerApp:
         # self.timer_window.geometry('1280x1024')
         self.timer_window['bg'] = 'black'
         self.timer_window.overrideredirect(True)
+        # self.timer_window.attributes('-topmost', True)
         self.timer_window.withdraw()
 
         self.timer_label = tk.Label(self.timer_window, text="20:00", font=("DS-Digital", 100), bg="black", fg="red")
@@ -253,14 +256,14 @@ class TimerApp:
         self.control_goal_label2.place(x=785, y=595, anchor='center')
 
             #Текст таймера таймаута team1
-        self.timeout_team1_label = tk.Label(self.timer_window, text="", font=("DS-Digital", 30), bg="black", fg="yellow")
+        self.timeout_team1_label = tk.Label(self.timer_window, text="", font=("DS-Digital", 40), bg="black", fg="yellow")
         self.timeout_team1_label.place(relx=0.2, rely=0.49, anchor="center")
         self.timeout_team1_label_control = tk.Label(self.master, text="", font=("DS-Digital", 19), bg="black", fg="yellow")
         self.timeout_team1_label_control.place(x=215, y=141, anchor="center")
 
 
             #Текст таймера таймаута team2
-        self.timeout_team2_label = tk.Label(self.timer_window, text="", font=("DS-Digital", 30), bg="black", fg="yellow")
+        self.timeout_team2_label = tk.Label(self.timer_window, text="", font=("DS-Digital", 40), bg="black", fg="yellow")
         self.timeout_team2_label.place(relx=0.8, rely=0.49, anchor="center")
         self.timeout_team2_label_control = tk.Label(self.master, text="", font=("DS-Digital", 19), bg="black", fg="yellow")
         self.timeout_team2_label_control.place(x=674, y=141, anchor="center")
@@ -533,26 +536,28 @@ class TimerApp:
                     or self.penalty_minutes_entry.get().strip() == '4'
                     or self.penalty_minutes_entry.get().strip() == '5'):
                 if not self.penalty_number_entry.get().strip() == '':
-                    # self.penalty_minutes = 0
-                    self.penalty_timer_label.place_forget()
-                    self.penalty_timer_label_control.place_forget()
-                    self.penalty_number_label.place_forget()
-                    self.penalty_number_label_control.place_forget()
-                    self.time_zero()  # сброс тайминга штрафа
-                    self.penalty_minutes = self.penalty_minutes_entry.get().strip()
-                    self.penalty_timer_label = tk.Label(self.timer_window, text=f"0{self.penalty_minutes}:00",
-                                                        font=("DS-Digital", 50), bg="black", fg="yellow")
-                    self.penalty_timer_label.place(relx=0.26, rely=0.65, anchor="center")
-                    self.penalty_timer_label_control = tk.Label(self.master, text=f"0{self.penalty_minutes}:00",
-                                                        font=("DS-Digital", 16), bg="black", fg="yellow")
-                    self.penalty_timer_label_control.place(x=230, y=188, anchor="center")
-                    self.penalty_number = self.penalty_number_entry.get().strip()
-                    self.penalty_number_label = tk.Label(self.timer_window, text=self.penalty_number,
-                                                         font=("DS-Digital", 50), bg="black", fg="yellow")
-                    self.penalty_number_label.place(relx=0.1, rely=0.65, anchor="center")
-                    self.penalty_number_label_control = tk.Label(self.master, text=self.penalty_number,
-                                                         font=("DS-Digital", 16), bg="black", fg="yellow")
-                    self.penalty_number_label_control.place(x=189, y=188, anchor="center")
+                    if self.penalty_number_entry.get() in self.data_team:
+                        self.penalty_timer_label.place_forget()
+                        self.penalty_timer_label_control.place_forget()
+                        self.penalty_number_label.place_forget()
+                        self.penalty_number_label_control.place_forget()
+                        self.time_zero()  # сброс тайминга штрафа
+                        self.penalty_minutes = self.penalty_minutes_entry.get().strip()
+                        self.penalty_timer_label = tk.Label(self.timer_window, text=f"0{self.penalty_minutes}:00",
+                                                            font=("DS-Digital", 50), bg="black", fg="yellow")
+                        self.penalty_timer_label.place(relx=0.26, rely=0.65, anchor="center")
+                        self.penalty_timer_label_control = tk.Label(self.master, text=f"0{self.penalty_minutes}:00",
+                                                            font=("DS-Digital", 16), bg="black", fg="yellow")
+                        self.penalty_timer_label_control.place(x=230, y=188, anchor="center")
+                        self.penalty_number = self.penalty_number_entry.get().strip()
+                        self.penalty_number_label = tk.Label(self.timer_window, text=self.penalty_number,
+                                                             font=("DS-Digital", 50), bg="black", fg="yellow")
+                        self.penalty_number_label.place(relx=0.1, rely=0.65, anchor="center")
+                        self.penalty_number_label_control = tk.Label(self.master, text=self.penalty_number,
+                                                             font=("DS-Digital", 16), bg="black", fg="yellow")
+                        self.penalty_number_label_control.place(x=189, y=188, anchor="center")
+                    else:
+                        messagebox.showinfo("Информация", f"Номер: {self.penalty_number_entry.get().strip()} отсутствует в списке игроков хозяев")
                 else:
                     messagebox.showinfo("Информация", "Введите номер игрока")
 
@@ -568,28 +573,31 @@ class TimerApp:
                     or self.penalty_minutes_entry2.get().strip() == '4'
                     or self.penalty_minutes_entry2.get().strip() == '5'):
                 if not self.penalty_number_entry2.get().strip() == '':
-                    # self.penalty_minutes = 0
-                    self.penalty_timer_label2.place_forget()
-                    self.penalty_number_label2.place_forget()
-                    self.penalty_timer_label2_control.place_forget()
-                    self.penalty_number_label2_control.place_forget()
-                    self.time_zero2()  # сброс тайминга штрафа
-                    self.penalty_minutes2 = self.penalty_minutes_entry2.get().strip()
-                    self.penalty_timer_label2 = tk.Label(self.timer_window, text=f"0{self.penalty_minutes2}:00",
-                                                         font=("DS-Digital", 50), bg="black", fg="yellow")
-                    self.penalty_timer_label2.place(relx=0.26, rely=0.74, anchor="center")
-                    self.penalty_timer_label2_control = tk.Label(self.master, text=f"0{self.penalty_minutes2}:00",
-                                                         font=("DS-Digital", 16), bg="black", fg="yellow")
-                    self.penalty_timer_label2_control.place(x=230, y=214, anchor="center")
+                    if self.penalty_number_entry2.get() in self.data_team:
+                        self.penalty_timer_label2.place_forget()
+                        self.penalty_number_label2.place_forget()
+                        self.penalty_timer_label2_control.place_forget()
+                        self.penalty_number_label2_control.place_forget()
+                        self.time_zero2()  # сброс тайминга штрафа
+                        self.penalty_minutes2 = self.penalty_minutes_entry2.get().strip()
+                        self.penalty_timer_label2 = tk.Label(self.timer_window, text=f"0{self.penalty_minutes2}:00",
+                                                             font=("DS-Digital", 50), bg="black", fg="yellow")
+                        self.penalty_timer_label2.place(relx=0.26, rely=0.74, anchor="center")
+                        self.penalty_timer_label2_control = tk.Label(self.master, text=f"0{self.penalty_minutes2}:00",
+                                                             font=("DS-Digital", 16), bg="black", fg="yellow")
+                        self.penalty_timer_label2_control.place(x=230, y=214, anchor="center")
 
-                    self.penalty_number2 = self.penalty_number_entry2.get().strip()
-                    self.penalty_number_label2 = tk.Label(self.timer_window, text=self.penalty_number2,
-                                                          font=("DS-Digital", 50), bg="black", fg="yellow")
-                    self.penalty_number_label2.place(relx=0.1, rely=0.74, anchor="center")
+                        self.penalty_number2 = self.penalty_number_entry2.get().strip()
+                        self.penalty_number_label2 = tk.Label(self.timer_window, text=self.penalty_number2,
+                                                              font=("DS-Digital", 50), bg="black", fg="yellow")
+                        self.penalty_number_label2.place(relx=0.1, rely=0.74, anchor="center")
 
-                    self.penalty_number_label2_control = tk.Label(self.master, text=self.penalty_number2,
-                                                          font=("DS-Digital", 16), bg="black", fg="yellow")
-                    self.penalty_number_label2_control.place(x=188, y=214, anchor="center")
+                        self.penalty_number_label2_control = tk.Label(self.master, text=self.penalty_number2,
+                                                              font=("DS-Digital", 16), bg="black", fg="yellow")
+                        self.penalty_number_label2_control.place(x=188, y=214, anchor="center")
+                    else:
+                        messagebox.showinfo("Информация",
+                                            f"Номер: {self.penalty_number_entry2.get().strip()} отсутствует в списке игроков хозяев")
                 else:
                     messagebox.showinfo("Информация", "Введите номер игрока")
 
@@ -605,26 +613,29 @@ class TimerApp:
                     or self.penalty_minutes_entry3.get().strip() == '4'
                     or self.penalty_minutes_entry3.get().strip() == '5'):
                 if not self.penalty_number_entry3.get() == '':
-                    # self.penalty_minutes = 0
-                    self.penalty_timer_label3.place_forget()
-                    self.penalty_timer_label3_control.place_forget()
-                    self.penalty_number_label3.place_forget()
-                    self.penalty_number_label3_control.place_forget()
-                    self.time_zero3()  # сброс тайминга штрафа
-                    self.penalty_minutes3 = self.penalty_minutes_entry3.get().strip()
-                    self.penalty_timer_label3 = tk.Label(self.timer_window, text=f"0{self.penalty_minutes3}:00",
-                                                         font=("DS-Digital", 50), bg="black", fg="yellow")
-                    self.penalty_timer_label3.place(relx=0.26, rely=0.83, anchor="center")
-                    self.penalty_timer_label3_control = tk.Label(self.master, text=f"0{self.penalty_minutes3}:00",
-                                                         font=("DS-Digital", 16), bg="black", fg="yellow")
-                    self.penalty_timer_label3_control.place(x=230, y=239, anchor="center")
-                    self.penalty_number3 = self.penalty_number_entry3.get().strip()
-                    self.penalty_number_label3 = tk.Label(self.timer_window, text=self.penalty_number3,
-                                                          font=("DS-Digital", 50), bg="black", fg="yellow")
-                    self.penalty_number_label3.place(relx=0.1, rely=0.83, anchor="center")
-                    self.penalty_number_label3_control = tk.Label(self.master, text=self.penalty_number3,
-                                                          font=("DS-Digital", 16), bg="black", fg="yellow")
-                    self.penalty_number_label3_control.place(x=188, y=239, anchor="center")
+                    if self.penalty_number_entry3.get() in self.data_team:
+                        self.penalty_timer_label3.place_forget()
+                        self.penalty_timer_label3_control.place_forget()
+                        self.penalty_number_label3.place_forget()
+                        self.penalty_number_label3_control.place_forget()
+                        self.time_zero3()  # сброс тайминга штрафа
+                        self.penalty_minutes3 = self.penalty_minutes_entry3.get().strip()
+                        self.penalty_timer_label3 = tk.Label(self.timer_window, text=f"0{self.penalty_minutes3}:00",
+                                                             font=("DS-Digital", 50), bg="black", fg="yellow")
+                        self.penalty_timer_label3.place(relx=0.26, rely=0.83, anchor="center")
+                        self.penalty_timer_label3_control = tk.Label(self.master, text=f"0{self.penalty_minutes3}:00",
+                                                             font=("DS-Digital", 16), bg="black", fg="yellow")
+                        self.penalty_timer_label3_control.place(x=230, y=239, anchor="center")
+                        self.penalty_number3 = self.penalty_number_entry3.get().strip()
+                        self.penalty_number_label3 = tk.Label(self.timer_window, text=self.penalty_number3,
+                                                              font=("DS-Digital", 50), bg="black", fg="yellow")
+                        self.penalty_number_label3.place(relx=0.1, rely=0.83, anchor="center")
+                        self.penalty_number_label3_control = tk.Label(self.master, text=self.penalty_number3,
+                                                              font=("DS-Digital", 16), bg="black", fg="yellow")
+                        self.penalty_number_label3_control.place(x=188, y=239, anchor="center")
+                    else:
+                        messagebox.showinfo("Информация",
+                                            f"Номер: {self.penalty_number_entry3.get().strip()} отсутствует в списке игроков хозяев")
                 else:
                     messagebox.showinfo("Информация", "Введите номер игрока")
 
@@ -640,26 +651,29 @@ class TimerApp:
                     or self.penalty_minutes_entry4.get() == '4'
                     or self.penalty_minutes_entry4.get() == '5'):
                 if not self.penalty_number_entry4.get() == '':
-                    # self.penalty_minutes = 0
-                    self.penalty_timer_label4.place_forget()
-                    self.penalty_timer_label4_control.place_forget()
-                    self.penalty_number_label4.place_forget()
-                    self.penalty_number_label4_control.place_forget()
-                    self.time_zero4()  # сброс тайминга штрафа
-                    self.penalty_minutes4 = self.penalty_minutes_entry4.get().strip()
-                    self.penalty_timer_label4 = tk.Label(self.timer_window, text=f"0{self.penalty_minutes4}:00",
-                                                         font=("DS-Digital", 50), bg="black", fg="yellow")
-                    self.penalty_timer_label4.place(relx=0.86, rely=0.65, anchor="center")
-                    self.penalty_timer_label4_control = tk.Label(self.master, text=f"0{self.penalty_minutes4}:00",
-                                                         font=("DS-Digital", 16), bg="black", fg="yellow")
-                    self.penalty_timer_label4_control.place(x=688, y=189, anchor="center")
-                    self.penalty_number4 = self.penalty_number_entry4.get().strip()
-                    self.penalty_number_label4 = tk.Label(self.timer_window, text=self.penalty_number4,
-                                                          font=("DS-Digital", 50), bg="black", fg="yellow")
-                    self.penalty_number_label4.place(relx=0.7, rely=0.65, anchor="center")
-                    self.penalty_number_label4_control = tk.Label(self.master, text=self.penalty_number4,
-                                                          font=("DS-Digital", 16), bg="black", fg="yellow")
-                    self.penalty_number_label4_control.place(x=646, y=189, anchor="center")
+                    if self.penalty_number_entry4.get() in self.data_team2:
+                        self.penalty_timer_label4.place_forget()
+                        self.penalty_timer_label4_control.place_forget()
+                        self.penalty_number_label4.place_forget()
+                        self.penalty_number_label4_control.place_forget()
+                        self.time_zero4()  # сброс тайминга штрафа
+                        self.penalty_minutes4 = self.penalty_minutes_entry4.get().strip()
+                        self.penalty_timer_label4 = tk.Label(self.timer_window, text=f"0{self.penalty_minutes4}:00",
+                                                             font=("DS-Digital", 50), bg="black", fg="yellow")
+                        self.penalty_timer_label4.place(relx=0.86, rely=0.65, anchor="center")
+                        self.penalty_timer_label4_control = tk.Label(self.master, text=f"0{self.penalty_minutes4}:00",
+                                                             font=("DS-Digital", 16), bg="black", fg="yellow")
+                        self.penalty_timer_label4_control.place(x=688, y=189, anchor="center")
+                        self.penalty_number4 = self.penalty_number_entry4.get().strip()
+                        self.penalty_number_label4 = tk.Label(self.timer_window, text=self.penalty_number4,
+                                                              font=("DS-Digital", 50), bg="black", fg="yellow")
+                        self.penalty_number_label4.place(relx=0.7, rely=0.65, anchor="center")
+                        self.penalty_number_label4_control = tk.Label(self.master, text=self.penalty_number4,
+                                                              font=("DS-Digital", 16), bg="black", fg="yellow")
+                        self.penalty_number_label4_control.place(x=646, y=189, anchor="center")
+                    else:
+                        messagebox.showinfo("Информация",
+                                            f"Номер: {self.penalty_number_entry4.get().strip()} отсутствует в списке игроков гостей")
                 else:
                     messagebox.showinfo("Информация", "Введите номер игрока")
 
@@ -675,26 +689,29 @@ class TimerApp:
                     or self.penalty_minutes_entry5.get().strip() == '4'
                     or self.penalty_minutes_entry5.get().strip() == '5'):
                 if not self.penalty_number_entry5.get().strip() == '':
-                    # self.penalty_minutes = 0
-                    self.penalty_timer_label5.place_forget()
-                    self.penalty_timer_label5_control.place_forget()
-                    self.penalty_number_label5.place_forget()
-                    self.penalty_number_label5_control.place_forget()
-                    self.time_zero5()  # сброс тайминга штрафа
-                    self.penalty_minutes5 = self.penalty_minutes_entry5.get().strip()
-                    self.penalty_timer_label5 = tk.Label(self.timer_window, text=f"0{self.penalty_minutes5}:00",
-                                                        font=("DS-Digital", 50), bg="black", fg="yellow")
-                    self.penalty_timer_label5.place(relx=0.86, rely=0.74, anchor="center")
-                    self.penalty_timer_label5_control = tk.Label(self.master, text=f"0{self.penalty_minutes5}:00",
-                                                        font=("DS-Digital", 16), bg="black", fg="yellow")
-                    self.penalty_timer_label5_control.place(x=688, y=214, anchor="center")
-                    self.penalty_number5 = self.penalty_number_entry5.get().strip()
-                    self.penalty_number_label5 = tk.Label(self.timer_window, text=self.penalty_number5,
-                                                         font=("DS-Digital", 50), bg="black", fg="yellow")
-                    self.penalty_number_label5.place(relx=0.7, rely=0.74, anchor="center")
-                    self.penalty_number_label5_control = tk.Label(self.master, text=self.penalty_number5,
-                                                         font=("DS-Digital", 16), bg="black", fg="yellow")
-                    self.penalty_number_label5_control.place(x=646, y=214, anchor="center")
+                    if self.penalty_number_entry5.get() in self.data_team2:
+                        self.penalty_timer_label5.place_forget()
+                        self.penalty_timer_label5_control.place_forget()
+                        self.penalty_number_label5.place_forget()
+                        self.penalty_number_label5_control.place_forget()
+                        self.time_zero5()  # сброс тайминга штрафа
+                        self.penalty_minutes5 = self.penalty_minutes_entry5.get().strip()
+                        self.penalty_timer_label5 = tk.Label(self.timer_window, text=f"0{self.penalty_minutes5}:00",
+                                                            font=("DS-Digital", 50), bg="black", fg="yellow")
+                        self.penalty_timer_label5.place(relx=0.86, rely=0.74, anchor="center")
+                        self.penalty_timer_label5_control = tk.Label(self.master, text=f"0{self.penalty_minutes5}:00",
+                                                            font=("DS-Digital", 16), bg="black", fg="yellow")
+                        self.penalty_timer_label5_control.place(x=688, y=214, anchor="center")
+                        self.penalty_number5 = self.penalty_number_entry5.get().strip()
+                        self.penalty_number_label5 = tk.Label(self.timer_window, text=self.penalty_number5,
+                                                             font=("DS-Digital", 50), bg="black", fg="yellow")
+                        self.penalty_number_label5.place(relx=0.7, rely=0.74, anchor="center")
+                        self.penalty_number_label5_control = tk.Label(self.master, text=self.penalty_number5,
+                                                             font=("DS-Digital", 16), bg="black", fg="yellow")
+                        self.penalty_number_label5_control.place(x=646, y=214, anchor="center")
+                    else:
+                        messagebox.showinfo("Информация",
+                                            f"Номер: {self.penalty_number_entry5.get().strip()} отсутствует в списке игроков гостей")
                 else:
                     messagebox.showinfo("Информация", "Введите номер игрока")
 
@@ -710,26 +727,29 @@ class TimerApp:
                     or self.penalty_minutes_entry6.get().strip() == '4'
                     or self.penalty_minutes_entry6.get().strip() == '5'):
                 if not self.penalty_number_entry6.get().strip() == '':
-                    # self.penalty_minutes = 0
-                    self.penalty_timer_label6.place_forget()
-                    self.penalty_timer_label6_control.place_forget()
-                    self.penalty_number_label6.place_forget()
-                    self.penalty_number_label6_control.place_forget()
-                    self.time_zero6()  # сброс тайминга штрафа
-                    self.penalty_minutes6 = self.penalty_minutes_entry6.get().strip()
-                    self.penalty_timer_label6 = tk.Label(self.timer_window, text=f"0{self.penalty_minutes6}:00",
-                                                        font=("DS-Digital", 50), bg="black", fg="yellow")
-                    self.penalty_timer_label6.place(relx=0.86, rely=0.83, anchor="center")
-                    self.penalty_timer_label6_control = tk.Label(self.master, text=f"0{self.penalty_minutes6}:00",
-                                                        font=("DS-Digital", 16), bg="black", fg="yellow")
-                    self.penalty_timer_label6_control.place(x=688, y=239, anchor="center")
-                    self.penalty_number6 = self.penalty_number_entry6.get().strip()
-                    self.penalty_number_label6 = tk.Label(self.timer_window, text=self.penalty_number6,
-                                                         font=("DS-Digital", 50), bg="black", fg="yellow")
-                    self.penalty_number_label6.place(relx=0.7, rely=0.83, anchor="center")
-                    self.penalty_number_label6_control = tk.Label(self.master, text=self.penalty_number6,
-                                                         font=("DS-Digital", 16), bg="black", fg="yellow")
-                    self.penalty_number_label6_control.place(x=646, y=239, anchor="center")
+                    if self.penalty_number_entry6.get() in self.data_team2:
+                        self.penalty_timer_label6.place_forget()
+                        self.penalty_timer_label6_control.place_forget()
+                        self.penalty_number_label6.place_forget()
+                        self.penalty_number_label6_control.place_forget()
+                        self.time_zero6()  # сброс тайминга штрафа
+                        self.penalty_minutes6 = self.penalty_minutes_entry6.get().strip()
+                        self.penalty_timer_label6 = tk.Label(self.timer_window, text=f"0{self.penalty_minutes6}:00",
+                                                            font=("DS-Digital", 50), bg="black", fg="yellow")
+                        self.penalty_timer_label6.place(relx=0.86, rely=0.83, anchor="center")
+                        self.penalty_timer_label6_control = tk.Label(self.master, text=f"0{self.penalty_minutes6}:00",
+                                                            font=("DS-Digital", 16), bg="black", fg="yellow")
+                        self.penalty_timer_label6_control.place(x=688, y=239, anchor="center")
+                        self.penalty_number6 = self.penalty_number_entry6.get().strip()
+                        self.penalty_number_label6 = tk.Label(self.timer_window, text=self.penalty_number6,
+                                                             font=("DS-Digital", 50), bg="black", fg="yellow")
+                        self.penalty_number_label6.place(relx=0.7, rely=0.83, anchor="center")
+                        self.penalty_number_label6_control = tk.Label(self.master, text=self.penalty_number6,
+                                                             font=("DS-Digital", 16), bg="black", fg="yellow")
+                        self.penalty_number_label6_control.place(x=646, y=239, anchor="center")
+                    else:
+                        messagebox.showinfo("Информация",
+                                            f"Номер: {self.penalty_number_entry6.get().strip()} отсутствует в списке игроков гостей")
                 else:
                     messagebox.showinfo("Информация", "Введите номер игрока")
 
@@ -1014,8 +1034,8 @@ class TimerApp:
         self.timeout_team1_label_control.config(text="00:00")
         self.timeout_team1_button.config(state=tk.DISABLED)
 
-        self.timeout_label_team1 = tk.Label(self.timer_window, text="ТАЙМАУТ", font=("Helvetika", 18), bg="black", fg="white")
-        self.timeout_label_team1.place(relx=0.2, rely=0.45, anchor="center")
+        self.timeout_label_team1 = tk.Label(self.timer_window, text="ТАЙМАУТ", font=("Helvetika", 16), bg="black", fg="white")
+        self.timeout_label_team1.place(relx=0.2, rely=0.44, anchor="center")
         self.timeout_label_team1_control = tk.Label(self.master, text="ТАЙМАУТ", font=("Helvetika", 6), bg="black", fg="white")
         self.timeout_label_team1_control.place(x=215, y=125, anchor="center")
 
@@ -1043,8 +1063,8 @@ class TimerApp:
         self.timeout_team2_label_control.config(text="00:00")
         self.timeout_team2_button.config(state=tk.DISABLED)
 
-        self.timeout_label_team2 = tk.Label(self.timer_window, text="ТАЙМАУТ", font=("Helvetika", 18), bg="black", fg="white")
-        self.timeout_label_team2.place(relx=0.8, rely=0.45, anchor="center")
+        self.timeout_label_team2 = tk.Label(self.timer_window, text="ТАЙМАУТ", font=("Helvetika", 16), bg="black", fg="white")
+        self.timeout_label_team2.place(relx=0.8, rely=0.44, anchor="center")
         self.timeout_label_team2_control = tk.Label(self.master, text="ТАЙМАУТ", font=("Helvetika", 6), bg="black", fg="white")
         self.timeout_label_team2_control.place(x=674, y=125, anchor="center")
 
@@ -1344,9 +1364,7 @@ class TimerApp:
 
 
     def goal(self):
-        if self.goal_scored_number.get() in self.data_team and os.path.exists(
-                f'{os.path.dirname(__file__)}\\photo_home\\{self.goal_scored_number.get()}.jpg'):
-            print('фото доступно')
+        if self.goal_scored_number.get() in self.data_team and os.path.exists(f'photo_home/{self.goal_scored_number.get()}.jpg'):
             window_goal = tk.Toplevel(self.master)
             window_goal.geometry('1280x1024')
             # window_goal.attributes('-fullscreen', True)
@@ -1358,7 +1376,8 @@ class TimerApp:
             window_goal['bg'] = 'black'
             window_goal.overrideredirect(True)
 
-            image_path = f"photo_home\\{self.goal_scored_number.get()}.jpg"
+            image_path = f'photo_home/{self.goal_scored_number.get()}.jpg'
+            print(image_path)
             image = Image.open(image_path)
             image = image.resize((550, 400))
             photo = ImageTk.PhotoImage(image)
@@ -1369,10 +1388,8 @@ class TimerApp:
 
             photo_label.place(relx=0.5, rely=0.4, anchor='center')
 
-
             number1 = self.goal_scored_number.get()
             name1 = self.data_team[number1]
-            print('ok6')
 
             goal_home = tk.Label(window_goal, text=f'ГОЛ ЗАБИЛ\nНОМЕР: {number1}\n{name1}', justify='center',
                                  font=("Helvetica", 50), bg="black", fg="red")
@@ -1394,12 +1411,12 @@ class TimerApp:
                                  font=("Helvetica", 50), bg="black", fg="red")
             goal_home.place(relx=0.5, rely=0.5, anchor='center')
             window_goal.after(6000, window_goal.destroy)
+
         else:
             messagebox.showinfo('Ошибка', 'Такого номера нет в списках игроков')
 
     def goal2(self):
-        if self.goal_scored_number2.get() in self.data_team2 and os.path.exists(
-                f'{os.path.dirname(__file__)}\\photo_guests\\{self.goal_scored_number2.get()}.jpg'):
+        if self.goal_scored_number2.get() in self.data_team2 and os.path.exists(f'photo_guests/{self.goal_scored_number2.get()}.jpg'):
             window_goal = tk.Toplevel(self.master)
             window_goal.geometry('1280x1024')
             window_goal.title('ГОЛ')
@@ -1410,7 +1427,8 @@ class TimerApp:
             window_goal['bg'] = 'black'
             window_goal.overrideredirect(True)
 
-            image_path = f"photo_guests\\{self.goal_scored_number2.get()}.jpg"
+            image_path = f'photo_guests/{self.goal_scored_number2.get()}.jpg'
+            print(image_path)
             image = Image.open(image_path)
             image = image.resize((550, 400))
             photo = ImageTk.PhotoImage(image)
