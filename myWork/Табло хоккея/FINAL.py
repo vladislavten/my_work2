@@ -29,6 +29,9 @@ class TimerApp:
         self.master.resizable(False, False)
         self.master['bg'] = 'lightblue'
 
+        if os.path.exists('logo.ico'):
+            root.iconbitmap("logo.ico")
+
 
 ################################ ДЕКОРАЦИИ ##################################################
         black_strip = tk.Frame(self.master, bg="black", width=900, height=260)
