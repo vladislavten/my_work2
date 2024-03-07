@@ -4,6 +4,7 @@ import time
 from screeninfo import get_monitors
 from PIL import Image, ImageTk
 import os.path
+from tkinter import ttk
 
 def on_closing():
     if messagebox.askokcancel("Выход", "Вы действительно хотите завершить работу программы: Управление таймером?"):
@@ -169,6 +170,7 @@ class TimerApp:
         self.data_team2 = {}
 
 
+        # self.update_combo_box()
 #######################################
 
         self.goal_home_var = tk.IntVar(value=0)
@@ -433,25 +435,30 @@ class TimerApp:
         self.number1_goal_label = tk.Label(self.master, text= 'НОМЕР', font=("Helvetica", 8), fg='black', bg='lightblue')
         self.number1_goal_label.place(x=38, y=639, anchor='center')
 
-        self.goal_scored_number = tk.Entry(self.master, font=("Helvetica", 14), justify="center")
-        self.goal_scored_number.place(x=83, y=639, anchor='center', width=30, height=25)
+        self.goal_scored_number = ttk.Combobox(self.master, values=list(self.data_team.keys()), font=("Helvetica", 14),justify="center")
+        self.goal_scored_number.place(x=83, y=639, anchor='center', width=50, height=25)
+
         self.goal_scored = tk.Button(self.master, text="ГОЛ ЗАБИЛ", width=11, command=self.goal)
         self.goal_scored.place(x=160, y= 640, anchor='center')
-
 
         self.number_goal_label2 = tk.Label(self.master, text= 'НОМЕР', font=("Helvetica", 8), fg='black', bg='lightblue')
         self.number_goal_label2.place(x=709, y=639, anchor='center')
 
-        self.goal_scored_number2 = tk.Entry(self.master, font=("Helvetica", 14), justify="center")
-        self.goal_scored_number2.place(x=754, y=639, anchor='center', width=30, height=25)
+        self.goal_scored_number2 = ttk.Combobox(self.master, values=list(self.data_team2.keys()), font=("Helvetica", 14), justify="center")
+        self.goal_scored_number2.place(x=754, y=639, anchor='center', width=50, height=25)
+
+
         self.goal_scored2 = tk.Button(self.master, text="ГОЛ ЗАБИЛ", width=11, command=self.goal2)
         self.goal_scored2.place(x=831, y= 640, anchor='center')
 
 
 
 #######################################  ВВОД ДАННЫХ В ОКНЕ MASTER #####################################
-        self.penalty_number_entry = tk.Entry(self.master, font=("Helvetica", 14), justify="center")
-        self.penalty_number_entry.place(x=102, y=462, anchor='center', width=30, height=25)
+        # self.penalty_number_entry = tk.Entry(self.master, font=("Helvetica", 14), justify="center")
+        # self.penalty_number_entry.place(x=102, y=462, anchor='center', width=30, height=25)
+        self.penalty_number_entry = ttk.Combobox(self.master, values=list(self.data_team.keys()), font=("Helvetica", 14), justify="center")
+        self.penalty_number_entry.place(x=102, y=462, anchor='center', width=50, height=25)
+
 
         self.penalty_minutes_entry = tk.Entry(self.master, font=("Helvetica", 14), justify="center")
         self.penalty_minutes_entry.insert(0, '2')
@@ -459,8 +466,11 @@ class TimerApp:
 
         self.penalty_update_timer()
 
-        self.penalty_number_entry2 = tk.Entry(self.master, font=("Helvetica", 14), justify="center")
-        self.penalty_number_entry2.place(x=102, y=505, anchor='center', width=30, height=25)
+        # self.penalty_number_entry2 = tk.Entry(self.master, font=("Helvetica", 14), justify="center")
+        # self.penalty_number_entry2.place(x=102, y=505, anchor='center', width=30, height=25)
+        self.penalty_number_entry2 = ttk.Combobox(self.master, values=list(self.data_team.keys()), font=("Helvetica", 14), justify="center")
+        self.penalty_number_entry2.place(x=102, y=505, anchor='center', width=50, height=25)
+
 
         self.penalty_minutes_entry2 = tk.Entry(self.master, font=("Helvetica", 14), justify="center")
         self.penalty_minutes_entry2.insert(0, '2')
@@ -468,8 +478,10 @@ class TimerApp:
 
         self.penalty_update_timer2()
 
-        self.penalty_number_entry3 = tk.Entry(self.master, font=("Helvetica", 14), justify="center")
-        self.penalty_number_entry3.place(x=102, y=548, anchor='center', width=30, height=25)
+        # self.penalty_number_entry3 = tk.Entry(self.master, font=("Helvetica", 14), justify="center")
+        # self.penalty_number_entry3.place(x=102, y=548, anchor='center', width=30, height=25)
+        self.penalty_number_entry3 = ttk.Combobox(self.master, values=list(self.data_team.keys()), font=("Helvetica", 14), justify="center")
+        self.penalty_number_entry3.place(x=102, y=548, anchor='center', width=50, height=25)
 
         self.penalty_minutes_entry3 = tk.Entry(self.master, font=("Helvetica", 14), justify="center")
         self.penalty_minutes_entry3.insert(0, '2')
@@ -477,8 +489,10 @@ class TimerApp:
 
         self.penalty_update_timer3()
 
-        self.penalty_number_entry4 = tk.Entry(self.master, font=("Helvetica", 14), justify="center")
-        self.penalty_number_entry4.place(x=552, y=462, anchor='center', width=30, height=25)
+        # self.penalty_number_entry4 = tk.Entry(self.master, font=("Helvetica", 14), justify="center")
+        # self.penalty_number_entry4.place(x=552, y=462, anchor='center', width=30, height=25)
+        self.penalty_number_entry4 = ttk.Combobox(self.master, values=list(self.data_team2.keys()), font=("Helvetica", 14), justify="center")
+        self.penalty_number_entry4.place(x=552, y=462, anchor='center', width=50, height=25)
 
         self.penalty_minutes_entry4 = tk.Entry(self.master, font=("Helvetica", 14), justify="center")
         self.penalty_minutes_entry4.insert(0, '2')
@@ -486,8 +500,10 @@ class TimerApp:
 
         self.penalty_update_timer4()
 
-        self.penalty_number_entry5 = tk.Entry(self.master, font=("Helvetica", 14), justify="center")
-        self.penalty_number_entry5.place(x=552, y=505, anchor='center', width=30, height=25)
+        # self.penalty_number_entry5 = tk.Entry(self.master, font=("Helvetica", 14), justify="center")
+        # self.penalty_number_entry5.place(x=552, y=505, anchor='center', width=30, height=25)
+        self.penalty_number_entry5 = ttk.Combobox(self.master, values=list(self.data_team2.keys()), font=("Helvetica", 14), justify="center")
+        self.penalty_number_entry5.place(x=552, y=505, anchor='center', width=50, height=25)
 
         self.penalty_minutes_entry5 = tk.Entry(self.master, font=("Helvetica", 14), justify="center")
         self.penalty_minutes_entry5.insert(0, '2')
@@ -495,8 +511,10 @@ class TimerApp:
 
         self.penalty_update_timer5()
 
-        self.penalty_number_entry6 = tk.Entry(self.master, font=("Helvetica", 14), justify="center")
-        self.penalty_number_entry6.place(x=552, y=548, anchor='center', width=30, height=25)
+        # self.penalty_number_entry6 = tk.Entry(self.master, font=("Helvetica", 14), justify="center")
+        # self.penalty_number_entry6.place(x=552, y=548, anchor='center', width=30, height=25)
+        self.penalty_number_entry6 = ttk.Combobox(self.master, values=list(self.data_team2.keys()), font=("Helvetica", 14), justify="center")
+        self.penalty_number_entry6.place(x=552, y=548, anchor='center', width=50, height=25)
 
         self.penalty_minutes_entry6 = tk.Entry(self.master, font=("Helvetica", 14), justify="center")
         self.penalty_minutes_entry6.insert(0, '2')
@@ -1302,13 +1320,17 @@ class TimerApp:
 ############################# ЗАПИСЬ КОМАНД ################################################
     def list_save_comands(self):
         def save1():
-            self.data_team[self.player_number_entry.get()] = self.player_name_entry.get().upper()
-            print(self.data_team)
-
+            if self.player_number_entry.get().isdigit() and self.player_name_entry.get() != '':
+                self.data_team[self.player_number_entry.get()] = self.player_name_entry.get().upper()
+                self.update_combo_box()
+            else:
+                messagebox.showinfo('Ошибка', 'Введите корректные данные')
         def save2():
-            self.data_team2[self.player_number_entry2.get()] = self.player_name_entry2.get().upper()
-            print(self.data_team2)
-
+            if self.player_number_entry2.get().isdigit() and self.player_name_entry2.get() != '':
+                self.data_team2[self.player_number_entry2.get()] = self.player_name_entry2.get().upper()
+                self.update_combo_box()
+            else:
+                messagebox.showinfo('Ошибка', 'Введите корректные данные')
 
         self.save_comands_window = tk.Toplevel(root)
         self.save_comands_window.title("ЗАПИСЬ ИГРОКОВ")
@@ -1424,9 +1446,23 @@ class TimerApp:
             number1 = self.goal_scored_number.get()
             name1 = self.data_team[number1]
 
-            goal_home = tk.Label(window_goal, text=f'ГОЛ ЗАБИЛ\nНОМЕР: {number1}\n{name1}', justify='center',
-                                 font=("Helvetica", 50), bg="black", fg="red")
-            goal_home.place(relx=0.5, rely=0.5, anchor='center')
+            top_goal_label = tk.Label(window_goal, text='ГОЛ ЗАБИЛ', font=('Helvetica', 30, 'bold'), fg='white',
+                                      bg='black')
+            top_goal_label.place(relx=0.5, rely=0.12, anchor='center')
+
+            plashka_label = tk.Frame(window_goal, width=130, height=120, bg='green')
+            plashka_label.place(relx=0.5, rely=0.5, anchor='center')
+
+            bottom_number_label = tk.Label(window_goal, text='НОМЕР', justify='center',
+                                           font=("Helvetica", 23, 'bold'), bg="black", fg="white")
+            bottom_number_label.place(relx=0.5, rely=0.42, anchor='center')
+
+            goal_guests_number = tk.Label(window_goal, text=f'{number1}', justify='center',
+                                          font=("Helvetica", 69, 'bold'), bg="green", fg="white")
+            goal_guests_number.place(relx=0.5, rely=0.5, anchor='center')
+            goal_guests_name = tk.Label(window_goal, text=f'{name1}', justify='center',
+                                        font=("Helvetica", 42, 'bold'), bg="black", fg="white")
+            goal_guests_name.place(relx=0.5, rely=0.6, anchor='center')
             window_goal.after(6000, window_goal.destroy)
 
         else:
@@ -1489,9 +1525,24 @@ class TimerApp:
             number2 = self.goal_scored_number2.get()
             name2 = self.data_team2[number2]
 
-            goal_home = tk.Label(window_goal, text=f'ГОЛ ЗАБИЛ\nНОМЕР: {number2}\n{name2}', justify='center',
-                                 font=("Helvetica", 50), bg="black", fg="red")
-            goal_home.place(relx=0.5, rely=0.5, anchor='center')
+            top_goal_label = tk.Label(window_goal, text='ГОЛ ЗАБИЛ', font=('Helvetica', 30, 'bold'), fg='white',
+                                      bg='black')
+            top_goal_label.place(relx=0.5, rely=0.12, anchor='center')
+
+            plashka_label = tk.Frame(window_goal, width=130, height=120, bg='green')
+            plashka_label.place(relx=0.5, rely=0.5, anchor='center')
+
+            bottom_number_label = tk.Label(window_goal, text='НОМЕР', justify='center',
+                                           font=("Helvetica", 23, 'bold'), bg="black", fg="white")
+            bottom_number_label.place(relx=0.5, rely=0.42, anchor='center')
+
+            goal_guests_number = tk.Label(window_goal, text=f'{number2}', justify='center',
+                                          font=("Helvetica", 69, 'bold'), bg="green", fg="white")
+            goal_guests_number.place(relx=0.5, rely=0.5, anchor='center')
+            goal_guests_name = tk.Label(window_goal, text=f'{name2}', justify='center',
+                                        font=("Helvetica", 42, 'bold'), bg="black", fg="white")
+            goal_guests_name.place(relx=0.5, rely=0.6, anchor='center')
+
             window_goal.after(6000, window_goal.destroy)
         else:
             messagebox.showinfo('Ошибка', 'Такого номера нет в списках игроков')
@@ -1515,7 +1566,16 @@ class TimerApp:
         for number, name in self.data_team2.items():
             self.text_box_guests.insert(tk.END, f"{count + 1}. {number} : {name}\n")
             count += 1
-    #
+    def update_combo_box(self):
+        self.goal_scored_number['values'] = list(self.data_team.keys())
+        self.goal_scored_number2['values'] = list(self.data_team2.keys())
+        self.penalty_number_entry['values'] = list(self.data_team.keys())
+        self.penalty_number_entry2['values'] = list(self.data_team.keys())
+        self.penalty_number_entry3['values'] = list(self.data_team.keys())
+        self.penalty_number_entry4['values'] = list(self.data_team2.keys())
+        self.penalty_number_entry5['values'] = list(self.data_team2.keys())
+        self.penalty_number_entry6['values'] = list(self.data_team2.keys())
+
 
 if __name__ == "__main__":
     root = tk.Tk()
