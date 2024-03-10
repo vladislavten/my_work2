@@ -17,10 +17,10 @@ class TimerApp:
         if len(self.monitors) < 2:
             print(len(self.monitors))
             messagebox.showinfo('INFO', 'Табло не обнаружено')
-            self.secondary_monitor = self.monitors[0]
+            self.secondary_monitor = self.monitors[1]
         else:
             print(len(self.monitors))
-            self.secondary_monitor = self.monitors[1] #1 это второй монитор, 0 это первый
+            self.secondary_monitor = self.monitors[0] #1 это второй монитор, 0 это первый
 
 
         self.master = master
@@ -72,7 +72,8 @@ class TimerApp:
         self.timer_window.withdraw()
 
         self.timer_label = tk.Label(self.timer_window, text="20:00", font=("DS-Digital", 100), bg="black", fg="red")
-        self.timer_label.place(relx=0.5, rely=0.355, anchor="center")
+        self.timer_label.place(relx=0.5, rely=0.305, anchor="center")
+        # self.timer_label.place(relx=0.5, rely=0.355, anchor="center") ###Так было
 
         self.timer_label_control = tk.Label(self.master, text="20:00", font=("DS-Digital", 30), bg="black", fg="red")
         self.timer_label_control.place(x=450, y=88, anchor="center")
@@ -169,7 +170,7 @@ class TimerApp:
         self.penalty_minutes5 = '0'
         self.penalty_minutes6 = '0'
 
-        self.data_team = {'62': 'Смирягина', '20':'Краснодаров', '30':'Жопашников'}
+        self.data_team = {}
         self.data_team2 = {}
 
 
@@ -178,13 +179,15 @@ class TimerApp:
 
         self.goal_home_var = tk.IntVar(value=0)
         self.goal_home_label = tk.Label(self.timer_window, textvariable=self.goal_home_var, font=("DS-Digital", 200), bg="black", fg="red")
-        self.goal_home_label.place(relx=0.2, rely=0.3, anchor="center")
+        self.goal_home_label.place(relx=0.2, rely=0.25, anchor="center")
+        # self.goal_home_label.place(relx=0.2, rely=0.3, anchor="center") ###так было
         self.goal_home_label = tk.Label(self.master, textvariable=self.goal_home_var, font=("DS-Digital", 58), bg="black", fg="red")
         self.goal_home_label.place(x=215, y=88, anchor="center")
 
         self.goal_away_var = tk.IntVar(value=0)
         self.goal_away_label = tk.Label(self.timer_window, textvariable=self.goal_away_var, font=("DS-Digital", 200), bg="black", fg="red")
-        self.goal_away_label.place(relx=0.8, rely=0.3, anchor="center")
+        self.goal_away_label.place(relx=0.8, rely=0.25, anchor="center")
+        # self.goal_away_label.place(relx=0.8, rely=0.3, anchor="center")
         self.goal_away_label = tk.Label(self.master, textvariable=self.goal_away_var, font=("DS-Digital", 58), bg="black", fg="red")
         self.goal_away_label.place(x=673, y=88, anchor="center")
 
@@ -198,9 +201,9 @@ class TimerApp:
         self.team2_label_control.place(x=674, y=40, anchor="center")
 
         self.period_var = tk.IntVar(value=1)
-        self.period_var_label = tk.Label(self.timer_window, textvariable=self.period_var, font=("DS-Digital", 120), bg="black", fg="green")
+        self.period_var_label = tk.Label(self.timer_window, textvariable=self.period_var, font=("DS-Digital", 120), bg="black", fg="#12e802")
         self.period_var_label.place(relx=0.5, rely=0.68, anchor="center")
-        self.period_var_label = tk.Label(self.master, textvariable=self.period_var, font=("DS-Digital", 30), bg="black", fg="green")
+        self.period_var_label = tk.Label(self.master, textvariable=self.period_var, font=("DS-Digital", 30), bg="black", fg="#12e802")
         self.period_var_label.place(x=450, y=185, anchor="center")
 
         ##############################################   ТЕКСТЫ LABLES #######################################
@@ -276,7 +279,8 @@ class TimerApp:
 
             #Текст ВРЕМЯ по центру
         self.time_text_label = tk.Label(self.timer_window, text="ТАЙМЕР", font=("Helvetica", 30), bg="black", fg="white")
-        self.time_text_label.place(relx=0.5, rely=0.25, anchor="center")
+        self.time_text_label.place(relx=0.5, rely=0.22, anchor="center")
+        # self.time_text_label.place(relx=0.5, rely=0.25, anchor="center") #Так было
         self.time_text_label = tk.Label(self.master, text="ТАЙМЕР", font=("Helvetica", 10), bg="black", fg="white")
         self.time_text_label.place(x=450, y=61, anchor="center")
 
@@ -287,7 +291,7 @@ class TimerApp:
         self.time_text_label.place(x=450, y=154, anchor="center")
 
 
-        self.break_time = tk.Label(self.timer_window, text="", font=("DS-Digital", 45), bg="black", fg="yellow")
+        self.break_time = tk.Label(self.timer_window, text="", font=("DS-Digital", 65), bg="black", fg="yellow")
         self.break_time.place(relx=0.5, rely=0.87, anchor="center")
         self.break_time_control = tk.Label(self.master, text="", font=("DS-Digital", 18), bg="black", fg="yellow")
         self.break_time_control.place(x=450, y=244, anchor="center")
@@ -1436,7 +1440,7 @@ class TimerApp:
                                  font=("Helvetica", 42, 'bold'), bg="black", fg="white")
             goal_home_name.place(relx=0.5, rely=0.9, anchor='center')
 
-            window_goal.after(6000, window_goal.destroy)
+            window_goal.after(10000, window_goal.destroy)
         elif self.goal_scored_number.get() in self.data_team:
             window_goal = tk.Toplevel(self.master)
             window_goal.title('ГОЛ')
@@ -1466,7 +1470,7 @@ class TimerApp:
             goal_guests_name = tk.Label(window_goal, text=f'{name1}', justify='center',
                                         font=("Helvetica", 42, 'bold'), bg="black", fg="white")
             goal_guests_name.place(relx=0.5, rely=0.6, anchor='center')
-            window_goal.after(6000, window_goal.destroy)
+            window_goal.after(10000, window_goal.destroy)
 
         else:
             messagebox.showinfo('Ошибка', 'Такого номера нет в списках игроков')
@@ -1502,7 +1506,7 @@ class TimerApp:
             top_goal_label = tk.Label(window_goal, text='ГОЛ ЗАБИЛ', font=('Helvetica', 30, 'bold'), fg='white', bg='black')
             top_goal_label.place(relx=0.5, rely=0.12, anchor='center')
 
-            plashka_label = tk.Frame(window_goal, width=130, height=120, bg='green')
+            plashka_label = tk.Frame(window_goal, width=130, height=120, bg='white')
             plashka_label.place(relx=0.5, rely=0.8, anchor='center')
 
             bottom_number_label = tk.Label(window_goal, text='НОМЕР', justify='center',
@@ -1510,12 +1514,12 @@ class TimerApp:
             bottom_number_label.place(relx=0.5, rely=0.72, anchor='center')
 
             goal_guests_number = tk.Label(window_goal, text=f'{number2}', justify='center',
-                                 font=("Helvetica", 69, 'bold'), bg="green", fg="white")
+                                 font=("Helvetica", 69, 'bold'), bg="white", fg="black")
             goal_guests_number.place(relx=0.5, rely=0.8, anchor='center')
             goal_guests_name = tk.Label(window_goal, text=f'{name2}', justify='center',
                                  font=("Helvetica", 42, 'bold'), bg="black", fg="white")
             goal_guests_name.place(relx=0.5, rely=0.9, anchor='center')
-            window_goal.after(6000, window_goal.destroy)
+            window_goal.after(10000, window_goal.destroy)
         elif self.goal_scored_number2.get() in self.data_team2:
             window_goal = tk.Toplevel(self.master)
             window_goal.title('ГОЛ')
@@ -1532,7 +1536,7 @@ class TimerApp:
                                       bg='black')
             top_goal_label.place(relx=0.5, rely=0.12, anchor='center')
 
-            plashka_label = tk.Frame(window_goal, width=130, height=120, bg='green')
+            plashka_label = tk.Frame(window_goal, width=130, height=120, bg='white')
             plashka_label.place(relx=0.5, rely=0.5, anchor='center')
 
             bottom_number_label = tk.Label(window_goal, text='НОМЕР', justify='center',
@@ -1540,13 +1544,13 @@ class TimerApp:
             bottom_number_label.place(relx=0.5, rely=0.42, anchor='center')
 
             goal_guests_number = tk.Label(window_goal, text=f'{number2}', justify='center',
-                                          font=("Helvetica", 69, 'bold'), bg="green", fg="white")
+                                          font=("Helvetica", 69, 'bold'), bg="white", fg="black")
             goal_guests_number.place(relx=0.5, rely=0.5, anchor='center')
             goal_guests_name = tk.Label(window_goal, text=f'{name2}', justify='center',
                                         font=("Helvetica", 42, 'bold'), bg="black", fg="white")
             goal_guests_name.place(relx=0.5, rely=0.6, anchor='center')
 
-            window_goal.after(6000, window_goal.destroy)
+            window_goal.after(10000, window_goal.destroy)
         else:
             messagebox.showinfo('Ошибка', 'Такого номера нет в списках игроков')
 
