@@ -364,17 +364,17 @@ class TimerApp:
         self.subtract_second_button.place(x = 611, y = 626, anchor='center')
 
         self.period_increase_button = tk.Button(self.master, text="+1 ПЕРИОД", width=12,command=self.period_increase)
-        self.period_increase_button.place(x = 344, y = 668, anchor='center')
+        self.period_increase_button.place(x = 290, y = 668, anchor='center')
 
         self.goal_home_decrease_button = tk.Button(self.master, text="-1 ПЕРИОД", width=12, command=self.period_decrease)
-        self.goal_home_decrease_button.place(x = 450, y = 668, anchor='center')
-
-        # self.fullscreen_button = tk.Button(master, text="Вывести на табло", command=self.fullscreen_timer)
-        # self.fullscreen_button.pack()
+        self.goal_home_decrease_button.place(x = 397, y = 668, anchor='center')
 
         #Кнопка перерыва между периодами
         self.button_break = tk.Button(self.master, text="ПЕРЕРЫВ", width=12, command=self.start_break_timer, bg='yellow')
-        self.button_break.place(x = 558, y = 668, anchor='center')
+        self.button_break.place(x = 504, y = 668, anchor='center')
+
+        self.button_cancel_break = tk.Button(self.master, text="ОТМЕНА", width=12, command=self.cancel_break_timer, bg='red', fg='white')
+        self.button_cancel_break.place(x = 611, y = 668, anchor='center')
 
         self.break_label = None
 
@@ -405,6 +405,8 @@ class TimerApp:
         ####################
 
         self.fullscreen_state = False
+
+        self.cancel_flg = False
 
 ###################################################### КНОПКИ
         self.penalty_button = tk.Button(self.master, text="ШТРАФ", width=11, command=self.penalty_apply)
@@ -1130,16 +1132,16 @@ class TimerApp:
         self.break_label.place(relx=0.5, rely=0.80, anchor="center")
         self.break_label_control = tk.Label(self.master, text="ПЕРЕРЫВ", font=("Helvetica", 10), bg="black", fg="white")
         self.break_label_control.place(x=450, y=223, anchor="center")
-        # self.break_label.pack(pady=20)
-
 
         self.countdown_break(17 * 60) # Установка времени перерыва, пример: 17 * 60 = 17 минут
 
     def countdown_break(self, remaining_time):
-        if remaining_time <= 0:
+        if remaining_time <= 0 or self.cancel_flg == True:
             self.break_time.config(text="")
             self.break_time_control.config(text="")
             self.button_break.config(state=tk.NORMAL)
+            self.cancel_flg = False
+
             if self.break_label:
                 self.break_label.place_forget()
                 self.break_label_control.place_forget()
@@ -1150,10 +1152,12 @@ class TimerApp:
             self.break_time.config(text="{:02d}:{:02d}".format(minutes, seconds))
             self.break_time_control.config(text="{:02d}:{:02d}".format(minutes, seconds))
             self.timer_window.after(1000, self.countdown_break, remaining_time - 1)
+
+    def cancel_break_timer(self):
+        self.cancel_flg = True
     ###############  КОНЕЦ Таймер перерыва 17 минут
 
-    # def toggle_timer_space(self, event):
-    #     self.general_start()
+
 
     def toggle_timer_enter(self, event):
         self.save_teams()
