@@ -5,6 +5,7 @@ from screeninfo import get_monitors
 from PIL import Image, ImageTk
 import os.path
 from tkinter import ttk
+import pickle
 
 def on_closing():
     if messagebox.askokcancel("Выход", "Вы действительно хотите завершить работу программы: Управление таймером?"):
@@ -17,10 +18,10 @@ class TimerApp:
         if len(self.monitors) < 2:
             print(len(self.monitors))
             messagebox.showinfo('INFO', 'Табло не обнаружено')
-            self.secondary_monitor = self.monitors[1]
+            self.secondary_monitor = self.monitors[0]
         else:
             print(len(self.monitors))
-            self.secondary_monitor = self.monitors[0] #1 это второй монитор, 0 это первый
+            self.secondary_monitor = self.monitors[1] #1 это второй монитор, 0 это первый
 
 
         self.master = master
@@ -65,14 +66,14 @@ class TimerApp:
         self.timer_window.geometry(
             f"{self.secondary_monitor.width}x{self.secondary_monitor.height}+{self.secondary_monitor.x}+{self.secondary_monitor.y}")
         # self.timer_window.geometry('1024x768')
-        # self.timer_window.geometry('1280x1024')
+        self.timer_window.geometry('1280x1024')
         self.timer_window['bg'] = 'black'
-        self.timer_window.overrideredirect(True)
+        # self.timer_window.overrideredirect(True)
         # self.timer_window.attributes('-topmost', True)
         self.timer_window.withdraw()
 
         self.timer_label = tk.Label(self.timer_window, text="20:00", font=("DS-Digital", 100), bg="black", fg="red")
-        self.timer_label.place(relx=0.5, rely=0.305, anchor="center")
+        self.timer_label.place(relx=0.5, rely=0.295, anchor="center")
         # self.timer_label.place(relx=0.5, rely=0.355, anchor="center") ###Так было
 
         self.timer_label_control = tk.Label(self.master, text="20:00", font=("DS-Digital", 30), bg="black", fg="red")
@@ -172,6 +173,13 @@ class TimerApp:
 
         self.data_team = {}
         self.data_team2 = {}
+        try:
+            with open("data_team_home.pkl", "rb") as f:
+                self.data_team = pickle.load(f)
+            with open("data_team_guest.pkl", "rb") as f:
+                self.data_team2 = pickle.load(f)
+        except:
+            pass
 
 
         # self.update_combo_box()
@@ -1325,35 +1333,56 @@ class TimerApp:
 
 
 ############################# ЗАПИСЬ КОМАНД ################################################
+    #### ЧИТАЕМ списки команд из файла data_team.pkl
+
     def list_save_comands(self):
         def save1():
             if self.player_number_entry.get().isdigit() and self.player_name_entry.get() != '':
                 self.data_team[self.player_number_entry.get()] = self.player_name_entry.get().upper()
+                with open("data_team_home.pkl", "wb") as f:
+                    pickle.dump(self.data_team, f)
+
                 self.update_combo_box()
             else:
                 messagebox.showinfo('Ошибка', 'Введите корректные данные')
         def save2():
             if self.player_number_entry2.get().isdigit() and self.player_name_entry2.get() != '':
                 self.data_team2[self.player_number_entry2.get()] = self.player_name_entry2.get().upper()
+                with open("data_team_guest.pkl", "wb") as f:
+                    pickle.dump(self.data_team2, f)
+
                 self.update_combo_box()
             else:
                 messagebox.showinfo('Ошибка', 'Введите корректные данные')
 
+        def clear_data():
+            self.data_team = {}
+            with open("data_team_home.pkl", "wb") as f:
+                pickle.dump(self.data_team, f)
+            self.update_combo_box()
+
+        def clear_data2():
+            self.data_team2 = {}
+            with open("data_team_guest.pkl", "wb") as f:
+                pickle.dump(self.data_team2, f)
+                self.update_combo_box()
+
         self.save_comands_window = tk.Toplevel(root)
         self.save_comands_window.title("ЗАПИСЬ ИГРОКОВ")
-        self.save_comands_window.geometry('600x445')
+        self.save_comands_window.geometry('600x490')
         self.save_comands_window['bg'] = 'lightblue'
 
         self.text_box_home = tk.Text(self.save_comands_window, height=15, width=34)
-        self.text_box_home.place(relx=0.25, y= 310, anchor='center')
+        self.text_box_home.place(relx=0.25, y= 315, anchor='center')
 
         self.text_box_guests = tk.Text(self.save_comands_window, height=15, width=34)
-        self.text_box_guests.place(relx=0.75, y= 310, anchor='center')
-
+        self.text_box_guests.place(relx=0.75, y= 315, anchor='center')
+        #### ДЕКОРАЦИИИ ############
         white_strip = tk.Frame(self.save_comands_window, bg="white", width=600, height=1)
         white_strip.place(x=0,y=35)
-        white_strip = tk.Frame(self.save_comands_window, bg="white", width=1, height=160)
+        white_strip = tk.Frame(self.save_comands_window, bg="white", width=1, height=490)
         white_strip.place(x=300,y=0)
+
 
         team1_label = tk.Label(self.save_comands_window, text= 'КОМАНДА ХОЗЯЕВ', font=("Helvetica", 10), fg='black', bg='lightblue')
         team1_label.place(x=150, y=19, anchor='center')
@@ -1384,11 +1413,17 @@ class TimerApp:
         self.save_button2 = tk.Button(self.save_comands_window, text="СОХРАНИТЬ", command=save2)
         self.save_button2.place(x=453, y=123, anchor='center', width=244)
 
-        show_team1_button = tk.Button(self.save_comands_window, text="Показать игроков", command=self.show_players)
+        show_team1_button = tk.Button(self.save_comands_window, text="ПОКАЗАТЬ ИГРОКОВ", command=self.show_players)
         show_team1_button.place(x=152, y=159, anchor='center', width=244)
 
-        show_team2_button = tk.Button(self.save_comands_window, text="Показать игроков", command=self.show_players2)
+        show_team2_button = tk.Button(self.save_comands_window, text="ПОКАЗАТЬ ИГРОКОВ", command=self.show_players2)
         show_team2_button.place(x=452, y=159, anchor='center', width=244)
+
+        clear_data_button = tk.Button(self.save_comands_window, text="СТЕРЕТЬ СПИСОК", command=clear_data, bg='red', fg='white')
+        clear_data_button.place(x=152, y=463, anchor='center', width=244)
+
+        clear_data_button2 = tk.Button(self.save_comands_window, text="СТЕРЕТЬ СПИСОК", command=clear_data2, bg='red', fg='white')
+        clear_data_button2.place(x=452, y=463, anchor='center', width=244)
 
 
 
@@ -1573,6 +1608,8 @@ class TimerApp:
         for number, name in self.data_team2.items():
             self.text_box_guests.insert(tk.END, f"{count + 1}. {number} : {name}\n")
             count += 1
+
+
     def update_combo_box(self):
         self.goal_scored_number['values'] = list(self.data_team.keys())
         self.goal_scored_number2['values'] = list(self.data_team2.keys())
@@ -1584,8 +1621,10 @@ class TimerApp:
         self.penalty_number_entry6['values'] = list(self.data_team2.keys())
 
 
+
 if __name__ == "__main__":
     root = tk.Tk()
     app = TimerApp(root)
     root.protocol("WM_DELETE_WINDOW", on_closing)
     root.mainloop()
+

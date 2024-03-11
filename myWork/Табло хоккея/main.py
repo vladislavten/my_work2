@@ -1,37 +1,84 @@
 import tkinter as tk
-from PIL import Image, ImageTk
+import pickle
+
+# Словарь для хранения данных
+data_team = {}
 
 
-def resize_image(image_path):
-    image = Image.open(image_path)
+# Функция для сохранения данных
+# def save_data():
+#     with open("data_team.pkl", "wb") as f:
+#         pickle.dump(data_team, f)
 
-    width, height = image.size
 
-    # Вычисление нового размера изображения
-    new_width = 400
-    new_height = int(height * (new_width / width))
+def on_clear():
+    global data_team
+    data_team = {}
+    with open("data_team.pkl", "wb") as f:
+        pickle.dump(data_team, f)
 
-    resized_image = image.resize((new_width, new_height))
-    return ImageTk.PhotoImage(resized_image)
 
-def center_image(canvas, image):
-    canvas.create_image(300, 300, anchor='center', image=image)
+# Функция для чтения данных
+with open("data_team.pkl", "rb") as f:
+    data_team = pickle.load(f)
+
+
+def read_data():
+    text_box.delete("1.0", "end")
+    for key, value in data_team.items():
+        text_box.insert("end", f"{key}: {value}\n")
+
+
+# Функция для обработки нажатия кнопки
+def on_click():
+    global data_team
+    key = entry_key.get()
+    value = entry_value.get()
+    data_team[key] = value
+    with open("data_team.pkl", "wb") as f:
+        pickle.dump(data_team, f)
+
+
 
 # Создание окна
 root = tk.Tk()
-root.title("Отображение изображения")
+root.title("Сохранение данных в словарь")
 
-# Создание холста
-canvas = tk.Canvas(root, width=600, height=600)
-canvas.pack()
+# Создание виджетов
+label_key = tk.Label(text="Ключ:")
+entry_key = tk.Entry()
 
-# Путь к фотографии
-photo_path = "photo_home/1.jpg"  # Замените на свой путь к фото
+label_value = tk.Label(text="Значение:")
+entry_value = tk.Entry()
 
-# Получение измененного изображения
-image = resize_image(photo_path)
+button_save = tk.Button(text="Сохранить", command=on_click)
+button_read = tk.Button(text="Читать", command=read_data)
+button_clear = tk.Button(text="Стереть", command=on_clear)
 
-# Отображение изображения по центру холста
-center_image(canvas, image)
+text_box = tk.Text(height=10, width=30)
 
+# Размещение виджетов
+label_key.pack()
+entry_key.pack()
+
+label_value.pack()
+entry_value.pack()
+
+button_save.pack()
+button_read.pack()
+button_clear.pack()
+
+text_box.pack()
+
+# Загрузка данных при запуске программы
+try:
+    with open("data_team.pkl", "rb") as f:
+        data_team = pickle.load(f)
+except FileNotFoundError:
+    pass
+
+# Запуск цикла обработки событий
 root.mainloop()
+
+# Сохранение данных при закрытии окна
+# save_data()
