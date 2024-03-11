@@ -16,7 +16,6 @@ class TimerApp:
         self.monitors = get_monitors()
         # Выбираем второй монитор (индекс 1)
         if len(self.monitors) < 2:
-            print(len(self.monitors))
             messagebox.showinfo('INFO', 'Табло не обнаружено')
             self.secondary_monitor = self.monitors[1]
         else:
