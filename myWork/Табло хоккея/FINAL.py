@@ -1365,7 +1365,7 @@ class TimerApp:
             self.data_team2 = {}
             with open("data_team_guest.pkl", "wb") as f:
                 pickle.dump(self.data_team2, f)
-                self.update_combo_box()
+            self.update_combo_box()
 
         self.save_comands_window = tk.Toplevel(root)
         self.save_comands_window.title("ЗАПИСЬ ИГРОКОВ")
