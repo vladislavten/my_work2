@@ -18,10 +18,10 @@ class TimerApp:
         if len(self.monitors) < 2:
             print(len(self.monitors))
             messagebox.showinfo('INFO', 'Табло не обнаружено')
-            self.secondary_monitor = self.monitors[0]
+            self.secondary_monitor = self.monitors[1]
         else:
             print(len(self.monitors))
-            self.secondary_monitor = self.monitors[1] #1 это второй монитор, 0 это первый
+            self.secondary_monitor = self.monitors[0] #1 это второй монитор, 0 это первый
 
 
         self.master = master
@@ -66,9 +66,9 @@ class TimerApp:
         self.timer_window.geometry(
             f"{self.secondary_monitor.width}x{self.secondary_monitor.height}+{self.secondary_monitor.x}+{self.secondary_monitor.y}")
         # self.timer_window.geometry('1024x768')
-        self.timer_window.geometry('1280x1024')
+        # self.timer_window.geometry('1280x1024')
         self.timer_window['bg'] = 'black'
-        # self.timer_window.overrideredirect(True)
+        self.timer_window.overrideredirect(True)
         # self.timer_window.attributes('-topmost', True)
         self.timer_window.withdraw()
 
