@@ -6,6 +6,7 @@ from PIL import Image, ImageTk
 import os.path
 from tkinter import ttk
 import pickle
+from stopwatch import Stopwatch
 
 def on_closing():
     if messagebox.askokcancel("Выход", "Вы действительно хотите завершить работу программы: Управление таймером?"):
@@ -538,7 +539,15 @@ class TimerApp:
 
         self.penalty_update_timer6()
 
-        # self.update_timer()
+        ################################################## СЕКУНДОМЕР
+
+        # Создаем секундомер
+        self.stopwatch = Stopwatch()
+
+        # Создаем метку для отображения времени
+        self.stopwatch_time_label = tk.Label(text="00:00", font=("Arial", 24))
+        self.stopwatch_time_label.pack()
+
 
         ################################################################
 
@@ -549,7 +558,32 @@ class TimerApp:
         self.update_timer()
         self.penalty_update_timer()
 
+
+
+
     ##########################################  ФУНКЦИИ ###################################################
+
+    def stopwatch_toggle_timer(self):
+        if self.timer_running:
+            self.stopwatch.start()
+            self.stopwatch_update_time()
+
+    def stopwatch_update_time(self):
+        if self.timer_running:
+            # Получаем текущее время с секундомера
+            current_time = self.stopwatch.elapsed
+            print(current_time)
+            # Преобразуем секунды в минуты и секунды
+            minutes = int(current_time // 60)
+            seconds = int(current_time % 60)
+            # Форматируем время
+            stopwatch_time_string = f"{minutes:02d}:{seconds:02d}"
+            # Обновляем текст на метке
+            self.stopwatch_time_label.config(text=stopwatch_time_string)
+            # Запускаем обновление снова через 100 мс
+            self.master.after(100, self.stopwatch_update_time)
+        else:
+            self.stopwatch.stop()
 
 ####################################### тест штрафных
     def general_start(self):
@@ -559,10 +593,11 @@ class TimerApp:
         self.penalty_toggle_timer4()
         self.penalty_toggle_timer5()
         self.penalty_toggle_timer6()
-
-
-
         self.toggle_timer()
+        self.stopwatch_toggle_timer()
+
+
+
 
     def penalty_apply(self):
         if not self.timer_running:
@@ -1206,17 +1241,7 @@ class TimerApp:
             self.timer_label.config(text=self.format_time(self.time_remaining))
             self.timer_label_control.config(text=self.format_time(self.time_remaining))
 
-    # def fullscreen_timer(self):
-    #     if not self.fullscreen_state:
-    #         self.timer_window.deiconify()
-    #         self.timer_window.attributes("-fullscreen", True)
-    #         self.fullscreen_state = True
-    #         self.fullscreen_button.config(text="Не выводить на табло")
-    #     else:
-    #         self.timer_window.attributes("-fullscreen", False)
-    #         self.fullscreen_state = False
-    #         self.timer_window.withdraw()
-    #         self.fullscreen_button.config(text="Вывести на табло")
+
 
     def toggle_timer(self):
         if self.timer_running:
@@ -1235,7 +1260,6 @@ class TimerApp:
 
     def update_timer(self):
         if self.timer_running:
-            # print(self.time_remaining)
             elapsed_time = int(time.time() - self.start_time)
             self.time_remaining = max(0, 20 * 60 - elapsed_time)
             self.timer_label.config(text=self.format_time(self.time_remaining))
@@ -1243,7 +1267,6 @@ class TimerApp:
             if self.time_remaining > 0:
                 self.timer_window.after(1000, self.update_timer)
             else:
-                # print('Меньше нуля')
                 self.general_start()
                 self.timer_running = False
                 self.button.config(text="Старт")
