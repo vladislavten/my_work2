@@ -814,9 +814,9 @@ class TimerApp:
         self.penalty_paused_time4 = 0
 
     def time_zero5(self):
-        self.penalty_time_remaining = 0  # БЫЛО 20 * 60
-        self.penalty_start_time = 0
-        self.penalty_paused_time = 0
+        self.penalty_time_remaining5 = 0  # БЫЛО 20 * 60
+        self.penalty_start_time5 = 0
+        self.penalty_paused_time5 = 0
 
     def time_zero6(self):
         self.penalty_time_remaining6 = 0  # БЫЛО 20 * 60
@@ -826,78 +826,66 @@ class TimerApp:
     def penalty_toggle_timer(self):
         if self.penalty_timer_running:
             self.penalty_timer_running = False
-            # self.penalty_button.config(text="Игра")
             self.penalty_paused_time = time.time() - self.penalty_start_time
         else:
             if self.penalty_time_remaining == 0:
                 self.penalty_time_remaining = int(self.penalty_minutes) * 60
             self.penalty_timer_running = True
-            # self.penalty_button.config(text="Пауза")
             self.penalty_start_time = time.time() - (int(self.penalty_minutes) * 60 - self.penalty_time_remaining)
             self.penalty_update_timer()
 
     def penalty_toggle_timer2(self):
         if self.penalty_timer_running2:
             self.penalty_timer_running2 = False
-            # self.penalty_button.config(text="Игра")
             self.penalty_paused_time2 = time.time() - self.penalty_start_time2
         else:
             if self.penalty_time_remaining2 == 0:
                 self.penalty_time_remaining2 = int(self.penalty_minutes2) * 60
             self.penalty_timer_running2 = True
-            # self.penalty_button.config(text="Пауза")
             self.penalty_start_time2 = time.time() - (int(self.penalty_minutes2) * 60 - self.penalty_time_remaining2)
             self.penalty_update_timer2()
 
     def penalty_toggle_timer3(self):
         if self.penalty_timer_running3:
             self.penalty_timer_running3 = False
-            # self.penalty_button.config(text="Игра")
             self.penalty_paused_time3 = time.time() - self.penalty_start_time3
         else:
             if self.penalty_time_remaining3 == 0:
                 self.penalty_time_remaining3 = int(self.penalty_minutes3) * 60
             self.penalty_timer_running3 = True
-            # self.penalty_button.config(text="Пауза")
             self.penalty_start_time3 = time.time() - (int(self.penalty_minutes3) * 60 - self.penalty_time_remaining3)
             self.penalty_update_timer3()
 
     def penalty_toggle_timer4(self):
         if self.penalty_timer_running4:
             self.penalty_timer_running4 = False
-            # self.penalty_button.config(text="Игра")
             self.penalty_paused_time4 = time.time() - self.penalty_start_time4
         else:
             if self.penalty_time_remaining4 == 0:
                 self.penalty_time_remaining4 = int(self.penalty_minutes4) * 60
             self.penalty_timer_running4 = True
-            # self.penalty_button.config(text="Пауза")
             self.penalty_start_time4 = time.time() - (int(self.penalty_minutes4) * 60 - self.penalty_time_remaining4)
             self.penalty_update_timer4()
 
     def penalty_toggle_timer5(self):
         if self.penalty_timer_running5:
             self.penalty_timer_running5 = False
-            # self.penalty_button.config(text="Игра")
             self.penalty_paused_time5 = time.time() - self.penalty_start_time5
         else:
             if self.penalty_time_remaining5 == 0:
                 self.penalty_time_remaining5 = int(self.penalty_minutes5) * 60
             self.penalty_timer_running5 = True
-            # self.penalty_button.config(text="Пауза")
             self.penalty_start_time5 = time.time() - (int(self.penalty_minutes5) * 60 - self.penalty_time_remaining5)
             self.penalty_update_timer5()
 
     def penalty_toggle_timer6(self):
         if self.penalty_timer_running6:
             self.penalty_timer_running6 = False
-            # self.penalty_button.config(text="Игра")
             self.penalty_paused_time6 = time.time() - self.penalty_start_time6
         else:
             if self.penalty_time_remaining6 == 0:
                 self.penalty_time_remaining6 = int(self.penalty_minutes6) * 60
             self.penalty_timer_running6 = True
-            # self.penalty_button.config(text="Пауза")
             self.penalty_start_time6 = time.time() - (int(self.penalty_minutes6) * 60 - self.penalty_time_remaining6)
             self.penalty_update_timer6()
 
@@ -916,8 +904,6 @@ class TimerApp:
                 self.penalty_minutes = '0'  # Обязательно возращать 0 во все переменные штрафа
                 self.penalty_number_label.place_forget()
                 self.penalty_number_label_control.place_forget()
-
-                # self.penalty_button.config(text="Старт")
         else:
             self.penalty_timer_label.config(text=self.penalty_format_time(self.penalty_time_remaining))
             self.penalty_timer_label_control.config(text=self.penalty_format_time(self.penalty_time_remaining))
@@ -937,9 +923,6 @@ class TimerApp:
                 self.penalty_minutes2 = '0'  # Обязательно возращать 0 во все переменные штрафа
                 self.penalty_number_label2.place_forget()
                 self.penalty_number_label2_control.place_forget()
-
-
-                # self.penalty_button.config(text="Старт")
         else:
             self.penalty_timer_label2.config(text=self.penalty_format_time2(self.penalty_time_remaining2))
             self.penalty_timer_label2_control.config(text=self.penalty_format_time2(self.penalty_time_remaining2))
@@ -960,8 +943,6 @@ class TimerApp:
                 self.penalty_minutes3 = '0'  # Обязательно возращать 0 во все переменные штрафа
                 self.penalty_number_label3.place_forget()
                 self.penalty_number_label3_control.place_forget()
-
-                # self.penalty_button.config(text="Старт")
         else:
             self.penalty_timer_label3.config(text=self.penalty_format_time3(self.penalty_time_remaining3))
             self.penalty_timer_label3_control.config(text=self.penalty_format_time3(self.penalty_time_remaining3))
@@ -981,8 +962,6 @@ class TimerApp:
                 self.penalty_minutes4 = '0'  # Обязательно возращать 0 во все переменные штрафа
                 self.penalty_number_label4.place_forget()
                 self.penalty_number_label4_control.place_forget()
-
-                # self.penalty_button.config(text="Старт")
         else:
             self.penalty_timer_label.config(text=self.penalty_format_time(self.penalty_time_remaining))
 
@@ -1002,8 +981,6 @@ class TimerApp:
                 self.penalty_number_label5.place_forget()
                 self.penalty_number_label5_control.place_forget()
 
-                # self.penalty_button.config(text="Старт")
-
     def penalty_update_timer6(self):
         if self.penalty_timer_running6:
             elapsed_time6 = int(time.time() - self.penalty_start_time6)
@@ -1020,7 +997,6 @@ class TimerApp:
                 self.penalty_number_label6.place_forget()
                 self.penalty_number_label6_control.place_forget()
 
-                # self.penalty_button.config(text="Старт")
         else:
             self.penalty_timer_label6.config(text=self.penalty_format_time6(self.penalty_time_remaining6))
             self.penalty_timer_label6_control.config(text=self.penalty_format_time6(self.penalty_time_remaining6))
