@@ -126,9 +126,6 @@ class TimerApp:
         self.timer_label_control.place(x=450, y=105, anchor="center")
 
         self.timer_running = False
-        self.time_remaining = 20 * 60
-        self.start_time = 0
-        self.paused_time = 0
 
 ##############################################
         ### ШТРАФНОЙ
@@ -137,7 +134,6 @@ class TimerApp:
 
         self.penalty_number_label = tk.Label(self.timer_window, text=False, font=("DS-Digital", 40), bg="black", fg="red")
         self.penalty_number_label_control = tk.Label(self.timer_window, text=False, font=("DS-Digital", 40), bg="black", fg="red")
-
 
         self.penalty_timer = Stopwatch()
 
@@ -149,10 +145,7 @@ class TimerApp:
         self.penalty_number_label2 = tk.Label(self.timer_window, text=False, font=("DS-Digital", 40), bg="black", fg="red")
         self.penalty_number_label2_control = tk.Label(self.master, text=False, font=("DS-Digital", 40), bg="black", fg="red")
 
-        self.penalty_timer_running2 = False
-        self.penalty_time_remaining2 = 0 # БЫЛО 20 * 60
-        self.penalty_start_time2 = 0
-        self.penalty_paused_time2 = 0
+        self.penalty_timer2 = Stopwatch()
 
         ### ШТРАФНОЙ 3
         self.penalty_timer_label3 = tk.Label(self.timer_window, text="00:00", font=("DS-Digital", 40), bg="black", fg="red")
@@ -161,10 +154,7 @@ class TimerApp:
         self.penalty_number_label3 = tk.Label(self.timer_window, text=False, font=("DS-Digital", 40), bg="black", fg="red")
         self.penalty_number_label3_control = tk.Label(self.timer_window, text=False, font=("DS-Digital", 40), bg="black", fg="red")
 
-        self.penalty_timer_running3 = False
-        self.penalty_time_remaining3 = 0 # БЫЛО 20 * 60
-        self.penalty_start_time3 = 0
-        self.penalty_paused_time3 = 0
+        self.penalty_timer3 = Stopwatch()
 
         ### ШТРАФНОЙ 4
         self.penalty_timer_label4 = tk.Label(self.timer_window, text="00:00", font=("DS-Digital", 40), bg="black", fg="red")
@@ -173,10 +163,7 @@ class TimerApp:
         self.penalty_number_label4 = tk.Label(self.timer_window, text=False, font=("DS-Digital", 40), bg="black", fg="red")
         self.penalty_number_label4_control = tk.Label(self.master, text=False, font=("DS-Digital", 40), bg="black", fg="red")
 
-        self.penalty_timer_running4 = False
-        self.penalty_time_remaining4 = 0  # БЫЛО 20 * 60
-        self.penalty_start_time4 = 0
-        self.penalty_paused_time4 = 0
+        self.penalty_timer4 = Stopwatch()
 
         ### ШТРАФНОЙ 5
         self.penalty_timer_label5 = tk.Label(self.timer_window, text="00:00", font=("DS-Digital", 40), bg="black", fg="red")
@@ -185,10 +172,7 @@ class TimerApp:
         self.penalty_number_label5 = tk.Label(self.timer_window, text=False, font=("DS-Digital", 40), bg="black", fg="red")
         self.penalty_number_label5_control = tk.Label(self.master, text=False, font=("DS-Digital", 40), bg="black", fg="red")
 
-        self.penalty_timer_running5 = False
-        self.penalty_time_remaining5 = 0 # БЫЛО 20 * 60
-        self.penalty_start_time5 = 0
-        self.penalty_paused_time5 = 0
+        self.penalty_timer5 = Stopwatch()
 
         ### ШТРАФНОЙ 6
         self.penalty_timer_label6 = tk.Label(self.timer_window, text="00:00", font=("DS-Digital", 40), bg="black", fg="red")
@@ -197,10 +181,7 @@ class TimerApp:
         self.penalty_number_label6 = tk.Label(self.timer_window, text=False, font=("DS-Digital", 40), bg="black", fg="red")
         self.penalty_number_label6_control = tk.Label(self.master, text=False, font=("DS-Digital", 40), bg="black", fg="red")
 
-        self.penalty_timer_running6 = False
-        self.penalty_time_remaining6 = 0 # БЫЛО 20 * 60
-        self.penalty_start_time6 = 0
-        self.penalty_paused_time6 = 0
+        self.penalty_timer6 = Stopwatch()
 
         ############################
 
@@ -209,7 +190,6 @@ class TimerApp:
 
 #######################################
 
-        self.penalty_minutes2 = '0'
         self.penalty_minutes3 = '0'
         self.penalty_minutes4 = '0'
         self.penalty_minutes5 = '0'
@@ -517,7 +497,6 @@ class TimerApp:
         self.penalty_number_entry = ttk.Combobox(self.master, values=list(self.data_team.keys()), font=("Helvetica", 14), justify="center")
         self.penalty_number_entry.place(x=102, y=462, anchor='center', width=50, height=25)
 
-
         self.penalty_minutes_entry = tk.Entry(self.master, font=("Helvetica", 14), justify="center")
         self.penalty_minutes_entry.insert(0, '2')
         self.penalty_minutes_entry.place(x=200, y=462, anchor='center', width=30, height=25)
@@ -528,12 +507,11 @@ class TimerApp:
         self.penalty_number_entry2 = ttk.Combobox(self.master, values=list(self.data_team.keys()), font=("Helvetica", 14), justify="center")
         self.penalty_number_entry2.place(x=102, y=505, anchor='center', width=50, height=25)
 
-
         self.penalty_minutes_entry2 = tk.Entry(self.master, font=("Helvetica", 14), justify="center")
         self.penalty_minutes_entry2.insert(0, '2')
         self.penalty_minutes_entry2.place(x=200, y=505, anchor='center', width=30, height=25)
 
-        self.penalty_update_timer2()
+        self.penalty_flg2 = False
 
 
         self.penalty_number_entry3 = ttk.Combobox(self.master, values=list(self.data_team.keys()), font=("Helvetica", 14), justify="center")
@@ -543,7 +521,7 @@ class TimerApp:
         self.penalty_minutes_entry3.insert(0, '2')
         self.penalty_minutes_entry3.place(x=200, y=548, anchor='center', width=30, height=25)
 
-        self.penalty_update_timer3()
+        self.penalty_flg3 = False
 
 
         self.penalty_number_entry4 = ttk.Combobox(self.master, values=list(self.data_team2.keys()), font=("Helvetica", 14), justify="center")
@@ -553,7 +531,7 @@ class TimerApp:
         self.penalty_minutes_entry4.insert(0, '2')
         self.penalty_minutes_entry4.place(x=650, y=462, anchor='center', width=30, height=25)
 
-        self.penalty_update_timer4()
+        self.penalty_flg4 = False
 
 
         self.penalty_number_entry5 = ttk.Combobox(self.master, values=list(self.data_team2.keys()), font=("Helvetica", 14), justify="center")
@@ -563,7 +541,7 @@ class TimerApp:
         self.penalty_minutes_entry5.insert(0, '2')
         self.penalty_minutes_entry5.place(x=650, y= 505, anchor='center', width=30, height=25)
 
-        self.penalty_update_timer5()
+        self.penalty_flg5 = False
 
 
         self.penalty_number_entry6 = ttk.Combobox(self.master, values=list(self.data_team2.keys()), font=("Helvetica", 14), justify="center")
@@ -573,7 +551,7 @@ class TimerApp:
         self.penalty_minutes_entry6.insert(0, '2')
         self.penalty_minutes_entry6.place(x=650, y=548, anchor='center', width=30, height=25)
 
-        self.penalty_update_timer6()
+        self.penalty_flg6 = False
 
         ################################################## СЕКУНДОМЕР
 
@@ -589,10 +567,10 @@ class TimerApp:
         self.time_text_label.place(x=450, y=15, anchor="center")
 
         self.current_time = 0
-        self.elapse_time = 1201
+        self.elapse_time = 5
 
         self.stopwatch_current_time = 0
-        self.stopwatch_elapse_time = 0
+        self.stopwatch_elapse_time = 1
         ################################################################
 
         ###########################################Горячие КЛАВИШИ  #######################################
@@ -602,24 +580,18 @@ class TimerApp:
         self.update_timer()
         # self.penalty_update_timer()
 
-
-
-
     ##########################################  ФУНКЦИИ ###################################################
-
-
 
 ####################################### тест штрафных
     def general_start(self):
         self.toggle_timer()
         self.stopwatch_toggle_timer()
         self.penalty_update_timer()
-        self.penalty_toggle_timer2()
-        self.penalty_toggle_timer3()
-        self.penalty_toggle_timer4()
-        self.penalty_toggle_timer5()
-        self.penalty_toggle_timer6()
-
+        self.penalty_update_timer2()
+        self.penalty_update_timer3()
+        self.penalty_update_timer4()
+        self.penalty_update_timer5()
+        self.penalty_update_timer6()
 
 
     def penalty_apply(self):
@@ -633,7 +605,6 @@ class TimerApp:
                         self.penalty_timer_label_control.place_forget()
                         self.penalty_number_label.place_forget()
                         self.penalty_number_label_control.place_forget()
-                        # self.time_zero()  # сброс тайминга штрафа
                         self.penalty_minutes = self.penalty_minutes_entry.get().strip()
                         self.penalty_timer_label = tk.Label(self.timer_window, text=f"0{self.penalty_minutes}:00",
                                                             font=("DS-Digital", 50), bg="black", fg="yellow")
@@ -672,7 +643,6 @@ class TimerApp:
                         self.penalty_number_label2.place_forget()
                         self.penalty_timer_label2_control.place_forget()
                         self.penalty_number_label2_control.place_forget()
-                        self.time_zero2()  # сброс тайминга штрафа
                         self.penalty_minutes2 = self.penalty_minutes_entry2.get().strip()
                         self.penalty_timer_label2 = tk.Label(self.timer_window, text=f"0{self.penalty_minutes2}:00",
                                                              font=("DS-Digital", 50), bg="black", fg="yellow")
@@ -689,6 +659,8 @@ class TimerApp:
                         self.penalty_number_label2_control = tk.Label(self.master, text=self.penalty_number2,
                                                               font=("DS-Digital", 16), bg="black", fg="yellow")
                         self.penalty_number_label2_control.place(x=188, y=214, anchor="center")
+                        self.penalty_timer2.reset()
+                        self.penalty_flg2 = True
                     else:
                         messagebox.showinfo("Информация",
                                             f"Номер: {self.penalty_number_entry2.get().strip()} отсутствует в списке игроков хозяев")
@@ -712,7 +684,6 @@ class TimerApp:
                         self.penalty_timer_label3_control.place_forget()
                         self.penalty_number_label3.place_forget()
                         self.penalty_number_label3_control.place_forget()
-                        self.time_zero3()  # сброс тайминга штрафа
                         self.penalty_minutes3 = self.penalty_minutes_entry3.get().strip()
                         self.penalty_timer_label3 = tk.Label(self.timer_window, text=f"0{self.penalty_minutes3}:00",
                                                              font=("DS-Digital", 50), bg="black", fg="yellow")
@@ -727,6 +698,8 @@ class TimerApp:
                         self.penalty_number_label3_control = tk.Label(self.master, text=self.penalty_number3,
                                                               font=("DS-Digital", 16), bg="black", fg="yellow")
                         self.penalty_number_label3_control.place(x=188, y=239, anchor="center")
+                        self.penalty_timer3.reset()
+                        self.penalty_flg3 = True
                     else:
                         messagebox.showinfo("Информация",
                                             f"Номер: {self.penalty_number_entry3.get().strip()} отсутствует в списке игроков хозяев")
@@ -750,7 +723,6 @@ class TimerApp:
                         self.penalty_timer_label4_control.place_forget()
                         self.penalty_number_label4.place_forget()
                         self.penalty_number_label4_control.place_forget()
-                        self.time_zero4()  # сброс тайминга штрафа
                         self.penalty_minutes4 = self.penalty_minutes_entry4.get().strip()
                         self.penalty_timer_label4 = tk.Label(self.timer_window, text=f"0{self.penalty_minutes4}:00",
                                                              font=("DS-Digital", 50), bg="black", fg="yellow")
@@ -765,6 +737,8 @@ class TimerApp:
                         self.penalty_number_label4_control = tk.Label(self.master, text=self.penalty_number4,
                                                               font=("DS-Digital", 16), bg="black", fg="yellow")
                         self.penalty_number_label4_control.place(x=646, y=189, anchor="center")
+                        self.penalty_timer4.reset()
+                        self.penalty_flg4 = True
                     else:
                         messagebox.showinfo("Информация",
                                             f"Номер: {self.penalty_number_entry4.get().strip()} отсутствует в списке игроков гостей")
@@ -788,7 +762,6 @@ class TimerApp:
                         self.penalty_timer_label5_control.place_forget()
                         self.penalty_number_label5.place_forget()
                         self.penalty_number_label5_control.place_forget()
-                        self.time_zero5()  # сброс тайминга штрафа
                         self.penalty_minutes5 = self.penalty_minutes_entry5.get().strip()
                         self.penalty_timer_label5 = tk.Label(self.timer_window, text=f"0{self.penalty_minutes5}:00",
                                                             font=("DS-Digital", 50), bg="black", fg="yellow")
@@ -803,6 +776,8 @@ class TimerApp:
                         self.penalty_number_label5_control = tk.Label(self.master, text=self.penalty_number5,
                                                              font=("DS-Digital", 16), bg="black", fg="yellow")
                         self.penalty_number_label5_control.place(x=646, y=214, anchor="center")
+                        self.penalty_timer5.reset()
+                        self.penalty_flg5 = True
                     else:
                         messagebox.showinfo("Информация",
                                             f"Номер: {self.penalty_number_entry5.get().strip()} отсутствует в списке игроков гостей")
@@ -826,7 +801,6 @@ class TimerApp:
                         self.penalty_timer_label6_control.place_forget()
                         self.penalty_number_label6.place_forget()
                         self.penalty_number_label6_control.place_forget()
-                        self.time_zero6()  # сброс тайминга штрафа
                         self.penalty_minutes6 = self.penalty_minutes_entry6.get().strip()
                         self.penalty_timer_label6 = tk.Label(self.timer_window, text=f"0{self.penalty_minutes6}:00",
                                                             font=("DS-Digital", 50), bg="black", fg="yellow")
@@ -841,6 +815,8 @@ class TimerApp:
                         self.penalty_number_label6_control = tk.Label(self.master, text=self.penalty_number6,
                                                              font=("DS-Digital", 16), bg="black", fg="yellow")
                         self.penalty_number_label6_control.place(x=646, y=239, anchor="center")
+                        self.penalty_timer6.reset()
+                        self.penalty_flg6 = True
                     else:
                         messagebox.showinfo("Информация",
                                             f"Номер: {self.penalty_number_entry6.get().strip()} отсутствует в списке игроков гостей")
@@ -852,92 +828,6 @@ class TimerApp:
 
         else:
             messagebox.showinfo("Информация", "Нельзя записать данные о штрафе, пока идет таймер")
-
-    def time_zero(self):
-        self.penalty_time_remaining = 0  # БЫЛО 20 * 60
-        self.penalty_start_time = 0
-        self.penalty_paused_time = 0
-
-    def time_zero2(self):
-        self.penalty_time_remaining2 = 0  # БЫЛО 20 * 60
-        self.penalty_start_time2 = 0
-        self.penalty_paused_time2 = 0
-
-    def time_zero3(self):
-        self.penalty_time_remaining3 = 0  # БЫЛО 20 * 60
-        self.penalty_start_time3 = 0
-        self.penalty_paused_time3 = 0
-
-    def time_zero4(self):
-        self.penalty_time_remaining4 = 0  # БЫЛО 20 * 60
-        self.penalty_start_time4 = 0
-        self.penalty_paused_time4 = 0
-
-    def time_zero5(self):
-        self.penalty_time_remaining5 = 0  # БЫЛО 20 * 60
-        self.penalty_start_time5 = 0
-        self.penalty_paused_time5 = 0
-
-    def time_zero6(self):
-        self.penalty_time_remaining6 = 0  # БЫЛО 20 * 60
-        self.penalty_start_time6 = 0
-        self.penalty_paused_time6 = 0
-
-
-    def penalty_toggle_timer2(self):
-        if self.penalty_timer_running2:
-            self.penalty_timer_running2 = False
-            self.penalty_paused_time2 = time.time() - self.penalty_start_time2
-        else:
-            if self.penalty_time_remaining2 == 0:
-                self.penalty_time_remaining2 = int(self.penalty_minutes2) * 60
-            self.penalty_timer_running2 = True
-            self.penalty_start_time2 = time.time() - (int(self.penalty_minutes2) * 60 - self.penalty_time_remaining2)
-            self.penalty_update_timer2()
-
-    def penalty_toggle_timer3(self):
-        if self.penalty_timer_running3:
-            self.penalty_timer_running3 = False
-            self.penalty_paused_time3 = time.time() - self.penalty_start_time3
-        else:
-            if self.penalty_time_remaining3 == 0:
-                self.penalty_time_remaining3 = int(self.penalty_minutes3) * 60
-            self.penalty_timer_running3 = True
-            self.penalty_start_time3 = time.time() - (int(self.penalty_minutes3) * 60 - self.penalty_time_remaining3)
-            self.penalty_update_timer3()
-
-    def penalty_toggle_timer4(self):
-        if self.penalty_timer_running4:
-            self.penalty_timer_running4 = False
-            self.penalty_paused_time4 = time.time() - self.penalty_start_time4
-        else:
-            if self.penalty_time_remaining4 == 0:
-                self.penalty_time_remaining4 = int(self.penalty_minutes4) * 60
-            self.penalty_timer_running4 = True
-            self.penalty_start_time4 = time.time() - (int(self.penalty_minutes4) * 60 - self.penalty_time_remaining4)
-            self.penalty_update_timer4()
-
-    def penalty_toggle_timer5(self):
-        if self.penalty_timer_running5:
-            self.penalty_timer_running5 = False
-            self.penalty_paused_time5 = time.time() - self.penalty_start_time5
-        else:
-            if self.penalty_time_remaining5 == 0:
-                self.penalty_time_remaining5 = int(self.penalty_minutes5) * 60
-            self.penalty_timer_running5 = True
-            self.penalty_start_time5 = time.time() - (int(self.penalty_minutes5) * 60 - self.penalty_time_remaining5)
-            self.penalty_update_timer5()
-
-    def penalty_toggle_timer6(self):
-        if self.penalty_timer_running6:
-            self.penalty_timer_running6 = False
-            self.penalty_paused_time6 = time.time() - self.penalty_start_time6
-        else:
-            if self.penalty_time_remaining6 == 0:
-                self.penalty_time_remaining6 = int(self.penalty_minutes6) * 60
-            self.penalty_timer_running6 = True
-            self.penalty_start_time6 = time.time() - (int(self.penalty_minutes6) * 60 - self.penalty_time_remaining6)
-            self.penalty_update_timer6()
 
 
     def penalty_update_timer(self):
@@ -957,122 +847,133 @@ class TimerApp:
             self.penalty_timer.stop()
             print('stop')
 
-
     def penalty_update_timer2(self):
-        if self.penalty_timer_running2:
-            elapsed_time2 = int(time.time() - self.penalty_start_time2)
-            self.penalty_time_remaining2 = max(0, int(self.penalty_minutes2) * 60 - elapsed_time2)
-            self.penalty_timer_label2.config(text=self.penalty_format_time2(self.penalty_time_remaining2))
-            self.penalty_timer_label2_control.config(text=self.penalty_format_time2(self.penalty_time_remaining2))
-            if self.penalty_time_remaining2 > 0:
-                self.timer_window.after(1000, self.penalty_update_timer2)
-            else:
-                self.penalty_timer_running2 = False
-                self.penalty_timer_label2.place_forget()
-                self.penalty_timer_label2_control.place_forget()
-                self.penalty_minutes2 = '0'  # Обязательно возращать 0 во все переменные штрафа
-                self.penalty_number_label2.place_forget()
-                self.penalty_number_label2_control.place_forget()
+        if self.timer_running and self.penalty_flg2:
+            self.penalty_timer2.start()
+            penalty_current_time = int(self.penalty_minutes2) * 2 - self.penalty_timer2.elapsed
+            if penalty_current_time <= 1:
+                self.cancel_penalty2()
+            print(penalty_current_time)
+            minutes = int(penalty_current_time // 60)
+            seconds = int(penalty_current_time % 60)
+            string = f"{minutes:02d}:{seconds:02d}"
+            self.penalty_timer_label2.config(text=string)
+            self.penalty_timer_label2_control.config(text=string)
+            self.master.after(10, self.penalty_update_timer2)
         else:
-            self.penalty_timer_label2.config(text=self.penalty_format_time2(self.penalty_time_remaining2))
-            self.penalty_timer_label2_control.config(text=self.penalty_format_time2(self.penalty_time_remaining2))
+            self.penalty_timer2.stop()
+            print('stop')
 
     def penalty_update_timer3(self):
-        if self.penalty_timer_running3:
-            elapsed_time3 = int(time.time() - self.penalty_start_time3)
-            self.penalty_time_remaining3 = max(0, int(self.penalty_minutes3) * 60 - elapsed_time3)
-            self.penalty_timer_label3.config(text=self.penalty_format_time3(self.penalty_time_remaining3))
-            self.penalty_timer_label3_control.config(text=self.penalty_format_time3(self.penalty_time_remaining3))
-            if self.penalty_time_remaining3 > 0:
-                self.timer_window.after(1000, self.penalty_update_timer3)
-            else:
-                self.penalty_timer_running3 = False
-                self.penalty_timer_label3.place_forget()
-                self.penalty_timer_label3_control.place_forget()
-                self.penalty_minutes3 = '0'  # Обязательно возращать 0 во все переменные штрафа
-                self.penalty_number_label3.place_forget()
-                self.penalty_number_label3_control.place_forget()
+        if self.timer_running and self.penalty_flg3:
+            self.penalty_timer3.start()
+            penalty_current_time = int(self.penalty_minutes3) * 2 - self.penalty_timer3.elapsed
+            if penalty_current_time <= 1:
+                self.cancel_penalty3()
+            print(penalty_current_time)
+            minutes = int(penalty_current_time // 60)
+            seconds = int(penalty_current_time % 60)
+            string = f"{minutes:02d}:{seconds:02d}"
+            self.penalty_timer_label3.config(text=string)
+            self.penalty_timer_label3_control.config(text=string)
+            self.master.after(10, self.penalty_update_timer3)
         else:
-            self.penalty_timer_label3.config(text=self.penalty_format_time3(self.penalty_time_remaining3))
-            self.penalty_timer_label3_control.config(text=self.penalty_format_time3(self.penalty_time_remaining3))
+            self.penalty_timer3.stop()
+            print('stop')
 
     def penalty_update_timer4(self):
-        if self.penalty_timer_running4:
-            elapsed_time4 = int(time.time() - self.penalty_start_time4)
-            self.penalty_time_remaining4 = max(0, int(self.penalty_minutes4) * 60 - elapsed_time4)
-            self.penalty_timer_label4.config(text=self.penalty_format_time4(self.penalty_time_remaining4))
-            self.penalty_timer_label4_control.config(text=self.penalty_format_time4(self.penalty_time_remaining4))
-            if self.penalty_time_remaining4 > 0:
-                self.timer_window.after(1000, self.penalty_update_timer4)
-            else:
-                self.penalty_timer_running4 = False
-                self.penalty_timer_label4.place_forget()
-                self.penalty_timer_label4_control.place_forget()
-                self.penalty_minutes4 = '0'  # Обязательно возращать 0 во все переменные штрафа
-                self.penalty_number_label4.place_forget()
-                self.penalty_number_label4_control.place_forget()
+        if self.timer_running and self.penalty_flg4:
+            self.penalty_timer4.start()
+            penalty_current_time = int(self.penalty_minutes4) * 2 - self.penalty_timer4.elapsed
+            if penalty_current_time <= 1:
+                self.cancel_penalty4()
+            print(penalty_current_time)
+            minutes = int(penalty_current_time // 60)
+            seconds = int(penalty_current_time % 60)
+            string = f"{minutes:02d}:{seconds:02d}"
+            self.penalty_timer_label4.config(text=string)
+            self.penalty_timer_label4_control.config(text=string)
+            self.master.after(10, self.penalty_update_timer4)
         else:
-            self.penalty_timer_label.config(text=self.penalty_format_time(self.penalty_time_remaining4))
+            self.penalty_timer4.stop()
+            print('stop')
 
     def penalty_update_timer5(self):
-        if self.penalty_timer_running5:
-            elapsed_time5 = int(time.time() - self.penalty_start_time5)
-            self.penalty_time_remaining5 = max(0, int(self.penalty_minutes5) * 60 - elapsed_time5)
-            self.penalty_timer_label5.config(text=self.penalty_format_time5(self.penalty_time_remaining5))
-            self.penalty_timer_label5_control.config(text=self.penalty_format_time5(self.penalty_time_remaining5))
-            if self.penalty_time_remaining5 > 0:
-                self.timer_window.after(1000, self.penalty_update_timer5)
-            else:
-                self.penalty_timer_running5 = False
-                self.penalty_timer_label5.place_forget()
-                self.penalty_timer_label5_control.place_forget()
-                self.penalty_minutes5 = '0'  # Обязательно возращать 0 во все переменные штрафа
-                self.penalty_number_label5.place_forget()
-                self.penalty_number_label5_control.place_forget()
+        if self.timer_running and self.penalty_flg5:
+            self.penalty_timer5.start()
+            penalty_current_time = int(self.penalty_minutes5) * 2 - self.penalty_timer5.elapsed
+            if penalty_current_time <= 1:
+                self.cancel_penalty5()
+            print(penalty_current_time)
+            minutes = int(penalty_current_time // 60)
+            seconds = int(penalty_current_time % 60)
+            string = f"{minutes:02d}:{seconds:02d}"
+            self.penalty_timer_label5.config(text=string)
+            self.penalty_timer_label5_control.config(text=string)
+            self.master.after(10, self.penalty_update_timer5)
+        else:
+            self.penalty_timer5.stop()
+            print('stop')
 
     def penalty_update_timer6(self):
-        if self.penalty_timer_running6:
-            elapsed_time6 = int(time.time() - self.penalty_start_time6)
-            self.penalty_time_remaining6 = max(0, int(self.penalty_minutes6) * 60 - elapsed_time6)
-            self.penalty_timer_label6.config(text=self.penalty_format_time6(self.penalty_time_remaining6))
-            self.penalty_timer_label6_control.config(text=self.penalty_format_time6(self.penalty_time_remaining6))
-            if self.penalty_time_remaining6 > 0:
-                self.timer_window.after(1000, self.penalty_update_timer6)
-            else:
-                self.penalty_timer_running6 = False
-                self.penalty_timer_label6.place_forget()
-                self.penalty_timer_label6_control.place_forget()
-                self.penalty_minutes6 = '0'  # Обязательно возращать 0 во все переменные штрафа
-                self.penalty_number_label6.place_forget()
-                self.penalty_number_label6_control.place_forget()
-
+        if self.timer_running and self.penalty_flg6:
+            self.penalty_timer6.start()
+            penalty_current_time = int(self.penalty_minutes6) * 2 - self.penalty_timer6.elapsed
+            if penalty_current_time <= 1:
+                self.cancel_penalty6()
+            print(penalty_current_time)
+            minutes = int(penalty_current_time // 60)
+            seconds = int(penalty_current_time % 60)
+            string = f"{minutes:02d}:{seconds:02d}"
+            self.penalty_timer_label6.config(text=string)
+            self.penalty_timer_label6_control.config(text=string)
+            self.master.after(10, self.penalty_update_timer6)
         else:
-            self.penalty_timer_label6.config(text=self.penalty_format_time6(self.penalty_time_remaining6))
-            self.penalty_timer_label6_control.config(text=self.penalty_format_time6(self.penalty_time_remaining6))
+            self.penalty_timer6.stop()
+            print('stop')
 
-    def penalty_format_time(self, seconds):
-        minutes, seconds = divmod(seconds, 60)
-        return "{:02d}:{:02d}".format(minutes, seconds)
 
-    def penalty_format_time2(self, seconds):
-        minutes, seconds = divmod(seconds, 60)
-        return "{:02d}:{:02d}".format(minutes, seconds)
+    def cancel_penalty(self):
+        self.penalty_flg = False
+        self.penalty_timer_label.place_forget()
+        self.penalty_timer_label_control.place_forget()
+        self.penalty_number_label.place_forget()
+        self.penalty_number_label_control.place_forget()
 
-    def penalty_format_time3(self, seconds):
-        minutes, seconds = divmod(seconds, 60)
-        return "{:02d}:{:02d}".format(minutes, seconds)
+    def cancel_penalty2(self):
+        self.penalty_flg2 = False
+        self.penalty_timer_label2.place_forget()
+        self.penalty_timer_label2_control.place_forget()
+        self.penalty_number_label2.place_forget()
+        self.penalty_number_label2_control.place_forget()
 
-    def penalty_format_time4(self, seconds):
-        minutes, seconds = divmod(seconds, 60)
-        return "{:02d}:{:02d}".format(minutes, seconds)
+    def cancel_penalty3(self):
+        self.penalty_flg3 = False
+        self.penalty_timer_label3.place_forget()
+        self.penalty_timer_label3_control.place_forget()
+        self.penalty_number_label3.place_forget()
+        (self.penalty_number_label3_control.place_forget())
 
-    def penalty_format_time5(self, seconds):
-        minutes, seconds = divmod(seconds, 60)
-        return "{:02d}:{:02d}".format(minutes, seconds)
+    def cancel_penalty4(self):
+        self.penalty_flg4 = False
+        self.penalty_timer_label4.place_forget()
+        self.penalty_timer_label4_control.place_forget()
+        self.penalty_number_label4.place_forget()
+        self.penalty_number_label4_control.place_forget()
 
-    def penalty_format_time6(self, seconds):
-        minutes, seconds = divmod(seconds, 60)
-        return "{:02d}:{:02d}".format(minutes, seconds)
+    def cancel_penalty5(self):
+        self.penalty_flg5 = False
+        self.penalty_timer_label5.place_forget()
+        self.penalty_timer_label5_control.place_forget()
+        self.penalty_number_label5.place_forget()
+        self.penalty_number_label5_control.place_forget()
+
+    def cancel_penalty6(self):
+        self.penalty_flg6 = False
+        self.penalty_timer_label6.place_forget()
+        self.penalty_timer_label6_control.place_forget()
+        self.penalty_number_label6.place_forget()
+        self.penalty_number_label6_control.place_forget()
 
 ################################### КОНЕЦ тест штрафных
 
@@ -1187,13 +1088,14 @@ class TimerApp:
 
     def reset_timer(self):
         self.timer_running = False
+        self.general_timer.reset()
+        self.stopwatch.reset()
         self.button.config(text="Игра")
-        self.time_remaining = 20 * 60
-        self.timer_label.config(text='20:00')
-        self.timer_label_control.config(text='20:00')
-        # self.timer_label.config(text=self.format_time(self.time_remaining)) # так было на всякий случай
-        self.start_time = 0
-        self.paused_time = 0
+        self.timer_label.config(text='00:00')
+        self.timer_label_control.config(text='00:00')
+        self.stopwatch_time_label.config(text='20:00')
+        self.reset_button.config(state=tk.NORMAL)
+
 
     def save_teams(self):
         if not self.timer_running:
@@ -1330,72 +1232,22 @@ class TimerApp:
             self.reset_button.config(state=tk.DISABLED)
             self.button.config(text="Пауза")
 
-
     def update_timer(self):
         if self.timer_running:
+            self.current_time = self.elapse_time - self.general_timer.elapsed
             self.current_time = self.elapse_time - self.general_timer.elapsed
             minutes = int(self.current_time // 60)
             seconds = int(self.current_time % 60)
             stopwatch_time_string = f"{minutes:02d}:{seconds:02d}"
             self.timer_label.config(text=stopwatch_time_string)
             self.timer_label_control.config(text=stopwatch_time_string)
+            if self.current_time <= 0:
+                self.reset_timer()
             self.master.after(10, self.update_timer)
+
         else:
             self.general_timer.stop()
 
-    def cancel_penalty(self):
-        self.penalty_flg = False
-        self.penalty_timer_label.place_forget()
-        self.penalty_timer_label_control.place_forget()
-        self.penalty_number_label.place_forget()
-        self.penalty_number_label_control.place_forget()
-
-
-    def cancel_penalty2(self):
-        self.penalty_time_remaining2 = 0
-        self.penalty_timer_running2 = False
-        self.penalty_timer_label2.place_forget()
-        self.penalty_timer_label2_control.place_forget()
-        self.penalty_minutes2 = '0'  # Обязательно возращать 0 во все переменные штрафа
-        self.penalty_number_label2.place_forget()
-        self.penalty_number_label2_control.place_forget()
-
-
-    def cancel_penalty3(self):
-        self.penalty_time_remaining3 = 0
-        self.penalty_timer_running3 = False
-        self.penalty_timer_label3.place_forget()
-        self.penalty_timer_label3_control.place_forget()
-        self.penalty_minutes3 = '0'  # Обязательно возращать 0 во все переменные штрафа
-        self.penalty_number_label3.place_forget()
-        (self.penalty_number_label3_control.place_forget())
-
-    def cancel_penalty4(self):
-        self.penalty_time_remaining4 = 0
-        self.penalty_timer_running4 = False
-        self.penalty_timer_label4.place_forget()
-        self.penalty_timer_label4_control.place_forget()
-        self.penalty_minutes4 = '0'  # Обязательно возращать 0 во все переменные штрафа
-        self.penalty_number_label4.place_forget()
-        self.penalty_number_label4_control.place_forget()
-
-    def cancel_penalty5(self):
-        self.penalty_time_remaining5 = 0
-        self.penalty_timer_running5 = False
-        self.penalty_timer_label5.place_forget()
-        self.penalty_timer_label5_control.place_forget()
-        self.penalty_minutes5 = '0'  # Обязательно возращать 0 во все переменные штрафа
-        self.penalty_number_label5.place_forget()
-        self.penalty_number_label5_control.place_forget()
-
-    def cancel_penalty6(self):
-        self.penalty_time_remaining6 = 0
-        self.penalty_timer_running6 = False
-        self.penalty_timer_label6.place_forget()
-        self.penalty_timer_label6_control.place_forget()
-        self.penalty_minutes6 = '0'  # Обязательно возращать 0 во все переменные штрафа
-        self.penalty_number_label6.place_forget()
-        self.penalty_number_label6_control.place_forget()
 
 
 ############################# ЗАПИСЬ КОМАНД ################################################
@@ -1490,8 +1342,6 @@ class TimerApp:
 
         clear_data_button2 = tk.Button(self.save_comands_window, text="СТЕРЕТЬ СПИСОК", command=clear_data2, bg='red', fg='white')
         clear_data_button2.place(x=452, y=463, anchor='center', width=244)
-
-
 
     def goal(self):
         if self.goal_scored_number.get() in self.data_team and os.path.exists(f'photo_home/{self.goal_scored_number.get()}.jpg'):
@@ -1674,7 +1524,6 @@ class TimerApp:
         for number, name in self.data_team2.items():
             self.text_box_guests.insert(tk.END, f"{count + 1}. {number} : {name}\n")
             count += 1
-
 
     def update_combo_box(self):
         self.goal_scored_number['values'] = list(self.data_team.keys())
