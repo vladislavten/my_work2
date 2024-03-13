@@ -1,53 +1,6 @@
-# import tkinter as tk
-# from stopwatch import Stopwatch
-#
-# # Функция для обновления отображения времени
-# def stopwatch_update_time():
-#     # Получаем текущее время с секундомера
-#     current_time = stopwatch.elapsed
-#     print(current_time)
-#     # Преобразуем секунды в минуты и секунды
-#     minutes = int(current_time // 60)
-#     seconds = int(current_time % 60)
-#     # Форматируем время
-#     stopwatch_time_string = f"{minutes:02d}:{seconds:02d}"
-#     # Обновляем текст на метке
-#     stopwatch_time_label.config(text=stopwatch_time_string)
-#     # Запускаем обновление снова через 100 мс
-#     window.after(100, stopwatch_update_time)
-#
-# # Создаем окно Tkinter
-# window = tk.Tk()
-# window.title("Секундомер")
-#
-# # Создаем секундомер
-# stopwatch = Stopwatch()
-#
-# # Создаем метку для отображения времени
-# stopwatch_time_label = tk.Label(text="00:00", font=("Arial", 24))
-# stopwatch_time_label.pack()
-#
-# # Создаем кнопки
-# stopwatch_start_button = tk.Button(text="Старт", command=stopwatch.start)
-# stopwatch_stop_button = tk.Button(text="Стоп", command=stopwatch.stop)
-# stopwatch_reset_button = tk.Button(text="Сброс", command=stopwatch.reset)
-#
-# # Размещаем кнопки
-# stopwatch_start_button.pack(side=tk.LEFT)
-# stopwatch_stop_button.pack(side=tk.LEFT)
-# stopwatch_reset_button.pack(side=tk.LEFT)
-#
-# # Запускаем обновление времени
-# stopwatch_update_time()
-#
-# # Запускаем цикл обработки событий Tkinter
-# window.mainloop()
-
-
 
 import tkinter as tk
 from tkinter import messagebox
-import time
 from screeninfo import get_monitors
 from PIL import Image, ImageTk
 import os.path
@@ -836,7 +789,6 @@ class TimerApp:
             penalty_current_time = int(self.penalty_minutes) * 2 - self.penalty_timer.elapsed
             if penalty_current_time <= 1:
                 self.cancel_penalty()
-            print(penalty_current_time)
             minutes = int(penalty_current_time // 60)
             seconds = int(penalty_current_time % 60)
             string = f"{minutes:02d}:{seconds:02d}"
@@ -845,7 +797,6 @@ class TimerApp:
             self.master.after(10, self.penalty_update_timer)
         else:
             self.penalty_timer.stop()
-            print('stop')
 
     def penalty_update_timer2(self):
         if self.timer_running and self.penalty_flg2:
@@ -853,7 +804,6 @@ class TimerApp:
             penalty_current_time = int(self.penalty_minutes2) * 2 - self.penalty_timer2.elapsed
             if penalty_current_time <= 1:
                 self.cancel_penalty2()
-            print(penalty_current_time)
             minutes = int(penalty_current_time // 60)
             seconds = int(penalty_current_time % 60)
             string = f"{minutes:02d}:{seconds:02d}"
@@ -862,7 +812,6 @@ class TimerApp:
             self.master.after(10, self.penalty_update_timer2)
         else:
             self.penalty_timer2.stop()
-            print('stop')
 
     def penalty_update_timer3(self):
         if self.timer_running and self.penalty_flg3:
@@ -870,7 +819,6 @@ class TimerApp:
             penalty_current_time = int(self.penalty_minutes3) * 2 - self.penalty_timer3.elapsed
             if penalty_current_time <= 1:
                 self.cancel_penalty3()
-            print(penalty_current_time)
             minutes = int(penalty_current_time // 60)
             seconds = int(penalty_current_time % 60)
             string = f"{minutes:02d}:{seconds:02d}"
@@ -879,7 +827,6 @@ class TimerApp:
             self.master.after(10, self.penalty_update_timer3)
         else:
             self.penalty_timer3.stop()
-            print('stop')
 
     def penalty_update_timer4(self):
         if self.timer_running and self.penalty_flg4:
@@ -887,7 +834,6 @@ class TimerApp:
             penalty_current_time = int(self.penalty_minutes4) * 2 - self.penalty_timer4.elapsed
             if penalty_current_time <= 1:
                 self.cancel_penalty4()
-            print(penalty_current_time)
             minutes = int(penalty_current_time // 60)
             seconds = int(penalty_current_time % 60)
             string = f"{minutes:02d}:{seconds:02d}"
@@ -896,7 +842,6 @@ class TimerApp:
             self.master.after(10, self.penalty_update_timer4)
         else:
             self.penalty_timer4.stop()
-            print('stop')
 
     def penalty_update_timer5(self):
         if self.timer_running and self.penalty_flg5:
@@ -904,7 +849,6 @@ class TimerApp:
             penalty_current_time = int(self.penalty_minutes5) * 2 - self.penalty_timer5.elapsed
             if penalty_current_time <= 1:
                 self.cancel_penalty5()
-            print(penalty_current_time)
             minutes = int(penalty_current_time // 60)
             seconds = int(penalty_current_time % 60)
             string = f"{minutes:02d}:{seconds:02d}"
@@ -913,7 +857,6 @@ class TimerApp:
             self.master.after(10, self.penalty_update_timer5)
         else:
             self.penalty_timer5.stop()
-            print('stop')
 
     def penalty_update_timer6(self):
         if self.timer_running and self.penalty_flg6:
@@ -921,7 +864,6 @@ class TimerApp:
             penalty_current_time = int(self.penalty_minutes6) * 2 - self.penalty_timer6.elapsed
             if penalty_current_time <= 1:
                 self.cancel_penalty6()
-            print(penalty_current_time)
             minutes = int(penalty_current_time // 60)
             seconds = int(penalty_current_time % 60)
             string = f"{minutes:02d}:{seconds:02d}"
@@ -930,7 +872,6 @@ class TimerApp:
             self.master.after(10, self.penalty_update_timer6)
         else:
             self.penalty_timer6.stop()
-            print('stop')
 
 
     def cancel_penalty(self):
