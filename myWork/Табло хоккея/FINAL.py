@@ -1056,6 +1056,7 @@ class TimerApp:
         minutes, seconds = divmod(seconds, 60)
         return "{:02d}:{:02d}".format(minutes, seconds)
 
+
     def penalty_format_time6(self, seconds):
         minutes, seconds = divmod(seconds, 60)
         return "{:02d}:{:02d}".format(minutes, seconds)
