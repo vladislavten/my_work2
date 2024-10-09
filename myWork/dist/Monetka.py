@@ -3,10 +3,19 @@ import time
 import logging
 import random
 import time
+# import aiohttp
+# import certifi
+# import ssl
 a= 12
+
+
 
 from aiogram import Bot, Dispatcher, executor, types
 from aiogram.types import ContentType, message, InlineKeyboardButton, InlineKeyboardMarkup
+
+# ssl_context = ssl.create_default_context(cafile=certifi.where())
+# connector = aiohttp.TCPConnector(ssl=ssl_context)
+# session = aiohttp.ClientSession(connector=connector)
 
 
 bot = Bot(token='5704015463:AAGcBZcmrg94gwHEb6knQGBhoyKD_24PIrM')

@@ -1,3 +1,4 @@
+import time
 import tkinter as tk
 from tkinter import messagebox
 from screeninfo import get_monitors
@@ -9,6 +10,7 @@ from stopwatch import Stopwatch
 import pygame
 
 
+
 def on_closing():
     if messagebox.askokcancel("Выход", "Вы действительно хотите завершить работу программы: Управление таймером?"):
         root.destroy()
@@ -17,13 +19,13 @@ def on_closing():
 class TimerApp:
     def __init__(self, master):
         self.monitors = get_monitors()
-        # Выбираем второй монитор (индекс 1)
+        # Выбираем второй монитор (индекс 1)pip install pillow
         if len(self.monitors) < 2:
             messagebox.showinfo('INFO', 'Табло не обнаружено')
-            self.secondary_monitor = self.monitors[1]
+            self.secondary_monitor = self.monitors[0]
         else:
             print(len(self.monitors))
-            self.secondary_monitor = self.monitors[0]  # 1 это второй монитор, 0 это первый
+            self.secondary_monitor = self.monitors[1]  # 1 это второй монитор, 0 это первый
 
         self.master = master
         self.master.title("Управление Таймером")
@@ -1232,13 +1234,52 @@ class TimerApp:
             self.master.after(10, self.update_timer)
             if self.current_time <= 1:
                 self.play_sound()
+                self.red_line_left = tk.Frame(self.master, bg='red', width=10, height=2000)
+                self.red_line_left.pack(side='left')
+                self.red_line_right = tk.Frame(self.master, bg='red', width=10, height=2000)
+                self.red_line_right.pack(side='right')
+                self.red_line_top = tk.Frame(self.master, bg='red', width=2000, height=10)
+                self.red_line_top.pack(side='top')
+                self.red_line_bottom = tk.Frame(self.master, bg='red', width=2000, height=10)
+                self.red_line_bottom.pack(side='bottom')
+
+                self.red_line_left2 = tk.Frame(self.timer_window, bg='red', width=10, height=2000)
+                self.red_line_left2.pack(side='left')
+                self.red_line_right2 = tk.Frame(self.timer_window, bg='red', width=10, height=2000)
+                self.red_line_right2.pack(side='right')
+                self.red_line_top2 = tk.Frame(self.timer_window, bg='red', width=2000, height=10)
+                self.red_line_top2.pack(side='top')
+                self.red_line_bottom2 = tk.Frame(self.timer_window, bg='red', width=2000, height=10)
+                self.red_line_bottom2.pack(side='bottom')
+
                 self.reset_timer()
                 self.timer_label.config(text='00:00')
                 self.timer_label_control.config(text='00:00')
                 self.stopwatch_time_label.config(text='20:00')
+                self.master.after(7000, self.remove_red_line)
+
+                # self.master.after(3000, self.end_time())
 
         else:
             self.general_timer.stop()
+
+    def remove_red_line(self):
+        self.red_line_left.destroy()
+        self.red_line_right.destroy()
+        self.red_line_top.destroy()
+        self.red_line_bottom.destroy()
+
+        self.red_line_left2.destroy()
+        self.red_line_right2.destroy()
+        self.red_line_top2.destroy()
+        self.red_line_bottom2.destroy()
+
+
+    def end_time(self):
+        self.red_line_left.forget()
+        self.red_line_right.forget()
+        self.red_line_top.forget()
+        self.red_line_bottom.forget()
 
     ############################# ЗАПИСЬ КОМАНД ################################################
     #### ЧИТАЕМ списки команд из файла data_team.pkl

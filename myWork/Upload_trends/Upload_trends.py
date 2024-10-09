@@ -48,12 +48,13 @@ def upload():
     else:
         messagebox.showinfo('Ошибка', 'Выгрузка не запущена, проверьте введенные данные"')
         general_start_command = False
-    # print(cmd_command)
+    print(cmd_command)
 
 
 root = tk.Tk()
 root.title("Выгрузка трендов by Тен В.С.")
 root.geometry('350x450')
+root.resizable(False, False)
 
 var_trace_l = tk.BooleanVar()
 var_trace_l.set('1')
