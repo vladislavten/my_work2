@@ -1256,7 +1256,7 @@ class TimerApp:
                 self.timer_label.config(text='00:00')
                 self.timer_label_control.config(text='00:00')
                 self.stopwatch_time_label.config(text='20:00')
-                self.master.after(7000, self.remove_red_line)
+                self.master.after(8000, self.remove_red_line)
 
                 # self.master.after(3000, self.end_time())
 
