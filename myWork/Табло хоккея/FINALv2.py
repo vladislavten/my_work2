@@ -22,10 +22,10 @@ class TimerApp:
         # Выбираем второй монитор (индекс 1)pip install pillow
         if len(self.monitors) < 2:
             messagebox.showinfo('INFO', 'Табло не обнаружено')
-            self.secondary_monitor = self.monitors[0]
+            self.secondary_monitor = self.monitors[1]
         else:
             print(len(self.monitors))
-            self.secondary_monitor = self.monitors[1]  # 1 это второй монитор, 0 это первый
+            self.secondary_monitor = self.monitors[0]  # 1 это второй монитор, 0 это первый
 
         self.master = master
         self.master.title("Управление Таймером")
@@ -33,8 +33,10 @@ class TimerApp:
         self.master.resizable(False, False)
         self.master['bg'] = 'lightblue'
 
-        if os.path.exists('logo.ico'):
-            root.iconbitmap("logo.ico")
+        if os.path.exists('icon.ico'):
+            root.iconbitmap("icon.ico")
+
+
 
         ################################ ДЕКОРАЦИИ ##################################################
         black_strip = tk.Frame(self.master, bg="black", width=900, height=260)
@@ -55,6 +57,7 @@ class TimerApp:
         white_strip.place(x=673, y=579)
         white_strip = tk.Frame(self.master, bg="white", width=1, height=120)
         white_strip.place(x=223, y=579)
+        ##############################################################################################
 
         # Добавляем поля ввода для имен команд и кнопку "Сохранить команды"
         self.team1_name_entry = tk.Entry(self.master, font=("Helvetica", 14), justify="center")
@@ -575,8 +578,27 @@ class TimerApp:
         # self.master.bind("<space>", self.toggle_timer_space)
         self.master.bind("<Return>", self.toggle_timer_enter)
 
+        ################# РАЗРАБОТЧИК #############################################################
+        self.creator = tk.Label(self.master, text="Разработчик", font=("Arial", 7), fg="WHITE",bg='green', cursor="hand2")
+        self.creator.place(x=852, y=750, anchor='center')
+
+        self.creator.bind("<Button-1>", lambda e: self.show_info())
+
         # self.update_timer()
 
+    def show_info(self):
+        # Создание нового окна с информацией
+        self.info_window = tk.Toplevel()
+        self.info_window.title("Разработчик")
+        self.info_window.geometry("300x100")
+        self.info_window.resizable(False, False)
+        self.info_window['bg'] = 'black'
+
+        # Текст в новом окне
+        self.label_info = tk.Label(self.info_window, text="Разработчик: Тен Владислав\n"
+                                                          "По вопросам сотрудничества: +77017107829\n"
+                                                          "e-mail: vladislav.ten1987@gmail.com", font=("Arial", 10), fg='white', bg='black')
+        self.label_info.pack(expand=True)
     ##########################################  ФУНКЦИИ ###################################################
 
     ####################################### тест штрафных
