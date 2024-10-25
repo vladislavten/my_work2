@@ -22,10 +22,10 @@ class TimerApp:
         # Выбираем второй монитор (индекс 1)pip install pillow
         if len(self.monitors) < 2:
             messagebox.showinfo('INFO', 'Табло не обнаружено')
-            self.secondary_monitor = self.monitors[1]
+            self.secondary_monitor = self.monitors[0]
         else:
             print(len(self.monitors))
-            self.secondary_monitor = self.monitors[0]  # 1 это второй монитор, 0 это первый
+            self.secondary_monitor = self.monitors[1]  # 1 это второй монитор, 0 это первый
 
         self.master = master
         self.master.title("Управление Таймером")
@@ -352,7 +352,7 @@ class TimerApp:
         self.save_teams_button = tk.Button(self.master, text="ЗАПИСАТЬ КОМАНДЫ", width=20, command=self.save_teams)
         self.save_teams_button.place(x=450, y=302, anchor='center')
 
-        self.button = tk.Button(self.master, text="ИГРА", width=12, command=self.general_start)
+        self.button = tk.Button(self.master, text="ИГРА", width=12, command=self.general_start, bg='lightgreen', fg='black')
         self.button.place(x=65, y=729, anchor='center')
 
         self.reset_button = tk.Button(self.master, text="НАЧАТЬ СНАЧАЛА", width=15, command=self.reset_timer)
@@ -1237,14 +1237,15 @@ class TimerApp:
         if self.timer_running:
             self.reset_button.config(state=tk.NORMAL)
             self.timer_running = False
-            self.button.config(text="Игра")
+            self.button.config(text="ИГРА", bg="lightgreen", fg="black")
+
 
         else:
             self.general_timer.start()
             self.timer_running = True
             self.update_timer()
             self.reset_button.config(state=tk.DISABLED)
-            self.button.config(text="Пауза")
+            self.button.config(text="ПАУЗА", bg="red", fg="white")
 
     def update_timer(self):
         if self.timer_running:
