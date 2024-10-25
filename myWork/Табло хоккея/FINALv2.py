@@ -1101,7 +1101,7 @@ class TimerApp:
         self.stopwatch.reset()
         self.elapse_time = 20 * 60
         self.stopwatch_elapse_time = 1
-        self.button.config(text="Игра")
+        self.button.config(text="ИГРА")
         self.timer_label.config(text='20:00')
         self.timer_label_control.config(text='20:00')
         self.stopwatch_time_label.config(text='00:00')
