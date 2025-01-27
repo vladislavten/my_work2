@@ -26,7 +26,7 @@ def main():
 
     # Проходимся по данным. Предполагается, что у нас в A - имя, в B - номер,
     # и, по-хорошему, стоит начать с 2 строки, если в первой шапка.
-    for row in ws_data.iter_rows(min_row=2, values_only=True):
+    for row in ws_data.iter_rows(min_row=1, values_only=True):
         # row будет кортежем вида (имя, номер, ...)
         name, client_id = row[0], row[1]
 
@@ -36,7 +36,7 @@ def main():
 
         # Пихаем имя в ячейку B2 и номер в C
         ws_template['B10'] = name
-        ws_template['B12'] = client_id
+        ws_template['C10'] = client_id
 
         # Формируем название итогового файла. Попробуй не написать ничего странного в ячейке с именем
         output_filename = os.path.join('results', f"{name}.xlsx")
