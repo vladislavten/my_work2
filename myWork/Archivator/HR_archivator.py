@@ -7,16 +7,16 @@ from watchdog.events import FileSystemEventHandler
 
 # === НАСТРОЙКИ ===
 SEVEN_ZIP_PATH = "C:\\Program Files\\7-Zip\\7z.exe"
-WATCH_FOLDER = "Z:\\IT Department\\test\\Password protect"
-RESULTS_FOLDER = "Z:\\IT Department\\test\\ZIP Results"
-ARCHIVE_PASSWORD = "12345"
-ARCHIVE_FORMAT = "zip"  # можно изменить на "7z" если хочешь быть хардкорщиком
+WATCH_FOLDER = "E:\\Shared\\HR Department\\Password protect\\Original files"
+RESULTS_FOLDER = "E:\\Shared\\HR Department\\Password protect\\Protected files"
+ARCHIVE_PASSWORD = "Firhr2025"
+ARCHIVE_FORMAT = "zip"  # можно изменить на "7z"
 
 # === ОБРАБОТЧИК СОБЫТИЙ ===
 class ArchiveHandler(FileSystemEventHandler):
     def on_created(self, event):
         # подождём чуть-чуть, чтобы файлы догрузились
-        time.sleep(2)
+        time.sleep(4)
 
         if event.is_directory:
             self.process_directory(event.src_path)
@@ -72,5 +72,5 @@ if __name__ == "__main__":
             time.sleep(1)
     except KeyboardInterrupt:
         observer.stop()
-        print("Останавливаемся по CTRL+C, босс.")
+        print("Останавливаемся по CTRL+C.")
     observer.join()
